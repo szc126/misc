@@ -143,7 +143,7 @@ def determine_service_and_id(path):
 	"""Test path against regexes to determine the service and PV ID"""
 
 	for service in service_regexes:
-		matches = re.search('({})'.format(service_regexes[service]) + '.+(mp3|m4a)', path)
+		matches = re.search('(' + service_regexes[service] + ')' + '.+(mp3|m4a)', path)
 
 		if matches:
 			return service, matches.group(1)
