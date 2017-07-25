@@ -1,21 +1,25 @@
+import collections
 import argparse
 import colorama
 import json
-import mutagen
+import os
 import re
 import requests
 
 LANGUAGE = 'Default' # Default, Japanese, Romaji, English
 
+OUTPUT_FILE = 'tag out.txt'
+DELIMITER = '\t'
+
 METADATA_FORMAT = {
 	'TITLE': '$title',
 	'ARTIST': '$vocalists',
 	'COMPOSER': '$producers',
-	'ALBUM': 'foobar-album',
-	'GENRE': 'foobar-genre',
+	'ALBUM': '',
+	'GENRE': '',
 	'DATE': '$year',
 	'URL': '$url',
-	'COMMENT': '$producers feat. $vocalists ; $song_type song ; $vocadb_id@VocaDB',
+	'COMMENT': '$song_type song ; $x_db_id@$x_db',
 }
 
 service_regexes = {
@@ -28,16 +32,28 @@ service_urls = {
 	'Youtube': 'https://www.youtube.com/watch?v={}'
 }
 
-vocadb_api_request_url = 'https://vocadb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}'
+db_urls = collections.OrderedDict()
+db_urls['vocadb'] = 'http://vocadb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}'
+db_urls['utaitedb'] = 'http://utaitedb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}'
 
 parser = argparse.ArgumentParser(description='LOREM IPSUM DOLOR SIT AMET')
 parser.add_argument('FOOBAR', help='LOREM IPSUM DOLOR SIT AMET', metavar='LOREM IPSUM DOLOR SIT AMET')
 args = parser.parse_args()
 
-def fetch_data(service, id):
-	"""Fetch PV data from the VocaDB API"""
+colorama.init(autoreset=True)
 
-	return requests.get(vocadb_api_request_url.format(service, id, LANGUAGE))
+def fetch_data(service, id):
+	"""Fetch PV data from the VocaDB/UtaiteDB API"""
+
+	for db in db_urls:
+		response = requests.get(db_urls[db].format(service, id, LANGUAGE))
+
+		if not response.content == b'null':
+			return db, response
+			break
+
+	print(colorama.Back.RED + f'The video \'{id}@{service}\' is not registered on VocaDB or UtaiteDB!')
+	return None, None
 
 def check_connectivity():
 	"""Check to see if the NND API can be reached"""
@@ -51,20 +67,24 @@ def check_connectivity():
 def generate_metadata(service, id):
 	"""Parse and rearrange the data from the VocaDB API"""
 
-	api_data = fetch_data(service, id)
+	db, api_data = fetch_data(service, id)
 
-	if api_data.content == b'null':
-		raise Exception(f'The video \'{id}@{service}\' is not registered on VocaDB!')
+	if api_data is None:
+		return None
 
 	api_data = json.loads(api_data.content)
 
 	metadata = {
-		'vocadb_id': None,
 		'title': None,
 		'song_type': None,
 		'publish_date': None, 'year': None,
 		'producers': [],
 		'vocalists': [],
+		'url': [],
+
+		# meta-metadata
+		'x_db': None,
+		'x_db_id': None,
 		'x_synthesizers': {
 			'vocaloid': None,
 			'utau': None,
@@ -72,24 +92,30 @@ def generate_metadata(service, id):
 			'other_synthesizer': None,
 			'actual_human_people': None,
 		},
-		'url': [],
 	}
 
-	metadata['vocadb_id'] = api_data['id']
+	metadata['x_db'] = db
+
+	metadata['x_db_id'] = api_data['id']
 
 	metadata['title'] = api_data['name']
 
 	metadata['song_type'] = api_data['songType']
 
-	metadata['publish_date'] = api_data['publishDate']
+	if 'publishDate' in api_data:
+		metadata['publish_date'] = api_data['publishDate']
 
-	metadata['year'] = metadata['publish_date'][0:4] # it just werks
+		metadata['year'] = metadata['publish_date'][0:4] # it just werks
+
+	metadata['url'] = service_urls[service].format(id)
 
 	for artist in api_data['artists']:
 		# print(artist)
 		# print()
 
-		if artist['artist']['artistType'] == 'Vocaloid':
+		if not 'artist' in artist: # custom artist
+			pass
+		elif artist['artist']['artistType'] == 'Vocaloid':
 			metadata['x_synthesizers']['vocaloid'] = True
 			metadata['vocalists'].append(artist['name'])
 		elif artist['artist']['artistType'] == 'UTAU':
@@ -101,7 +127,7 @@ def generate_metadata(service, id):
 		elif artist['artist']['artistType'] == 'OtherVoiceSynthesizer':
 			metadata['x_synthesizers']['other_synthesizer'] = True
 			metadata['vocalists'].append(artist['name'])
-		elif 'Vocalist' in artist['roles']: # what's the difference between 'roles' and 'effectiveRoles'
+		elif ('Vocalist' in artist['roles']) or ('Vocalist' in artist['categories'] and 'Default' in artist['roles']): # what's the difference between 'roles' and 'effectiveRoles'
 			metadata['x_synthesizers']['actual_human_people'] = True
 			metadata['vocalists'].append(artist['name'])
 
@@ -110,8 +136,6 @@ def generate_metadata(service, id):
 
 		elif 'Default' in artist['roles'] and 'Producer' in artist['categories']:
 			metadata['producers'].append(artist['name'])
-
-	metadata['url'] = service_urls[service].format(id)
 
 	return metadata
 
@@ -128,15 +152,15 @@ def determine_service_and_id(path):
 			print(f'tis not {service}')
 
 def tag_file(path):
-	"""Given the file path, tag the file"""
+	"""Given the file path, write lines for mp3tag"""
 
 	service, id = determine_service_and_id(path)
+	print(id)
+
 	metadata = generate_metadata(service, id)
 
-	# NOT WORKING
-
-	audio =  mutagen.easyid3.EasyID3(path)
-	print(audio)
+	if metadata is None:
+		return None
 
 	def metadata_returner(x):
 		metadata_value = metadata[x.group(1)]
@@ -146,20 +170,34 @@ def tag_file(path):
 			metadata_value = str(metadata_value)
 		return metadata_value
 
-	for field in METADATA_FORMAT:
-		metadata_value = re.sub('\$([a-z_]+)', metadata_returner, METADATA_FORMAT[field])
-		print(field, metadata_value)
-		audio[field] = metadata_value
+	with open(OUTPUT_FILE, mode='a', encoding='utf-8') as file:
+		metadata_values = [path]
 
-	audio.pprint()
-	audio.save()
+		for field in METADATA_FORMAT:
+			metadata_value = re.sub('\$([a-z_]+)', metadata_returner, METADATA_FORMAT[field]) # pattern, repl, string
+			metadata_values.append(metadata_value)
+
+		file.write(DELIMITER.join(metadata_values) + '\n')
+
+def write_mp3tag_format_string():
+	with open(f'{OUTPUT_FILE}-format string.txt', mode='w', encoding='utf-8') as file:
+		format_string = ['%_filename_ext%']
+
+		for field in METADATA_FORMAT:
+			format_string.append('%{}%'.format(field.lower()))
+
+		file.write(DELIMITER.join(format_string) + '\n')
 
 def main():
 	check_connectivity()
 
-	path = args.FOOBAR
+	write_mp3tag_format_string()
 
-	tag_file(path)
+	# tentative
+	for dir, subdirs, files in os.walk(args.FOOBAR):
+		for file in files:
+			if file.endswith(('.mp3', '.m4a')):
+				tag_file(file)
 
 if __name__ == "__main__":
 	main()
