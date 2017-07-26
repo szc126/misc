@@ -15,8 +15,6 @@ METADATA_FORMAT = {
 	'TITLE': '$title',
 	'ARTIST': '$vocalists',
 	'COMPOSER': '$producers',
-	'ALBUM': '',
-	'GENRE': '',
 	'DATE': '$year',
 	'URL': '$url',
 	'COMMENT': '$song_type song ; $x_db_id@$x_db',
@@ -194,6 +192,9 @@ def main():
 	write_mp3tag_format_string()
 
 	# tentative
+	with open(OUTPUT_FILE, mode='w', encoding='utf-8') as file:
+		file.write('\ufeff') # bom, for mp3tag
+
 	for dir, subdirs, files in os.walk(args.FOOBAR):
 		for file in files:
 			if file.endswith(('.mp3', '.m4a')):
