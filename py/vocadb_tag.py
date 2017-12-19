@@ -38,7 +38,7 @@ service_url_functions = {
 }
 
 db_urls = {
-	'vocadb': 'http://vocadb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}'
+	'vocadb': 'http://vocadb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}',
 	'utaitedb': 'http://utaitedb.net/api/songs/byPv?pvService={}&pvId={}&fields=Artists&lang={}'
 }
 
