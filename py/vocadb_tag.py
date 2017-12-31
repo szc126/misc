@@ -22,15 +22,15 @@ METADATA_FORMAT = {
 METADATA_DELIMITER = '; ' # as in "初音ミク; GUMI"
 
 service_regexes = {
-	'NicoNicoDouga': '[sn]m\d+',
-	'SoundCloud': '[0-9]+ [a-z0-9-]+/[a-z0-9-]+', # not sure what program would output files like this
-	'Youtube': '[A-Za-z0-9_-]{11}',
+	'NicoNicoDouga': '([sn]m\d+)',
+	'SoundCloud': '([0-9]+ [a-z0-9-]+/[a-z0-9-]+)', # not sure what program would output files like this
+	'Youtube': '([A-Za-z0-9_-]{11})',
 }
 
 service_urls = {
 	'NicoNicoDouga': 'http://www.nicovideo.jp/watch/{}',
-	'Youtube': 'https://www.youtube.com/watch?v={}',
 	'SoundCloud': 'http://soundcloud.com/{}',
+	'Youtube': 'https://www.youtube.com/watch?v={}',
 }
 
 service_url_functions = {
@@ -109,7 +109,7 @@ def generate_metadata(service, id):
 
 		metadata['year'] = metadata['publish_date'][0:4] # it just werks
 
-	if service_url_functions[service]:
+	if service in service_url_functions:
 		id = service_url_functions[service](id)
 
 	metadata['url'] = service_urls[service].format(id)
@@ -148,7 +148,7 @@ def determine_service_and_id(path):
 	"""Test path against regexes to determine the service and PV ID"""
 
 	for service in service_regexes:
-		matches = re.search('(' + service_regexes[service] + ')', path)
+		matches = re.search(service_regexes[service], path)
 
 		if matches:
 			return service, matches.group(1)
@@ -210,7 +210,7 @@ def main(args):
 
 	for dir, subdirs, files in os.walk(args.FOOBAR):
 		for file in files:
-			if file.endswith(('.mp3', '.m4a')):
+			if file.endswith(('.mp3', '.m4a', '.ogg')):
 				tag_file(file)
 
 if __name__ == "__main__":
