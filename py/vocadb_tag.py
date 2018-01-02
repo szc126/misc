@@ -8,8 +8,9 @@ import requests
 
 LANGUAGE = 'Default' # Default, Japanese, Romaji, English
 
-OUTPUT_FILE = 'tag out.txt'
+OUTPUT_FILE = 'vocadb_tag OUT.log'
 OUTPUT_DELIMITER = '\t'
+FORMATSTRING_OUTPUT_FILE = 'vocadb_tag OUT FS.log'
 
 METADATA_FORMAT = {
 	'TITLE': '$title',
@@ -191,7 +192,7 @@ def tag_file(path):
 		file.write(OUTPUT_DELIMITER.join(metadata_values) + '\n')
 
 def write_mp3tag_format_string():
-	with open(f'{OUTPUT_FILE}-format string.txt', mode='w', encoding='utf-8') as file:
+	with open(FORMATSTRING_OUTPUT_FILE, mode='w', encoding='utf-8') as file:
 		format_string = ['%_filename_ext%']
 
 		for field in METADATA_FORMAT:
