@@ -6,7 +6,7 @@ import os
 import re
 import requests
 
-LOG_FILENAME = 'log verify.log'
+LOG_FILENAME = 'nnd_verify OUT.log'
 
 colorama.init(autoreset=True)
 
