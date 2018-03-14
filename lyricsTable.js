@@ -1,9 +1,12 @@
-let wikiDropdown = undefined;
-let origLangBox = undefined;
-let origBox = undefined;
-let romBox = undefined;
-let engBox = undefined;
-let outputBox = undefined;
+let els = {
+	wiki: undefined,
+	language: undefined,
+	enType: undefined,
+	original: undefined,
+	romanization: undefined,
+	english: undefined,
+	output: undefined,
+}
 
 let tableHeadSyntax = {
 	vw: [ '{| style="width:100%"', '! align=left |' ],
@@ -19,7 +22,7 @@ let br = {
 
 let headText = {
 	vw: {
-		en: "foobar",
+		en: "''Official English'' (公式英訳)",
 		
 		ja: [ "''Japanese'' (日本語歌詞)", "''Romaji'' (ローマ字)" ],
 		zht: [ "''Chinese'' (中文歌詞)", "''Pinyin'' (拼音)" ],
@@ -28,6 +31,7 @@ let headText = {
 		yuet: [ "''Cantonese'' (廣東話歌詞)", "''Jyutping'' (粵拼)" ],
 		yues: [ "''Cantonese'' (广东话歌词)", "''Jyutping'' (粤拼)" ],
 
+		enx: '<span class="error">The Vocaloid Wiki does not add unofficial English translations.</span>',
 		yue: [
 			'<span class="error">Traditional (<code>yuet</code>) or simplified (<code>yues</code>)?</span>',
 			'<span class="error">Traditional (<code>yuet</code>) or simplified (<code>yues</code>)?</span>'
@@ -39,12 +43,13 @@ let headText = {
 	},
 	vlw: {
 		en: "'''''English'''''",
+		enx: "'''''English'''''",
 		
 		ja: [ "'''''Japanese'''''", "'''''Romaji'''''" ],
 	},
 	ulw: {
-		enx: '{{en-unofficial}}',
-		eno: '{{en-official}}',
+		en: '{{en-official}}',
+		enx: '{{en-unofficial|<link to translation>}}',
 		
 		ja: [ '{{ja}}', '{{ja-r}}' ],
 	},
@@ -58,12 +63,13 @@ function trim(text) {
 }
 
 function go() {
-	let wiki = wikiDropdown.options[wikiDropdown.selectedIndex].value;
-	let origLang = origLangBox.value;
+	let wiki = els.wiki.options[els.wiki.selectedIndex].value;
+	let origLang = els.language.value;
+	let enIsOfficial = els.enType.checked;
 	let s = {
-		orig: trim(origBox.value),
-		rom: trim(romBox.value),
-		eng: trim(engBox.value),
+		orig: trim(els.original.value),
+		rom: trim(els.romanization.value),
+		eng: trim(els.english.value),
 	}
 	let wikitable = [];
 	
@@ -78,6 +84,7 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][1]);
+	if (s.eng[i] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')]);
 	
 	for (var i = 0; i < s.orig.length; i++) {
 		if (s.rom[i]) s.rom[i] = s.rom[i].replace(/;/g, '\u3000'); // convert semicolon in romaji to fullwidth space
@@ -99,22 +106,22 @@ function go() {
 	
 	wikitable.push('|}');
 	
-	console.log(outputBox);
-	outputBox.value = wikitable.join('\n');
+	els.output.value = wikitable.join('\n');
 }
 
 function main() {
-	let els = document.querySelectorAll('[id]');
+	els.wiki = document.getElementById("wiki");
+	els.enType = document.getElementById("enType");
+	els.language = document.getElementById("language");
+	els.original = document.getElementById("original");
+	els.romanization = document.getElementById("romanization");
+	els.english = document.getElementById("english");
+	els.output = document.getElementById("output");
 	
-	wikiDropdown = document.getElementById("wiki");
-	origLangBox = document.getElementById("language");
-	origBox = document.getElementById("original");
-	romBox = document.getElementById("romanization");
-	engBox = document.getElementById("english");
-	outputBox = document.getElementById("output");
-	
-	for (var i = 0; i < els.length; i++) {
-		els[i].oninput = function() {
+	for (var elId in els) {
+		if (elId === 'output') continue; // let people tamper with the output box
+		
+		els[elId].oninput = function() {
 			go();
 		}
 	}
