@@ -11,6 +11,12 @@ let tableHeadSyntax = {
 	ulw: [ '{| class="lyrics"', '! ' ],
 }
 
+let br = {
+	vw: '<br>',
+	vlw: '<br />',
+	ulw: '<br />',
+}
+
 let headText = {
 	vw: {
 		en: "foobar",
@@ -55,9 +61,9 @@ function go() {
 	let wiki = wikiDropdown.options[wikiDropdown.selectedIndex].value;
 	let origLang = origLangBox.value;
 	let s = {
-		orig: origBox.value,
-		rom: romBox.value,
-		eng: engBox.value,
+		orig: trim(origBox.value),
+		rom: trim(romBox.value),
+		eng: trim(engBox.value),
 	}
 	let wikitable = [];
 	
@@ -77,7 +83,7 @@ function go() {
 		if (s.rom[i]) s.rom[i] = s.rom[i].replace(';', '\u3000'); // convert semicolon in romaji to fullwidth space
 		
 		if (s.orig[i] === '' && s.rom[i] === '') {
-			s.orig[i] = '<br>';
+			s.orig[i] = br[wiki];
 			s.rom[i] = false;
 		} else if (s.orig[i].match(/^[^ぁ-ー㐀-鿕]+$/g) && (s.rom[i] === '' || s.rom[i] === s.orig[i])) {
 			s.orig[i] = '{{shared}}|' + s.orig[i];
