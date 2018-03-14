@@ -80,7 +80,7 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][1]);
 	
 	for (var i = 0; i < s.orig.length; i++) {
-		if (s.rom[i]) s.rom[i] = s.rom[i].replace(';', '\u3000'); // convert semicolon in romaji to fullwidth space
+		if (s.rom[i]) s.rom[i] = s.rom[i].replace(/;/g, '\u3000'); // convert semicolon in romaji to fullwidth space
 		
 		if (s.orig[i] === '' && s.rom[i] === '') {
 			s.orig[i] = br[wiki];
