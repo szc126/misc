@@ -1,0 +1,27 @@
+main {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+#select {
+	flex: 0; /* take as little space as possible */
+}
+#boxes {
+	flex: 1;
+}
+
+#boxes {
+	display: flex;
+}
+fieldset {
+	flex: 1;
+}
+fieldset:last-of-type {
+	flex: 2;
+}
+
+fieldset textarea {
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box; /* pls */
+}

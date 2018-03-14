@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="index, follow">
+	<title>歌詞表式変換ツール</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet">
+	<link href="lyricsTable.css" rel="stylesheet">
+	<script src="lyricsTable.js"></script>
+</head>
+
+<body>
+	<main>
+		<section id="select">
+			<select name="wiki" id="wiki">
+				<option value="vw">Vocaloid Wiki</option>
+				<option value="vlw">Vocaloid Lyrics Wiki</option>
+				<option value="ulw">UTAU Lyrics Wiki</option>
+			</select>
+			<input type=text" id="language" value="ja"></input>
+		</section>
+		<section id="boxes">
+			<fieldset>
+				<legend>Original</legend>
+				<textarea id="original"></textarea>
+			</fieldset>
+			<fieldset>
+				<legend>Romanization</legend>
+				<textarea id="romanization"></textarea>
+			</fieldset>
+			<fieldset>
+				<legend>English</legend>
+				<textarea id="english"></textarea>
+			</fieldset>
+			<fieldset>
+				<legend>Output</legend>
+				<textarea id="output"></textarea>
+			</fieldset>
+		</section>
+	</main>
+</body>
+
+</html>
