@@ -99,7 +99,8 @@ function go() {
 	
 	wikitable.push('|}');
 	
-	outputBox.innerHTML = wikitable.join('\n');
+	console.log(outputBox);
+	outputBox.value = wikitable.join('\n');
 }
 
 function main() {
