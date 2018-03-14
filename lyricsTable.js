@@ -84,7 +84,7 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][1]);
-	if (s.eng[i] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')]);
+	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')]);
 	
 	for (var i = 0; i < s.orig.length; i++) {
 		if (s.rom[i]) s.rom[i] = s.rom[i].replace(/;/g, '\u3000'); // convert semicolon in romaji to fullwidth space
