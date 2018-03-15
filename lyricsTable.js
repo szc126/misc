@@ -30,6 +30,7 @@ let headText = {
 		ko: [ "''Korean'' (한국어 가사)", "''Romaja'' (로마자)" ],
 		yuet: [ "''Cantonese'' (廣東話歌詞)", "''Jyutping'' (粵拼)" ],
 		yues: [ "''Cantonese'' (广东话歌词)", "''Jyutping'' (粤拼)" ],
+		x: [ "''??'' (??)", "''??'' (??)" ],
 
 		enx: '<span class="error">The Vocaloid Wiki does not add unofficial English translations.</span>',
 		yue: [
@@ -46,12 +47,23 @@ let headText = {
 		enx: "'''''English'''''",
 		
 		ja: [ "'''''Japanese'''''", "'''''Romaji'''''" ],
+		zh: [ "'''''Chinese'''''", "'''''Pinyin'''''" ],
+		ko: [ "'''''Korean'''''", "'''''Romaja'''''" ],
+		x: [ "'''''??'''''", "'''''Romanization'''''" ],
 	},
 	ulw: {
 		en: '{{en-official}}',
-		enx: '{{en-unofficial|<link to translation>}}',
+		enx: '{{en-unofficial|1=<link to translation>}}',
 		
 		ja: [ '{{ja}}', '{{ja-r}}' ],
+		zht: [ '{{zh-t}}', '{{zh-r}}' ],
+		zhs: [ '{{zh-s}}', '{{zh-r}}' ],
+		x: [ '{{head|??}}', '{{head|r}}' ],
+
+		zh: [
+			'<span class="error">Traditional (<code>zht</code>) or simplified (<code>zhs</code>)?</span>',
+			'<span class="error">Traditional (<code>zht</code>) or simplified (<code>zhs</code>)?</span>'
+		],
 	},
 }
 
@@ -72,6 +84,7 @@ function go() {
 		eng: trim(els.english.value),
 	}
 	let wikitable = [];
+	let corresp = {}; // map original to romanization, save some keystrokes/copypasting
 	
 	for (var k in s) {
 		s[k] = s[k].split('\n'); // turn each string into an array
@@ -81,20 +94,32 @@ function go() {
 		}
 	}
 	
+	if (! headText[wiki][origLang]) origLang = 'x'; // fallback
 	wikitable.push(tableHeadSyntax[wiki][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][0]);
-	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][1]);
+	if (s.rom[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][origLang][1]);
 	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')]);
 	
 	for (var i = 0; i < s.orig.length; i++) {
-		if (s.rom[i]) s.rom[i] = s.rom[i].replace(/;/g, '\u3000'); // convert semicolon in romaji to fullwidth space
+		if (s.orig[i] === '') s.orig[i] = undefined;
+		if (s.rom[i] === '') s.rom[i] = undefined;
+		if (s.eng[i] === '') s.eng[i] = undefined;
 		
-		if (s.orig[i] === '' && s.rom[i] === '') {
+		if (s.rom[i]) {
+			s.rom[i] = s.rom[i].replace(/\s*;\s*/g, '\u3000'); // convert semicolon in romaji to fullwidth space
+			s.rom[i] = s.rom[i].replace(/ +/g, ' '); // collapse consecutive plain spaces
+		}
+		
+		if (! s.orig[i]) {
 			s.orig[i] = br[wiki];
 			s.rom[i] = false;
-		} else if (s.orig[i].match(/^[^ぁ-ー㐀-鿕]+$/g) && (s.rom[i] === '' || s.rom[i] === s.orig[i])) {
+		} else if (s.orig[i] && s.orig[i].match(/^[^ぁ-ー㐀-鿕]+$/g) && (! s.rom[i] || s.rom[i] === s.orig[i])) {
 			s.orig[i] = '{{shared}}|' + s.orig[i];
 			s.rom[i] = false;
+		} else if (! s.rom[i] && corresp[s.orig[i]]){
+			s.rom[i] = corresp[s.orig[i]];
+		} else if (s.rom[i]) {
+			corresp[s.orig[i]] = s.rom[i]; // map original to romanization
 		}
 		
 		s.orig[i] = ('\n' + '|' + s.orig[i]);
