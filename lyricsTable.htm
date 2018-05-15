@@ -19,32 +19,32 @@
 				<option value="ulw">UTAU Lyrics Wiki</option>
 			</select>
 
-			<input type="text" id="language" value="ja" size="4"></input>
-			<datalist id="language">
+			<input type="text" id="langOrig" list="languages" value="ja" size="4">
+			<datalist id="languages">
 			</datalist>
 
-			<input type="checkbox" id="enType"></input>
-			<label for="enType">Official English translation</label>
 			<input type="checkbox" id="showEn">
 			<label for="showEn">add English</label>
 
+			<input type="checkbox" id="enType">
+			<label for="enType">Official English</label>
 		</section>
 		<section id="boxes">
-			<fieldset>
+			<fieldset id="setOrig">
 				<legend>Original</legend>
-				<textarea id="original"></textarea>
+				<textarea id="textOrig" lang="ja"></textarea>
 			</fieldset>
-			<fieldset>
+			<fieldset id="setRom">
 				<legend>Romanization</legend>
-				<textarea id="romanization"></textarea>
+				<textarea id="textRom" lang="en"></textarea>
 			</fieldset>
-			<fieldset>
+			<fieldset id="setEn" hidden>
 				<legend>English</legend>
-				<textarea id="english"></textarea>
+				<textarea id="textEn" lang="en"></textarea>
 			</fieldset>
-			<fieldset>
+			<fieldset id="setOut">
 				<legend>Output</legend>
-				<textarea id="output"></textarea>
+				<textarea id="textOut" lang="ja"></textarea>
 			</fieldset>
 		</section>
 	</main>
