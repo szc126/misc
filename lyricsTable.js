@@ -84,8 +84,6 @@ function trim(text) {
 }
 
 function go() {
-	changeLanguageAttribute();
-	
 	let wiki = els.wiki.value;
 	let langOrig = els.langOrig.value;
 	let enIsOfficial = els.enType.checked;
@@ -110,7 +108,6 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][0]);
 	if (s.rom[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][1]);
 	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')][0]);
-	console.log(s);
 	
 	for (let i = 0; i < s.orig.length; i++) {
 		if (s.orig[i] === '') s.orig[i] = undefined;
@@ -147,7 +144,15 @@ function go() {
 }
 
 function fillLanguagesDatalist() {
+	document.getElementById('languages').innerText = null;
 	
+	let wiki = els.wiki.value;
+	
+	for (let langCode in headText[wiki]) {
+		let option = document.createElement("option");
+		option.value = langCode;
+		document.getElementById('languages').appendChild(option);
+	}
 }
 
 function changeLanguageAttribute() {
@@ -156,6 +161,10 @@ function changeLanguageAttribute() {
 	if (langIso[lang]) lang = langIso[lang];
 	els.orig.lang = lang;
 	els.out.lang = lang;
+}
+
+function toggleShowEn() {
+	document.getElementById('setEn').hidden = ! document.getElementById('showEn').checked;
 }
 
 function prepare() {
@@ -175,7 +184,19 @@ function prepare() {
 		})
 	}
 	
-	document.getElementById('showEn').addEventListener("click", function() {
-		document.getElementById('setEn').hidden = ! this.checked;
+	els.wiki.addEventListener("input", function() {
+		fillLanguagesDatalist();
 	})
+	
+	els.langOrig.addEventListener("input", function() {
+		changeLanguageAttribute();
+	})
+	
+	document.getElementById('showEn').addEventListener("click", function() {
+		toggleShowEn();
+	})
+	
+	fillLanguagesDatalist();
+	changeLanguageAttribute();
+	toggleShowEn();
 }
