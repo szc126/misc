@@ -109,7 +109,7 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][0]);
 	if (s.rom[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][1]);
-	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')][1]);
+	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')][0]);
 	console.log(s);
 	
 	for (let i = 0; i < s.orig.length; i++) {
