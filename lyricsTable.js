@@ -183,7 +183,7 @@ function getAtWikiText() {
 	ei('textOrig').value = '…';
 	
 	// 🙃
-	fetch('https://allorigins.me/get?url=' + encodeURIComponent(ei('atWikiUrl').value))
+	fetch('https://allorigins.me/get?method=raw&url=' + encodeURIComponent(ei('atWikiUrl').value))
 		.then(function(response) {
 			return response.text()
 				.then(function(text) {
@@ -195,16 +195,24 @@ function getAtWikiText() {
 function processAtWikiText(text) {
 	let html = document.createElement('html');
 	html.innerHTML = text;
-	let pre = html.getElementsByClassName('cmd_backup')[0].innerText;
-	let lyrics = pre.match(/\*\*歌詞([\S\s]+)\*\*コメント/)[1]; // [\S\s]: https://stackoverflow.com/a/1068308
-	
-	lyrics = lyrics.replace(/&bold\(\)\{(.*?)\}/g, '<b>$1</b>');
-	lyrics = lyrics.replace(/&italic\(\)\{(.*?)\}/g, '<i>$1</i>');
-	lyrics = lyrics.replace(/&u\(\)\{(.*?)\}/g, '<u>$1</u>');
+	let pre = html.getElementsByClassName('cmd_backup');
+	let lyrics;
+
+	if (pre[0]) {
+		// use sad regex to extract lyrics
+		// [\S\s]: https://stackoverflow.com/a/1068308
+		lyrics = pre[0].innerText.match(/\*\*歌詞([\S\s]+)\*\*コメント/)[1];
+		
+		lyrics = lyrics.replace(/&bold\(\)\{(.*?)\}/g, '<b>$1</b>');
+		lyrics = lyrics.replace(/&italic\(\)\{(.*?)\}/g, '<i>$1</i>');
+		lyrics = lyrics.replace(/&u\(\)\{(.*?)\}/g, '<u>$1</u>');
+
+		ei('atWikiForm').hidden = true;
+	} else {
+		lyrics = "Failed."
+	}
 	
 	ei('textOrig').value = trim(lyrics);
-	
-	ei('atWikiForm').hidden = true;
 }
 
 function prepare() {
