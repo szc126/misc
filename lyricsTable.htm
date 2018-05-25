@@ -13,7 +13,7 @@
 <body>
 	<main>
 		<section id="select">
-			<select name="wiki" id="wiki">
+			<select id="wiki">
 				<option value="vw">Vocaloid Wiki</option>
 				<option value="vlw">Vocaloid Lyrics Wiki</option>
 				<option value="ulw">UTAU Lyrics Wiki</option>
@@ -26,8 +26,22 @@
 			<input type="checkbox" id="showEn">
 			<label for="showEn">add English</label>
 
-			<input type="checkbox" id="enType">
-			<label for="enType">Official English</label>
+			<input type="checkbox" id="isOfficialEn">
+			<label for="isOfficialEn">Official English</label>
+
+			<input type="button" id="atWikiStart" value="read from @wiki">
+		</section>
+		<section id="atWikiForm" hidden>
+			<select id="atWikiServer">
+				<option value="www5.atwiki.jp/hmiku">Hatsune Miku Wiki</option>
+				<option value="www24.atwiki.jp/utauuuta">UTAU Song Database</option>
+			</select>
+
+			<input type="text" id="atWikiPageName" value="">
+
+			<input type="hidden" id="atWikiUrl">
+
+			<input type="button" id="atWikiGo" value="retrieve">
 		</section>
 		<section id="boxes">
 			<fieldset id="setOrig">

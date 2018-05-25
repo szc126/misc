@@ -5,9 +5,6 @@ window.onload = function() {
 	go(); // initialize stuff
 }
 
-let els = {
-}
-
 let tableHeadSyntax = {
 	vw: [ '{| style="width:100%"', '! align=left |' ],
 	vlw: [ '{| style="width:100%"', '|' ],
@@ -83,14 +80,18 @@ function trim(text) {
 	return text;
 }
 
+function ei(id) {
+	return document.getElementById(id);
+}
+
 function go() {
-	let wiki = els.wiki.value;
-	let langOrig = els.langOrig.value;
-	let enIsOfficial = els.enType.checked;
+	let wiki = ei('wiki').value;
+	let langOrig = ei('langOrig').value;
+	let isOfficialEn = ei('isOfficialEn').checked;
 	let s = {
-		orig: trim(els.orig.value),
-		rom: trim(els.rom.value),
-		eng: trim(els.en.value),
+		orig: trim(ei('textOrig').value),
+		rom: trim(ei('textRom').value),
+		eng: trim(ei('textEn').value),
 	}
 	let wikitable = [];
 	let corresp = {}; // map original to romanization, save some keystrokes/copypasting
@@ -107,7 +108,7 @@ function go() {
 	wikitable.push(tableHeadSyntax[wiki][0]);
 	wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][0]);
 	if (s.rom[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][langOrig][1]);
-	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(enIsOfficial ? 'en' : 'enx')][0]);
+	if (s.eng[0] !== '') wikitable.push(tableHeadSyntax[wiki][1] + headText[wiki][(isOfficialEn ? 'en' : 'enx')][0]);
 	
 	for (let i = 0; i < s.orig.length; i++) {
 		if (s.orig[i] === '') s.orig[i] = undefined;
@@ -140,60 +141,119 @@ function go() {
 	
 	wikitable.push('|}');
 	
-	els.out.value = wikitable.join('\n');
+	ei('textOut').value = wikitable.join('\n');
 }
 
 function fillLanguagesDatalist() {
-	document.getElementById('languages').innerText = null;
+	ei('languages').innerText = null;
 	
-	let wiki = els.wiki.value;
+	let wiki = ei('wiki').value;
 	
 	for (let langCode in headText[wiki]) {
 		let option = document.createElement("option");
 		option.value = langCode;
-		document.getElementById('languages').appendChild(option);
+		ei('languages').appendChild(option);
 	}
 }
 
 function changeLanguageAttribute() {
-	let lang = els.langOrig.value;
+	let lang = ei('langOrig').value;
 	if (lang === '') lang = 'x';
 	if (langIso[lang]) lang = langIso[lang];
-	els.orig.lang = lang;
-	els.out.lang = lang;
+	ei('textOrig').lang = lang;
+	ei('textOut').lang = lang;
 }
 
 function toggleShowEn() {
-	document.getElementById('setEn').hidden = ! document.getElementById('showEn').checked;
+	let temp = ! ei('showEn').checked;
+	ei('setEn').hidden = temp;
+	ei('isOfficialEn').hidden = temp;
+	document.querySelector('label[for="isOfficialEn"]').hidden = temp;
+}
+
+function prepareAtWikiUrl() {
+	let server = ei('atWikiServer').value;
+	let page = ei('atWikiPageName').value;
+	
+	ei('atWikiUrl').value = `https://${server}/?cmd=backup&action=source&page=${page}`;
+	console.log(ei('atWikiUrl').value);
+}
+
+function getAtWikiText() {
+	ei('textOrig').value = '…';
+	
+	fetch(ei('atWikiUrl').value)
+		.then(function(response) {
+			return response.text()
+				.then(function(text) {
+					processAtWikiText(text);
+				})
+		})
+}
+
+function processAtWikiText(text) {
+	let html = document.createElement('html');
+	html.innerHTML = text;
+	let pre = html.getElementsByClassName('cmd_backup')[0].innerText;
+	let lyrics = pre.match(/\*\*歌詞([\S\s]+)\*\*コメント/)[1]; // [\S\s]: https://stackoverflow.com/a/1068308
+	
+	lyrics = lyrics.replace(/&bold\(\)\{(.*?)\}/g, '<b>$1</b>');
+	lyrics = lyrics.replace(/&italic\(\)\{(.*?)\}/g, '<i>$1</i>');
+	lyrics = lyrics.replace(/&u\(\)\{(.*?)\}/g, '<u>$1</u>');
+	
+	ei('textOrig').value = trim(lyrics);
+	
+	ei('atWikiForm').hidden = true;
 }
 
 function prepare() {
-	els.wiki = document.getElementById('wiki');
-	els.langOrig = document.getElementById('langOrig');
-	els.enType = document.getElementById('enType');
-	els.orig = document.getElementById('textOrig');
-	els.rom = document.getElementById('textRom');
-	els.en = document.getElementById('textEn');
-	els.out = document.getElementById('textOut');
+	// Output is changed every time these change
+	let temp = []
 	
-	for (let elId in els) {
-		if (elId === 'output') continue; // let people tamper with the output box
-		
-		els[elId].addEventListener("input", function() {
+	temp = [
+		ei('wiki'),
+		ei('langOrig'),
+		ei('isOfficialEn'),
+		ei('textOrig'),
+		ei('textRom'),
+		ei('textEn'),
+	]
+	
+	for (let i = 0; i < temp.length; i++) {
+		temp[i].addEventListener("input", function() {
 			go();
 		})
 	}
 	
-	els.wiki.addEventListener("input", function() {
+	ei('wiki').addEventListener("input", function() {
 		fillLanguagesDatalist();
 	})
 	
-	els.langOrig.addEventListener("input", function() {
+	ei('langOrig').addEventListener("input", function() {
 		changeLanguageAttribute();
 	})
 	
-	document.getElementById('showEn').addEventListener("click", function() {
+	ei('showEn').addEventListener("click", function() {
 		toggleShowEn();
+	})
+	
+	ei('atWikiStart').addEventListener("click", function() {
+		ei("atWikiForm").hidden = false;
+	})
+	
+	temp = [
+		ei('atWikiServer'),
+		ei('atWikiPageName'),
+	]
+	
+	for (let i = 0; i < temp.length; i++) {
+		temp[i].addEventListener("input", function() {
+			prepareAtWikiUrl();
+		})
+	}
+	
+	ei('atWikiGo').addEventListener("click", function() {
+		getAtWikiText();
 	})
 	
 	fillLanguagesDatalist();
