@@ -182,7 +182,8 @@ function prepareAtWikiUrl() {
 function getAtWikiText() {
 	ei('textOrig').value = '…';
 	
-	fetch(ei('atWikiUrl').value)
+	// 🙃
+	fetch('https://allorigins.me/get?url=' + encodeURIComponent(ei('atWikiUrl').value))
 		.then(function(response) {
 			return response.text()
 				.then(function(text) {
