@@ -174,6 +174,7 @@ function toggleShowEn() {
 function prepareAtWikiUrl() {
 	let server = ei('atWikiServer').value;
 	let page = ei('atWikiPageName').value;
+	page = encodeURIComponent(page); // 🤷
 	
 	ei('atWikiUrl').value = `https://${server}/?cmd=backup&action=source&page=${page}`;
 	console.log(ei('atWikiUrl').value);
@@ -201,18 +202,23 @@ function processAtWikiText(text) {
 	if (pre[0]) {
 		// use sad regex to extract lyrics
 		// [\S\s]: https://stackoverflow.com/a/1068308
-		lyrics = pre[0].innerText.match(/\*\*歌詞([\S\s]+)\*\*コメント/)[1];
+		lyrics = pre[0].innerText.match(/\*\*歌詞([\S\s]+)\*\*コメント/);
 		
-		lyrics = lyrics.replace(/&bold\(\)\{(.*?)\}/g, '<b>$1</b>');
-		lyrics = lyrics.replace(/&italic\(\)\{(.*?)\}/g, '<i>$1</i>');
-		lyrics = lyrics.replace(/&u\(\)\{(.*?)\}/g, '<u>$1</u>');
-
-		ei('atWikiForm').hidden = true;
+		if (lyrics) {
+			lyrics = lyrics[1];
+			lyrics = lyrics.replace(/&bold\(\)\{(.*?)\}/g, '<b>$1</b>');
+			lyrics = lyrics.replace(/&italic\(\)\{(.*?)\}/g, '<i>$1</i>');
+			lyrics = lyrics.replace(/&u\(\)\{(.*?)\}/g, '<u>$1</u>');
+			ei('atWikiForm').hidden = true;
+		} else {
+			lyrics = "Could not locate lyrics in wiki text."
+		}
 	} else {
-		lyrics = "Failed."
+		lyrics = "Could not locate wiki text."
 	}
 	
 	ei('textOrig').value = trim(lyrics);
+	go();
 }
 
 function prepare() {
