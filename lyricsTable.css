@@ -29,3 +29,16 @@ fieldset textarea {
 	width: 100%;
 	box-sizing: border-box; /* pls */
 }
+
+[data-wiki="vw"] #setOut legend {
+	background: #ae3974;
+	color: white;
+}
+[data-wiki="vlw"] #setOut legend {
+	background: #29ab87;
+	color: white;
+}
+[data-wiki="ulw"] #setOut legend {
+	background: #995a95;
+	color: white;
+}

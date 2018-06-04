@@ -160,6 +160,12 @@ function fillLanguagesDatalist() {
 	}
 }
 
+function outputLegendStyle() {
+	let wiki = ei('wiki').value;
+	
+	document.body.setAttribute("data-wiki", wiki);
+}
+
 function changeLanguageAttribute() {
 	let lang = ei('langOrig').value;
 	if (lang === '') lang = 'x';
@@ -246,6 +252,7 @@ function prepare() {
 	
 	ei('wiki').addEventListener("input", function() {
 		fillLanguagesDatalist();
+		outputLegendStyle();
 	})
 	
 	ei('langOrig').addEventListener("input", function() {
@@ -276,6 +283,7 @@ function prepare() {
 	})
 	
 	fillLanguagesDatalist();
+	outputLegendStyle();
 	changeLanguageAttribute();
 	toggleShowEn();
 }
