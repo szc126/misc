@@ -160,7 +160,7 @@ function fillLanguagesDatalist() {
 	}
 }
 
-function outputLegendStyle() {
+function addWikiColor() {
 	let wiki = ei('wiki').value;
 	
 	document.body.setAttribute("data-wiki", wiki);
@@ -252,7 +252,7 @@ function prepare() {
 	
 	ei('wiki').addEventListener("input", function() {
 		fillLanguagesDatalist();
-		outputLegendStyle();
+		addWikiColor();
 	})
 	
 	ei('langOrig').addEventListener("input", function() {
@@ -283,7 +283,7 @@ function prepare() {
 	})
 	
 	fillLanguagesDatalist();
-	outputLegendStyle();
+	addWikiColor();
 	changeLanguageAttribute();
 	toggleShowEn();
 }
