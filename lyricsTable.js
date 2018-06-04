@@ -116,8 +116,12 @@ function go() {
 		if (s.eng[i] === '') s.eng[i] = undefined;
 		
 		if (s.rom[i]) {
+			s.rom[i] = s.rom[i].replace(/(&\w+);/g, '$1＠＠'); // do not convert html entity semicolons
+
 			s.rom[i] = s.rom[i].replace(/\s*;\s*/g, '\u3000'); // convert semicolon in romaji to fullwidth space
 			s.rom[i] = s.rom[i].replace(/ +/g, ' '); // collapse consecutive plain spaces
+
+			s.rom[i] = s.rom[i].replace(/＠＠/g, ';'); // restore semicolons
 		}
 		
 		if (! s.orig[i]) {
