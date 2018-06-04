@@ -176,7 +176,7 @@ function prepareAtWikiUrl() {
 	let page = ei('atWikiPageName').value;
 	page = encodeURIComponent(page); // 🤷
 	
-	ei('atWikiUrl').value = `https://${server}/?cmd=backup&action=source&page=${page}`;
+	ei('atWikiUrl').value = `https://${server}/?cmd=backup&action=source&page=${page}&num=0`;
 	console.log(ei('atWikiUrl').value);
 }
 
