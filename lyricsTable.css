@@ -34,11 +34,20 @@ fieldset textarea {
 	background: #ae3974;
 	color: white;
 }
+[data-wiki="vw"] #setOut {
+	border-color: #ae3974;
+}
 [data-wiki="vlw"] #setOut legend {
 	background: #29ab87;
 	color: white;
 }
+[data-wiki="vlw"] #setOut {
+	border-color: #29ab87;
+}
 [data-wiki="ulw"] #setOut legend {
 	background: #995a95;
 	color: white;
+}
+[data-wiki="ulw"] #setOut {
+	border-color: #995a95;
 }
