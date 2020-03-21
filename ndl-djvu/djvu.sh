@@ -8,9 +8,15 @@ if [ -z "$folder" ]; then
 	exit 1
 fi
 
-if [ $(basename "$folder")=="nihongoAccentJiten" ]; then
-	args="-rotate 0.7 -crop 2360x2230+910+250 +repage -crop 50%x100%"
-fi
+case $(basename "$folder") in
+	"nihongoAccentJiten")
+		args="-rotate 0.7 -crop 2360x2230+910+250 +repage -crop 50%x100%"
+		;;
+	"kainangoSyoho")
+#		args="-rotate 1.0 -crop 2800x2400+710+140 +repage -crop 50%x100%"
+		args="-rotate 1.0 +repage -crop 2800x2400+710+140 +repage -crop 50%x100%"
+		;;
+esac
 
 cd "$folder"
 
@@ -47,7 +53,8 @@ for file in crop/*-1.jpg; do
 	echo
 done
 
-read "Take this time to review the cropped images. Press enter to continue."
+echo "Take this time to review the cropped images. Press enter to continue."
+read
 
 for file in crop/*.jpg; do
 	file=$(basename "$file")
