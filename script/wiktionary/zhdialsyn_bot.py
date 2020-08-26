@@ -14,5 +14,12 @@ for page in gen:
 	if page.title() in ignore_list:
 		continue
 
-	page = pwb_source.main(page)
-	page.save('update with new locations')
+	print(page.title())
+	try:
+		page = pwb_source.main(page)
+		page.save('update with new locations')
+	except Exception as e:
+		print(page.text)
+		input('[press enter to continue]')
+
+	print('----')
