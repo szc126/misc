@@ -6,7 +6,6 @@ import sys
 
 TEMPLATE_URL = 'https://en.wiktionary.org/w/index.php?title=Module:zh/data/dial-syn&action=raw'
 TEMPLATE_LOCAL_PATH = '/tmp/zh-dial-syn-template.txt'
-template_content = None
 
 lines_ignore = [
 	'local export = {}',
@@ -29,6 +28,7 @@ def main(page):
 		'other': [],
 	}
 
+	template_content = None
 	if not os.path.exists(TEMPLATE_LOCAL_PATH):
 		with open(TEMPLATE_LOCAL_PATH, mode = 'x', encoding = 'utf-8') as file:
 			print('Downloading template...')
@@ -90,14 +90,20 @@ def main(page):
 
 	# print lines that were not recalled
 	if len(collection['content']) > 0:
-		# TODO
+		with open('leftover.txt', mode = 'a', encoding = 'utf-8') as file:
+			file.write('####\n')
+			file.write(page.title() + '\n')
+			for line in collection['content']:
+				file.write(line + '\n')
+			file.write('####' + '\n')
+		print(collection['content'])
 		input()
 
 	# print other lines
 	if len(collection['other']) > 0:
 		with open('other.txt', mode = 'a', encoding = 'utf-8') as file:
 			file.write('####\n')
-			file.write(collection['content']['meaning'] + '\n')
+			file.write(page.title() + '\n')
 			for line in collection['other']:
 				file.write(line + '\n')
 			file.write('####' + '\n')
@@ -108,9 +114,14 @@ def main(page):
 	return page
 
 if __name__ == '__main__':
+	# dummy object
+	# https://stackoverflow.com/a/2827664
 	class ObjectFoo(object):
 		pass
 	page = ObjectFoo()
+	def _():
+		return 'Project:Foobar'
+	page.title = _
 
 	with open(sys.argv[1], mode = 'r', encoding = 'utf-8') as file:
 		page.text = file.read()
