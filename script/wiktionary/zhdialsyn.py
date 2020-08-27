@@ -39,19 +39,21 @@ def main(page):
 			print('Loaded template from local.')
 			template_content = file.read()
 
+	deprecated = ['Sabah', 'Luchuan', 'Doumen', 'Huidong']
+
 	# ----
 
 	# fix tabs
 	page.text = re.sub(r'^ {4}', r'\t', page.text, flags = re.M)
 
 	# load text
-	lines = page.text.split('\n')
+	lines = page.text.splitlines()
 
 	# sort lines into content, ignore, and other
 	for line in lines:
-		if re.findall(r'^\t\[', line):
+		if re.findall(r'^\t(--)?\[', line):
 			_ = re.findall(r'"([^"]+)"', line)
-			dial_point = _[0]
+			location = _[0]
 
 			_ = re.findall(r'(= )(.+)$', line)
 			line = _[0][1]
@@ -63,7 +65,7 @@ def main(page):
 			line = re.sub(r'(\})( *--.+)$', r'\1,\2', line)
 			line = re.sub(r'(\})$', r'\1,', line)
 
-			collection['content'][dial_point] = line
+			collection['content'][location] = line
 		elif line in lines_ignore:
 			pass
 		else:
@@ -71,22 +73,26 @@ def main(page):
 
 	# ----
 
-	lines = template_content.split('\n')
+	lines = template_content.splitlines()
 
 	# recall line
 	for i, line in enumerate(lines):
-		if re.findall(r'^\t\[', line):
+		if re.findall(r'^\t(--)?\[', line):
 			_ = re.findall(r'"([^"]+)"', line)
-			dial_point = _[0]
-			if dial_point in collection['content']:
+			location = _[0]
+			if location in collection['content']:
 				lines[i] = re.sub(r'(= )(.+)$', r'\1', lines[i])
-				lines[i] += collection['content'][dial_point]
+				lines[i] += collection['content'][location]
 
 				# detect lines that were not recalled
 				# such as misspelled locations
-				collection['content'].pop(dial_point)
+				collection['content'].pop(location)
 
 	page.text = '\n'.join(lines)
+
+	# deprecated locations
+	# regex abuse :))
+	page.text = re.sub(r'\n\t--\["[A-Za-z]+"\]\t+= { "" },\n', r'\n', page.text)
 
 	# print lines that were not recalled
 	if len(collection['content']) > 0:

@@ -10,6 +10,8 @@ ignore_list = [
 	'Module:zh/data/dial-syn/template',
 ]
 
+counter = 0
+counter_limit = 5
 for page in gen:
 	if page.title() in ignore_list:
 		continue
@@ -21,5 +23,10 @@ for page in gen:
 	except Exception as e:
 		print(page.text)
 		input('[press enter to continue]')
+
+	counter += 1
+	if counter >= counter_limit:
+		input('[go review]')
+		counter = 0
 
 	print('----')
