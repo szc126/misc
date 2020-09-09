@@ -24,7 +24,9 @@ for page_t in gen:
 			if len(s) == 1 and re.search('{{character info}}', page_t.text):
 				page_s = Page(site, s)
 				if not page_s.exists():
-					page_s.text = unihan.newhzmul(s)
+					page_s.text = unihan.newhzmul({
+						'char': s,
+					})
 					page_s.text += '\n\n----\n\n==Chinese==\n{{zh-see|' + page_t.title() + '}}'
 					page_s.save('init. {{zh-see|' + page_t.title() + '}}')
 					#input('[press enter to continue]')
