@@ -10,6 +10,7 @@ import re
 # [[Talk:相応しい]]
 
 # TODO:
+# failed detection
 # https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=59766890&oldid=59001774
 # https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=60423013&oldid=60422862
 
@@ -19,21 +20,6 @@ gen = pywikibot.User(site, 'Onionbar').contributions(namespaces = pywikibot.site
 quote_attrib = '{{RQ:ja:XSD}}'
 pages = set()
 time_back_limit = pywikibot.Timestamp.fromISOformat('2020-02-10T00:00:00Z')
-
-# [[User:Erutuon]]:
-# would have to separately look up revid and parentid and generate a diff
-# https://doc.wikimedia.org/pywikibot/master/api_ref/pywikibot.site.html#pywikibot.site.APISite.compare
-# https://doc.wikimedia.org/pywikibot/master/api_ref/pywikibot.page.html#pywikibot.page.Revision
-# you could use iterate through User.contributions and
-#	for each revison tuple
-#		retrieve a Revision object for the revision ID (the second tuple element) and
-#		get a second Revision element for the parentid of the Revision
-#		and then do a diff
-
-# search diff or new page text for new usex
-# record usex
-# try to amend latest revision
-# if not, write the usex down for manual dealing
 
 def text_strip(text):
 	text = re.sub(r'\[\[([^\[\]]+)\|([^\[\]]+)\]\]', r'\2', text)
