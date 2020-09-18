@@ -24,7 +24,7 @@ for page in gen:
 		pywikibot.showDiff(text_old, page.text)
 
 		if text_old != page.text:
-			reply = input('[press enter to continue]')
+			reply = input('[press enter to continue, x enter to cancel]')
 
 			if reply == 'x':
 				pass
