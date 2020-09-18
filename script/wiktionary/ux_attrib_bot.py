@@ -40,7 +40,7 @@ def text_strip(text):
 	return text
 
 def extract_usex(text):
-	text = re.search(r'{\{ja-usex\|(.+)\}\}', text)
+	text = re.search(r'{\{ja-usex(?:-inline)?\|(.+)\}\}', text)
 	if text:
 		text = text.group(1)
 		text = text_strip(text)
@@ -92,7 +92,7 @@ for page in pages:
 							usexes.add(target)
 
 		# print collection of usexes
-		print(usexes)
+		#print(usexes)
 
 		# save page text for diff
 		text_old = page.text
@@ -101,7 +101,7 @@ for page in pages:
 		page_lines = str.splitlines(page.text)
 		for i, line in enumerate(page_lines):
 			usex = extract_usex(line)
-			if (usex) and ((usex in usexes) or (usex + '。' in usexes)):
+			if (usex) and (usex.replace('。', '') in usexes):
 				line = re.sub('(#+)(:.+)', r'\1* ' + quote_attrib + r'\n\1*\2', line)
 				page_lines[i] = line
 				usexes_done.add(usex)
@@ -125,5 +125,5 @@ for page in pages:
 
 	print('----')
 
-print('[unadded usexes]')
+print('[could not add attribution]')
 print(usexes - usexes_done)
