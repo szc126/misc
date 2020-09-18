@@ -9,13 +9,15 @@ import re
 
 # [[Talk:相応しい]]
 
+# TODO:
+# https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=59766890&oldid=59001774
+# https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=60423013&oldid=60422862
+
 site = pywikibot.Site()
 gen = pywikibot.User(site, 'Onionbar').contributions(namespaces = pywikibot.site.Namespace(0))
 
 quote_attrib = '{{RQ:ja:XSD}}'
 pages = set()
-usexes = set()
-usexes_done = set()
 time_back_limit = pywikibot.Timestamp.fromISOformat('2020-02-10T00:00:00Z')
 
 # [[User:Erutuon]]:
@@ -56,6 +58,10 @@ for page, revid, timestamp, summary in gen:
 # work on pages
 for page in pages:
 	print(page.title())
+
+	usexes = set()
+	usexes_done = set()
+
 	try:
 		for rev in page.revisions(reverse = True, starttime = time_back_limit):
 			if rev['user'] == 'Onionbar':
@@ -89,10 +95,10 @@ for page in pages:
 						if target:
 							#print('↓')
 							#print(target)
-							usexes.add(target)
+							usexes.add(target.replace('。', ''))
 
 		# print collection of usexes
-		#print(usexes)
+		print(usexes)
 
 		# save page text for diff
 		text_old = page.text
@@ -101,10 +107,11 @@ for page in pages:
 		page_lines = str.splitlines(page.text)
 		for i, line in enumerate(page_lines):
 			usex = extract_usex(line)
+			print(usex, line)
 			if (usex) and (usex.replace('。', '') in usexes):
 				line = re.sub('(#+)(:.+)', r'\1* ' + quote_attrib + r'\n\1*\2', line)
 				page_lines[i] = line
-				usexes_done.add(usex)
+				usexes_done.add(usex.replace('。', ''))
 		page.text = '\n'.join(page_lines)
 
 		# diff and save
@@ -123,7 +130,9 @@ for page in pages:
 		print(e)
 		input('[something went wrong. press enter to continue]')
 
-	print('----')
+	if (usexes - usexes_done):
+		print('[could not add attribution]')
+		print(usexes - usexes_done)
+		input()
 
-print('[could not add attribution]')
-print(usexes - usexes_done)
+	print('----')
