@@ -93,7 +93,7 @@ for page in pages:
 		page_lines = str.splitlines(page.text)
 		for i, line in enumerate(page_lines):
 			usex = extract_usex(line)
-			print(usex, line)
+			print(usex)
 			if (usex) and (usex.replace('。', '') in usexes):
 				line = re.sub('(#+)(:.+)', r'\1* ' + quote_attrib + r'\n\1*\2', line)
 				page_lines[i] = line
