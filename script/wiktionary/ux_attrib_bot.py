@@ -13,6 +13,9 @@ import re
 # failed detection
 # https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=59766890&oldid=59001774
 # https://en.wiktionary.org/w/index.php?title=%E7%AB%8B%E3%81%A4&diff=60423013&oldid=60422862
+#if ins:
+#	if contains 'ja-usex': # change pertains to a line containing ja-usex
+#		save for manual review
 
 site = pywikibot.Site()
 gen = pywikibot.User(site, 'Onionbar').contributions(namespaces = pywikibot.site.Namespace(0))
