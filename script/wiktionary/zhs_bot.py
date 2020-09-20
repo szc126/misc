@@ -6,6 +6,7 @@ import pywikibot
 from pywikibot import pagegenerators
 from pywikibot.page import Page
 import re
+import sys
 
 site = pywikibot.Site()
 cat = pywikibot.Category(site, 'Chinese terms with uncreated forms')
@@ -41,14 +42,16 @@ for page_t in gen:
 					user = rev['user']
 
 				if (not page_s.exists()) and (
-					user == 'Justinrleung' or
-					user == '恨国党非蠢即坏' or
-					user == 'Mar vin kaiser' or
-					user == 'Michael Ly' or
-					user == 'RcAlex36' or
-					user == 'Suzukaze-c' or
-					user == 'Tooironic' or
-					False
+					user in
+					[
+						'Justinrleung',
+						'恨国党非蠢即坏',
+						'Mar vin kaiser',
+						'Michael Ly',
+						'RcAlex36',
+						'Suzukaze-c',
+						'Tooironic',
+					] + sys.argv[1:]
 				):
 					page_s.text += '==Chinese==\n{{zh-see|' + page_t.title() + '}}'
 					page_s.save('{{zh-see|' + page_t.title() + '}}')
