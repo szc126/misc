@@ -6,14 +6,16 @@ import pywikibot
 from pywikibot import pagegenerators
 from pywikibot.page import Page
 import re
+import sys
 
 site = pywikibot.Site()
-gen = pywikibot.User(site, '350bot').contributions(namespaces = pywikibot.site.Namespace(0))
+gen = pywikibot.User(site, sys.argv[1]).contributions(namespaces = pywikibot.site.Namespace(0))
 
 done = set()
 
 for page, revid, timestamp, summary in gen:
 	z = page.title()
+	save_summary = ''
 
 	if z in done:
 		continue
@@ -51,9 +53,7 @@ for page, revid, timestamp, summary in gen:
 			print(page.text)
 			print('◆')
 
-			pywikibot.showDiff(text_old, page.text)
-			input('[press enter to continue]')
-			page.save('/* Translingual */ rewrite')
+			save_summary = '/* Translingual */ rewrite'
 		else:
 			if not 'character info' in text_new_new[0]:
 				text_new_new[0] += text_mul[0]
@@ -61,9 +61,20 @@ for page, revid, timestamp, summary in gen:
 
 			page.text = text_new_new[0] + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
 
-			pywikibot.showDiff(text_old, page.text)
-			input('[press enter to continue]')
-			page.save('/* Translingual */ init')
+			save_summary = '/* Translingual */ init'
+
+		pywikibot.showDiff(text_old, page.text)
+
+		if text_old != page.text:
+			reply = input('[press enter to continue, x enter to cancel]')
+
+			if reply == 'x':
+				pass
+				print('Skipped.')
+			else:
+				page.save(save_summary)
+				print('Saved.')
+
 		done.add(z)
 	except Exception as e:
 		print(page.text)
