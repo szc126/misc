@@ -36,8 +36,6 @@ for page, revid, timestamp, summary in gen:
 		text_new_new = (text_new[0], text_mul[1], text_new[2])
 
 		if pywikibot.textlib.does_text_contain_section(page.text, 'Translingual'):
-			if not 'character info' in text_new_new[0]:
-				text_new_new[0] += text_mul[0]
 			bool_keep = True
 			for section in text_new[1]:
 				if 'Translingual' in section[0]:
@@ -47,7 +45,7 @@ for page, revid, timestamp, summary in gen:
 				if bool_keep == True:
 					text_new_new[1].append(section)
 
-			page.text = text_new_new[0] + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
+			page.text = text_new_new[0] + (text_mul[0] if not 'character info' in text_new_new[0] else '') + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
 
 			print('◆')
 			print(page.text)
@@ -55,11 +53,9 @@ for page, revid, timestamp, summary in gen:
 
 			save_summary = '/* Translingual */ rewrite'
 		else:
-			if not 'character info' in text_new_new[0]:
-				text_new_new[0] += text_mul[0]
 			text_new_new[1].insert(0, text_mul[1][0])
 
-			page.text = text_new_new[0] + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
+			page.text = text_new_new[0] + (text_mul[0] if not 'character info' in text_new_new[0] else '') + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
 
 			save_summary = '/* Translingual */ init'
 
