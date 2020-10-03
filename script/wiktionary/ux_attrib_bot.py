@@ -16,6 +16,9 @@ import re
 #if ins:
 #	if contains 'ja-usex': # change pertains to a line containing ja-usex
 #		save for manual review
+# failed detection
+# https://en.wiktionary.org/w/index.php?title=%E7%BF%92%E3%81%86&diff=prev&oldid=59071182
+# -- how?
 
 site = pywikibot.Site()
 gen = pywikibot.User(site, 'Onionbar').contributions(namespaces = pywikibot.site.Namespace(0))
