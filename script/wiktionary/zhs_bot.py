@@ -15,10 +15,16 @@ gen = site.categorymembers(cat)
 for page_t in gen:
 	print(page_t.title())
 	try:
-		s_found = re.findall(
-			r'\|(?:s|t\d+)=([^|}]+)',
+		zh_formss = re.findall(
+			r'{{zh-forms([^}]*)}}',
 			page_t.text,
 		)
+		s_found = []
+		for zh_forms in zh_formss:
+			s_found += re.findall(
+				r'\|(?:s|t\d+)=([^|}]+)',
+				zh_forms,
+			)
 
 		for s in s_found:
 			# don't ignorantly create pages for imaginary simplified forms.
