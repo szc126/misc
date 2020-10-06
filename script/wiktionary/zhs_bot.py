@@ -27,7 +27,7 @@ for page_t in gen:
 			)
 
 		for s in s_found:
-			# don't ignorantly create pages for imaginary simplified forms.
+			# (don't ignorantly create pages for imaginary simplified forms described with IDS.)
 			if len(s) == 1 and re.search('{{character info}}', page_t.text):
 				page_s = Page(site, s)
 				if not page_s.exists():
