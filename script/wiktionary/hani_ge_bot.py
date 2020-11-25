@@ -15,7 +15,8 @@ _Section = namedtuple('_Section', ('title', 'content'))
 
 site = pywikibot.Site()
 #gen = site.search('hastemplate:"Han simp" -"glyph origin" -"japanese Han characters" -"korean han characters" -"vietnamese han characters" hastemplate:zh-see')
-gen = site.search('hastemplate:"Han etym" insource:/Han ety[lm].+==Chinese/')
+#gen = site.search('hastemplate:"Han etym" insource:/Han ety[lm].+==Chinese/')
+gen = site.search('hastemplate:zh-see "glyph origin" "the simplified form" insource:/=Glyph origin=.+=Chinese=/')
 
 done = set()
 
