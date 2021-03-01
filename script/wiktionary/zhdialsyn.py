@@ -16,6 +16,25 @@ lines_ignore = [
 	'',
 ]
 
+'''
+Erutuon:
+idea: temporarily collect comment lines and
+associate them with the next content line with a dict
+(where keys are content lines and values are lists of preceding comments), then
+insert them into lines before the content lines in the "recall line" loop
+
+in the two examples above,
+the rough equivalent of `comments['export.list = {'] = ['-- th = 趿; s = 靸 (except Hainan, where s -> t; Min Dong)']`
+would have to happen somehow in the "sort" loop, and then
+in the "recall line" loop, `if line in comments: lines[i] = "\n".join(comments[line]) + "\n" + lines[i]`
+
+if current line is comment,
+insert into current_comments, otherwise if
+current_comments is not empty,
+comments[line] = current_comments and empty current_comments;
+assuming nobody adds a comment on the last line for some reason
+'''
+
 # ----
 
 def main(page):
@@ -25,6 +44,7 @@ def main(page):
 	# and words carry over. blargh
 	collection = {
 		'content': {},
+		'comments': [],
 		'other': [],
 	}
 
@@ -39,7 +59,7 @@ def main(page):
 			print('Loaded template from local.')
 			template_content = file.read()
 
-	deprecated = ['Sabah', 'Luchuan', 'Doumen', 'Huidong']
+	#deprecated = ['Sabah', 'Luchuan', 'Doumen', 'Huidong']
 
 	# ----
 
@@ -50,22 +70,21 @@ def main(page):
 	lines = page.text.splitlines()
 
 	# sort lines into content, ignore, and other
-	for line in lines:
+	for i, line in enumerate(lines):
+		# trim whitespace, right
+		line = line.rstrip()
+
 		if re.findall(r'^\t(--)?\[', line):
-			_ = re.findall(r'"([^"]+)"', line)
-			location = _[0]
-
-			_ = re.findall(r'(= )(.+)$', line)
-			line = _[0][1]
-
-			# trim whitespace, right
-			line = line.rstrip()
+			is_comment = re.search(r'^\t--"', line)[1]
+			location = re.search(r'"([^"]+)"', line)[1]
+			line = re.search(r' *= *(.+)$', line)[1]
 
 			# add commas
-			line = re.sub(r'(\})( *--.+)$', r'\1,\2', line)
-			line = re.sub(r'(\})$', r'\1,', line)
+			line = re.sub(r'(\})( *--.+|)$', r'\1,\2', line)
 
-			collection['content'][location] = line
+			collection['content'][location] = (is_comment, line)
+		elif re.findall(r'^\t*--', line):
+			collection['comments'].append((lines[i], lines[i], lines[i+1]))
 		elif line in lines_ignore:
 			pass
 		else:
@@ -92,7 +111,7 @@ def main(page):
 
 	# deprecated locations
 	# regex abuse :))
-	page.text = re.sub(r'\n\t--\["[A-Za-z]+"\]\t+= { "" },\n', r'\n', page.text)
+	#page.text = re.sub(r'\n\t--\["[A-Za-z]+"\]\t+= { "" },\n', r'\n', page.text)
 
 	# print lines that were not recalled
 	if len(collection['content']) > 0:
@@ -105,6 +124,17 @@ def main(page):
 		print(collection['content'])
 		input()
 
+	# print comments that were not recalled
+	if len(collection['comments']) > 0:
+		with open('comments.txt', mode = 'a', encoding = 'utf-8') as file:
+			file.write('####\n')
+			file.write(page.title() + '\n')
+			for line in collection['comments']:
+				file.write(line + '\n')
+			file.write('####' + '\n')
+		print(collection['comments'])
+		input()
+
 	# print other lines
 	if len(collection['other']) > 0:
 		with open('other.txt', mode = 'a', encoding = 'utf-8') as file:
@@ -115,7 +145,6 @@ def main(page):
 			file.write('####' + '\n')
 		print(collection['other'])
 		input()
-		# TODO: record line context and try to re-insert it?
 
 	return page
 
