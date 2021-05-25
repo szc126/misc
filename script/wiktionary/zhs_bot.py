@@ -22,7 +22,7 @@ for page_t in gen:
 		s_found = []
 		for zh_forms in zh_formss:
 			s_found += re.findall(
-				r'\|(?:s|t\d+)=([^|}]+)',
+				r'\|(?:s\d+|t\d+)=([^|}]+)',
 				zh_forms,
 			)
 
