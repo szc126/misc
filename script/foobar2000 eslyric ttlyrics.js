@@ -8,7 +8,7 @@ function get_my_name(sub) {
 }
 
 function get_version() {
-	return "2";
+	return "3";
 }
 
 function get_author() {
@@ -26,7 +26,7 @@ function start_search(info, callback) {
 	var title = info.Title;
 	var results = [];
 
-	url = SERVER + "/api/search/?title=" + encodeURIComponent(process_keywords(title)) + "&artist=" + encodeURIComponent(process_keywords(artist));
+	url = SERVER + "/api/search/?title=" + encodeURIComponent(title) + "&artist=" + encodeURIComponent(artist);
 	var xml_text = http_client.Request(url);
 	if (http_client.StatusCode != 200) {
 		log(http_client.StatusCode + ": " + url);
@@ -91,18 +91,4 @@ function start_search(info, callback) {
 
 function log(s) {
 	fb.trace("TTLyrics: " + s);
-}
-
-function process_keywords(str) {
-	var s = str;
-	s = s.toLowerCase();
-	s = s.replace(/\'|·|\$|\&|–/g, "");
-	//trim all spaces
-	s = s.replace(/(\s*)|(\s*$)/g, "");
-	//truncate all symbols
-	s = s.replace(/\(.*?\)|\[.*?]|{.*?}|（.*?/g, "");
-	s = s.replace(/[-/:-@[-`{-~]+/g, "");
-	s = s.replace(/[\u2014\u2018\u201c\u2026\u3001\u3002\u300a\u300b\u300e\u300f\u3010\u3011\u30fb\uff01\uff08\uff09\uff0c\uff1a\uff1b\uff1f\uff5e\uffe5]+/g, "");
-	//log(s);
-	return s;
 }
