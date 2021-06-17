@@ -1,14 +1,14 @@
 // modified from ttplayer 0.0.3.js by ohyeah
 
-function get_my_name(sub) {
-	if (sub) {
-		return "TTLyrics" + ": " + sub + "|千千歌词" + "：" + sub;
+function get_my_name(sub_a, sub_b) {
+	if (sub_a) {
+		return "TTLyrics" + ": " + (sub_a || sub) + "|千千歌词" + "：" + (sub_b || sub);
 	}
 	return "TTLyrics|千千歌词";
 }
 
 function get_version() {
-	return "3";
+	return "4";
 }
 
 function get_author() {
@@ -76,12 +76,28 @@ function start_search(info, callback) {
 			continue;
 		}
 		// add lyric to ESLyric
-		_new_lyric.Title = results[i].title;
-		_new_lyric.Artist = results[i].artist;
-		_new_lyric.Source = get_my_name(results[i].source);
-		_new_lyric.LyricText = lyric_text;
-		_new_lyric.Location = url;
-		callback.AddLyric(_new_lyric);
+		if (lyric_text.indexOf("     ") > 0) {
+			_new_lyric.Title = results[i].title;
+			_new_lyric.Artist = results[i].artist;
+			_new_lyric.Source = get_my_name(results[i].source + ": no CHN", results[i].source + "／单语");
+			_new_lyric.LyricText = lyric_text.replace(/     .+/g, "");
+			_new_lyric.Location = url;
+			callback.AddLyric(_new_lyric);
+
+			_new_lyric.Title = results[i].title;
+			_new_lyric.Artist = results[i].artist;
+			_new_lyric.Source = get_my_name(results[i].source + ": with CHN", results[i].source + "／双语");
+			_new_lyric.LyricText = lyric_text;
+			_new_lyric.Location = url;
+			callback.AddLyric(_new_lyric);
+		} else {
+			_new_lyric.Title = results[i].title;
+			_new_lyric.Artist = results[i].artist;
+			_new_lyric.Source = get_my_name(results[i].source);
+			_new_lyric.LyricText = lyric_text;
+			_new_lyric.Location = url;
+			callback.AddLyric(_new_lyric);
+		}
 		if (i % 2 == 0) callback.Refresh();
 		lrc_success_n++;
 	}
