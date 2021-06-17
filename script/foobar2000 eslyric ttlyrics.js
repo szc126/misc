@@ -2,13 +2,13 @@
 
 function get_my_name(sub_a, sub_b) {
 	if (sub_a) {
-		return "TTLyrics" + ": " + (sub_a || sub) + "|千千歌词" + "：" + (sub_b || sub);
+		return "TTLyrics" + ": " + (sub_a) + "|千千歌词" + "：" + (sub_b || sub_a);
 	}
 	return "TTLyrics|千千歌词";
 }
 
 function get_version() {
-	return "4";
+	return "5";
 }
 
 function get_author() {
