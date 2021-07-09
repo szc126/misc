@@ -7,6 +7,7 @@ from pywikibot import pagegenerators
 from pywikibot.page import Page
 import re
 import sys
+import mwparserfromhell
 
 site = pywikibot.Site()
 gen = pywikibot.User(site, sys.argv[1]).contributions(namespaces = pywikibot.site.Namespace(0))
@@ -25,39 +26,42 @@ for page, revid, timestamp, summary in gen:
 	try:
 		text_old = page.text
 
-		text_new = pywikibot.textlib.extract_sections(page.text)
+		text_new = page.text
+		text_new = mwparserfromhell.parse(text_new)
+		text_new = text_new.get_sections(include_lead=True,levels=[2])
 
 		text_mul = unihan.newhzmul({
 			'char': z,
 			'x': page.text,
 		})
-		text_mul = pywikibot.textlib.extract_sections(text_mul)
-
-		text_new_new = (text_new[0], text_mul[1], text_new[2])
+		text_mul = mwparserfromhell.parse(text_mul)
+		text_mul = text_mul.get_sections(include_lead=True,levels=[2])
 
 		if pywikibot.textlib.does_text_contain_section(page.text, 'Translingual'):
-			bool_keep = True
-			for section in text_new[1]:
-				if 'Translingual' in section[0]:
-					bool_keep = False
-				elif re.search(r'^==[^=]', section[0]):
-					bool_keep = True
-				if bool_keep == True:
-					text_new_new[1].append(section)
+			text_new[1] = text_mul[1]
+			text_new = [str(element) for element in text_new]
+			if len(text_new) > 2 and not '----' in text_new[1]:
+				text_new.insert(2, '\n\n----\n\n')
 
-			page.text = text_new_new[0] + (text_mul[0] if not 'character info' in text_new_new[0] else '') + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
-
-			print('◆')
-			print(page.text)
-			print('◆')
-
+			page.text = ''.join(text_new)
 			save_summary = '/* Translingual */ rewrite'
 		else:
-			text_new_new[1].insert(0, text_mul[1][0])
+			text_new.insert(1, text_mul[1])
+			text_new = [str(element) for element in text_new]
+			if not '{{character' in text_new[0]:
+				text_new.insert(1, text_mul[0])
 
-			page.text = text_new_new[0] + (text_mul[0] if not 'character info' in text_new_new[0] else '') + ''.join(header + body for header, body in text_new_new[1]) + text_new_new[2]
+			page.text = ''.join(text_new)
 
 			save_summary = '/* Translingual */ init'
+
+		page.text = re.sub(r'^(=+) +', r'\1', page.text, flags = re.M)
+		page.text = re.sub(r' +(=+)$', r'\1', page.text, flags = re.M)
+		page.text = re.sub(r'\n*{{DEFAULTSORT:[^}]+}}', r'', page.text, flags = re.M)
+
+		print('◆')
+		print(page.text)
+		print('◆')
 
 		pywikibot.showDiff(text_old, page.text)
 
