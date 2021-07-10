@@ -8,7 +8,7 @@ function get_my_name(sub_a, sub_b) {
 }
 
 function get_version() {
-	return "6";
+	return "7";
 }
 
 function get_author() {
@@ -85,7 +85,7 @@ function start_search(info, callback) {
 
 		if (
 			lrc.indexOf("暂无歌词") > 0 ||
-			lrc.indexOf("此歌曲为纯音乐，请欣赏") > 0
+			lrc.indexOf("纯音乐") > 0
 		) {
 			// no-op
 		} else if (lrc.indexOf("     ") > 0) {
