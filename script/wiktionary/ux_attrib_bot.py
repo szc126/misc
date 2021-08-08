@@ -128,4 +128,8 @@ for page in pages:
 		print(usexes - usexes_done)
 		input()
 
-	print('----')
+	print()
+	print()
+	print('＠＠＠＠')
+	print()
+	print()

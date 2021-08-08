@@ -29,4 +29,8 @@ for page in gen:
 		input('[go review]')
 		counter = 0
 
-	print('----')
+	print()
+	print()
+	print('＠＠＠＠')
+	print()
+	print()

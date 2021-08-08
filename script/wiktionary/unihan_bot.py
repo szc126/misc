@@ -81,4 +81,8 @@ for page, revid, timestamp, summary in gen:
 		print(e)
 		input('[something went wrong. press enter to continue]')
 
-	print('----')
+	print()
+	print()
+	print('＠＠＠＠')
+	print()
+	print()
