@@ -11,7 +11,7 @@ replaced = []
 ignore = ['consultant']
 
 site = pywikibot.Site()
-gen = site.search('insource:/\]\[\[(' + suffix + ')\]\]/')
+gen = site.search('insource:/\]\[\[(' + suffix + ')\]\]/', namespaces = [0])
 
 def doer_3(match):
 	d = match.group(1) + match.group(2).replace('[[', '[[🧡') + match.group(3)
@@ -84,7 +84,7 @@ for page in gen:
 
 		if text_old != page.text:
 			#reply = input('[press enter to continue, x enter to cancel]')
-			reply = 'x'
+			reply = ''
 
 			if reply == 'x':
 				pass
