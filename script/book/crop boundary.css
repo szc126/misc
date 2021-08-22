@@ -1,12 +1,13 @@
-div {
-	width: 2800px;
-	height: 2400px;
-	left: 710px;
-	top: 140px;
+body:after {
+	width: calc(4450px + 220px * 2);
+	height: 3430px;
+	left: calc(590px - 220px);
+	top: 160px;
 	background-image: linear-gradient(to right, red, red 50%, blue 50%);
 	opacity: 0.5;
 	z-index: 99;
 	position: absolute;
+	content: ".";
 }
 img {
 	z-index: -1;

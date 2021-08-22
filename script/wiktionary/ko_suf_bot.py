@@ -5,7 +5,7 @@ import re
 
 import subprocess
 
-suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는'
+suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도'
 suffix_other = '이다|요' # these are special-cased below. this is just for notes
 replaced = []
 ignore = ['consultant']

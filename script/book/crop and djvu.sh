@@ -16,6 +16,9 @@ case $(basename "$folder") in
 #		args="-rotate 1.0 -crop 2800x2400+710+140 +repage -crop 50%x100%"
 		args="-rotate 1.0 +repage -crop 2800x2400+710+140 +repage -crop 50%x100%"
 		;;
+	"nissenNitijoKaiwa")
+		args="-rotate 0 +repage -crop 4890x3430+370+160 +repage -crop 50%x100%"
+		;;
 esac
 
 cd "$folder"
@@ -60,11 +63,10 @@ for file in crop/*.jpg; do
 	file=$(basename "$file")
 	echo "converting $file"
 
-	convert \
-		"crop/$file" \
-		"crop-pbm/${file}.pbm"
+	#convert "crop/${file}" "crop-pbm/${file}.pbm"
+	#cjb2 -clean "crop-pbm/${file}.pbm" "crop-djvu/${file}.djvu"
 
-	cjb2 -clean "crop-pbm/${file}.pbm" "crop-djvu/${file}.djvu"
+	c44 "crop/${file}" "crop-djvu/${file}.djvu"
 
 	echo
 done
