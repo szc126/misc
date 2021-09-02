@@ -5,13 +5,13 @@ import re
 
 import subprocess
 
-suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도'
+suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도|가|한테|에게|로|와|과|뿐'
 suffix_other = '이다|요' # these are special-cased below. this is just for notes
 replaced = []
 ignore = ['consultant']
 
 site = pywikibot.Site()
-gen = site.search('insource:/\]\[\[(' + suffix + ')\]\]/', namespaces = [0])
+gen = site.search('insource:/\]\[\[(' + suffix + ')\]\] / -incategory:"Middle Korean lemmas"', namespaces = [0])
 
 def doer_3(match):
 	d = match.group(1) + match.group(2).replace('[[', '[[🧡') + match.group(3)
@@ -32,22 +32,22 @@ for page in gen:
 		replaced = []
 		text_old = page.text
 
-		# one or more links to suffixes,
+		# one or more links to suffixes (perhaps already with hyphen),
 		# preceded by
-		# linked Hangul, bold Hangul, or pure Hangul, and
+		# linked Hangul (incl. [[시#time|시]]), bold Hangul, or pure Hangul, and
 		# followed by
 		# a space + other stuff that made sense during adjustment
 		# NOTE: pipe only for links, else it also matches
 		# {{uxi|ko|[[이]]
 		page.text = re.sub(
-			r"(\[\[[가-힣🧡|-]+\]\]|'''[가-힣🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
+			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
 			doer_3,
 			page.text,
 		)
 		# do twice
 		# [[손바닥]][[을]] [[얼굴]][[에]] [[대다]]
 		page.text = re.sub(
-			r"(\[\[[가-힣🧡|-]+\]\]|'''[가-힣🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
+			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
 			doer_3,
 			page.text,
 		)
@@ -55,14 +55,15 @@ for page in gen:
 		# [[앞]][[에서]][[요]].
 		# [[사람]][[이다|이에]][[요]].
 		page.text = re.sub(
-			r"(\[\[[가-힣🧡|-]+\]\]|'''[가-힣🧡-]+'''|[가-힣🧡-]+)(\[\[요\]\])",
+			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)(\[\[요\]\])",
 			doer_2,
 			page.text,
 		)
 		# 이다 inflexion
+		# [[국가]][[이다]].
 		# [[것]][[이다|인]][[데]]
 		page.text = re.sub(
-			r"(\[\[[가-힣🧡|-]+\]\]|'''[가-힣🧡-]+'''|[가-힣🧡-]+)(\[\[이다\|[가-힣]+\]\])",
+			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)(\[\[이다(?:\|[가-힣]+)?\]\])",
 			doer_2,
 			page.text,
 		)
@@ -83,8 +84,7 @@ for page in gen:
 		page.text = page.text.replace('🧡', '-') # 🧡 because the normal hyphen has extremely low visibility in the diff
 
 		if text_old != page.text:
-			#reply = input('[press enter to continue, x enter to cancel]')
-			reply = ''
+			reply = input('[press enter to continue, x enter to cancel]')
 
 			if reply == 'x':
 				pass
