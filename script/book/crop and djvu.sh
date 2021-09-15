@@ -19,6 +19,13 @@ case $(basename "$folder") in
 	"nissenNitijoKaiwa")
 		args="-rotate 0 +repage -crop 4890x3430+370+160 +repage -crop 50%x100%"
 		;;
+	"igakGoi")
+		args="+repage -crop 3100x2500+634+210 +repage -crop 50%x100%"
+#		args="+repage -crop 3100x2500+1410+210 +repage -crop 50%x100%" # centered page
+		;;
+	"igakGoi-2")
+		args="+repage -crop 3100x2500+1410+210 +repage -crop 50%x100%" # centered page
+		;;
 esac
 
 cd "$folder"
@@ -34,7 +41,6 @@ for file in *.jpg; do
 		$args \
 		"$file" \
 		"crop/$file"
-
 	echo
 done
 

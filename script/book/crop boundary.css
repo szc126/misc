@@ -1,8 +1,8 @@
 body:after {
-	width: calc(4450px + 220px * 2);
-	height: 3430px;
-	left: calc(590px - 220px);
-	top: 160px;
+	width: calc(1550px * 2);
+	height: 2500px;
+	left: calc(655px);
+	top: 210px;
 	background-image: linear-gradient(to right, red, red 50%, blue 50%);
 	opacity: 0.5;
 	z-index: 99;
