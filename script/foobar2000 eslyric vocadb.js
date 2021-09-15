@@ -3,7 +3,7 @@ function get_my_name() {
 }
 
 function get_version() {
-	return "1";
+	return "2";
 }
 
 function get_author() {
@@ -27,13 +27,14 @@ function start_search(info, callback) {
 
 	var artist = info.Artist;
 	var title = info.Title;
-	var path = info.Path;
+	var rawPath = info.RawPath;
 	var url;
-/*
-	if (path.indexOf("ボカロUTAU") === -1) {
+
+	// skip songs that aren't in my vocal synth folder
+	if (rawPath.indexOf("ボカロUTAU") == -1) {
+		log("Out of scope; skipping...");
 		return;
 	}
-*/
 
 	var http_client = utils.CreateHttpClient();
 	http_client.addHttpHeader("Accept", "application/json");
@@ -41,7 +42,7 @@ function start_search(info, callback) {
 
 	for (var i_server = 0; i_server < SERVERS.length; i_server++) {
 		url = SERVERS[i_server] + "/api/songs?query=" + encodeURIComponent(title);
-		url += "&songTypes=Original&maxResults=3&preferAccurateMatches=true&nameMatchMode=Exact&fields=Lyrics";
+		url += "&songTypes=Original,Mashup&maxResults=3&preferAccurateMatches=true&nameMatchMode=Exact&fields=Lyrics";
 		if (wtf) url = "http://api.allorigins.win/get?url=" + encodeURIComponent(url);
 		log(url);
 		var response = http_client.Request(url);
