@@ -5,16 +5,16 @@ import re
 
 import subprocess
 
-suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도|가|한테|에게|로|와|과|뿐'
+suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도|가|한테|에게|로|와|과|뿐|라도|라고|습니다'
 suffix_other = '이다|요' # these are special-cased below. this is just for notes
 replaced = []
 ignore = ['consultant']
 
 site = pywikibot.Site()
-gen = site.search('insource:/\]\[\[(' + suffix + ')\]\] / -incategory:"Middle Korean lemmas"', namespaces = [0])
+gen = site.search('insource:/\]\[\[(' + suffix + '|' + suffix_other + ')(\]\]|\|)/ -incategory:"Middle Korean lemmas"', namespaces = [0])
 
 def doer_3(match):
-	d = match.group(1) + match.group(2).replace('[[', '[[🧡') + match.group(3)
+	d = match.group(1) + match.group(2).replace('[[', '[[🧡').replace('|', '|🧡') + match.group(3)
 	replaced.append(d)
 	return d
 
@@ -32,22 +32,25 @@ for page in gen:
 		replaced = []
 		text_old = page.text
 
-		# one or more links to suffixes (perhaps already with hyphen),
+		# one or more links to suffixes (perhaps already with hyphen)
+		# (and perhaps with alternate link text like [[를|ᄅᆞᆯ]]),
 		# preceded by
-		# linked Hangul (incl. [[시#time|시]]), bold Hangul, or pure Hangul, and
+		# linked text, bold text, or pure Hangul, or {{ruby}} stuff
+		# <s>(multiple to catch [[않다|않]]'''음'''[[은]] instead of '''음'''[[은]]), and</s>
+		# NVM: causes rejection of [[에]] in {{ruby|[[[外國]]](외국)}}[[에]][[🧡는|🧡ᄂᆞᆫ]]
 		# followed by
-		# a space + other stuff that made sense during adjustment
-		# NOTE: pipe only for links, else it also matches
+		# a space + a following word + final punctuation
+		# NOTE: allow pipe only for links, else it also matches
 		# {{uxi|ko|[[이]]
 		page.text = re.sub(
-			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
+			r"((?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?))((?:\[\[(?:" + suffix + r")(?:\|[^]]+)?\]\])+)( (?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?)[| .,!?]?)",
 			doer_3,
 			page.text,
 		)
 		# do twice
 		# [[손바닥]][[을]] [[얼굴]][[에]] [[대다]]
 		page.text = re.sub(
-			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)((?:\[\[(?:" + suffix + r")\]\])+)( [^\s{}]*?(?:\]\]|''')[|} .,!?]| [^\s{}]*?[} .,!?])",
+			r"((?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?))((?:\[\[(?:" + suffix + r")(?:\|[^]]+)?\]\])+)( (?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?)[| .,!?]?)",
 			doer_3,
 			page.text,
 		)
@@ -55,7 +58,7 @@ for page in gen:
 		# [[앞]][[에서]][[요]].
 		# [[사람]][[이다|이에]][[요]].
 		page.text = re.sub(
-			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)(\[\[요\]\])",
+			r"(\[\[\S+?\]\]|'''\S+?'''|[가-힣々ᄀ-ᇿ()㐀-龥🧡-]+?)(\[\[요\]\])",
 			doer_2,
 			page.text,
 		)
@@ -63,7 +66,7 @@ for page in gen:
 		# [[국가]][[이다]].
 		# [[것]][[이다|인]][[데]]
 		page.text = re.sub(
-			r"(\[\[[가-힣 🧡|#a-z-]+\]\]|'''[가-힣 🧡-]+'''|[가-힣🧡-]+)(\[\[이다(?:\|[가-힣]+)?\]\])",
+			r"(\[\[\S+?\]\]|'''\S+?'''|[가-힣々ᄀ-ᇿ()㐀-龥🧡-]+?)(\[\[이다(?:\|[가-힣ᄀ-ᇿ]+)?\]\])",
 			doer_2,
 			page.text,
 		)
