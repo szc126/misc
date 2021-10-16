@@ -5,7 +5,7 @@ import re
 
 import subprocess
 
-suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도|가|한테|에게|로|와|과|뿐|라도|라고|습니다'
+suffix = '이|를|을|는|은|에|의|으로|까지|에서|부터|께|께서|만|들|며|에는|도|가|한테|에게|로|와|과|뿐|라도|라고|이랑|랑'
 suffix_other = '이다|요' # these are special-cased below. this is just for notes
 replaced = []
 ignore = ['consultant']
@@ -14,13 +14,15 @@ site = pywikibot.Site()
 gen = site.search('insource:/\]\[\[(' + suffix + '|' + suffix_other + ')(\]\]|\|)/ -incategory:"Middle Korean lemmas"', namespaces = [0])
 
 def doer_3(match):
-	d = match.group(1) + match.group(2).replace('[[', '[[🧡').replace('|', '|🧡') + match.group(3)
-	replaced.append(d)
+	d = match.group(1) + match.group(2).replace('[[', '[[🧡').replace('|', '|🧡')
+	d = d.replace('🧡-', '-')
+	replaced.append(d + match.group(3)) if '🧡' in d else 0
 	return d
 
 def doer_2(match):
 	d = match.group(1) + match.group(2).replace('[[', '[[🧡').replace('|', '|🧡')
-	replaced.append(d)
+	d = d.replace('🧡-', '-')
+	replaced.append(d) if '🧡' in d else 0
 	return d
 
 for page in gen:
@@ -42,15 +44,10 @@ for page in gen:
 		# a space + a following word + final punctuation
 		# NOTE: allow pipe only for links, else it also matches
 		# {{uxi|ko|[[이]]
+		# NOTE:
+		# [[그]][[들]][[의]] [[의견]][[들]][[은]] '''일맥상통'''[[으로]] [[통하다|통했다]]
 		page.text = re.sub(
-			r"((?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?))((?:\[\[(?:" + suffix + r")(?:\|[^]]+)?\]\])+)( (?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?)[| .,!?]?)",
-			doer_3,
-			page.text,
-		)
-		# do twice
-		# [[손바닥]][[을]] [[얼굴]][[에]] [[대다]]
-		page.text = re.sub(
-			r"((?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?))((?:\[\[(?:" + suffix + r")(?:\|[^]]+)?\]\])+)( (?:\[\[[^{}]+?\]\]|'''[^{}]+?'''|{{[^{}]+?}}|[가-힣ᄀ-ᇿ🧡-]+?)[| .,!?]?)",
+			r"((?:\[\[[^\[\]]+\]\]|'''[^']+'''|{{[^{}]+}}|[가-힣ᄀ-ᇿ🧡-]+))((?:\[\[-?(?:" + suffix + r")(?:\|[^]]+)?\]\])+)(?=( (?:\[\[[^\[\]]+\]\]|'''[^']+'''|{{[^{}]+}}|[가-힣ᄀ-ᇿ🧡-]+)[| .,!?]?))",
 			doer_3,
 			page.text,
 		)
