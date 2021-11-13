@@ -2,7 +2,7 @@
   * for reading
     * gairaigo are returned to their original form: <code>マジック→magic</code>
       * certain german words are replaced by their english cognates (popular convention): <code>テーマ→theme</code>, <code>テーゼ→thesis</code>
-      * but not shortenings. shortenings are sufficiently nativised: <code>ネトゲ→netoge</code>, <code>テレビ→terebi</code>
+      * but not shortenings, because it would be awkward: <code>ネトゲ→netoge</code>, <code>テレビ→terebi</code>
     * numbers are not romanized (popular convention): <code>5時→5-ji</code>
     * tokyo: <code>東京→Tokyo</code> (popular convention), if i don't give sufficient fucks
   * caps on everything except for particles
