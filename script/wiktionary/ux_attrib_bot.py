@@ -108,8 +108,8 @@ for page in pages:
 		page.text = '\n'.join(page_lines)
 
 		# diff and save
-		pywikibot.showDiff(text_old, page.text)
 		if text_old != page.text:
+			pywikibot.showDiff(text_old, page.text)
 			reply = input('[press enter to continue, x enter to cancel]')
 
 			if reply == 'x':

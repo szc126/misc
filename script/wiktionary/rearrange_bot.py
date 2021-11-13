@@ -50,11 +50,9 @@ for page in gen:
 				)
 		page.text = '===Etymology '.join(xxx)
 
-		pywikibot.showDiff(text_old, page.text)
-
-		print(page.text)
-
 		if text_old != page.text:
+			pywikibot.showDiff(text_old, page.text)
+			print(page.text)
 			#reply = input('[press enter to continue, x enter to cancel]')
 			reply = 'y'
 

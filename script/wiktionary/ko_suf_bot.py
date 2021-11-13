@@ -80,10 +80,9 @@ for page in gen:
 		)
 		print(summary.replace('🧡', '-'))
 
-		pywikibot.showDiff(text_old, page.text)
-		page.text = page.text.replace('🧡', '-') # 🧡 because the normal hyphen has extremely low visibility in the diff
-
 		if text_old != page.text:
+			pywikibot.showDiff(text_old, page.text)
+			page.text = page.text.replace('🧡', '-') # 🧡 because the normal hyphen has extremely low visibility in the diff
 			reply = input('[press enter to continue, x enter to cancel]')
 
 			if reply == 'x':

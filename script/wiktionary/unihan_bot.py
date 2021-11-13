@@ -63,9 +63,8 @@ for page, revid, timestamp, summary in gen:
 		print(page.text)
 		print('◆')
 
-		pywikibot.showDiff(text_old, page.text)
-
 		if text_old != page.text:
+			pywikibot.showDiff(text_old, page.text)
 			reply = input('[press enter to continue, x enter to cancel]')
 
 			if reply == 'x':
