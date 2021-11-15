@@ -4,54 +4,56 @@ from pywikibot import pagegenerators
 import re
 
 site = pywikibot.Site()
-#gen = site.search(': "Korean" hastemplate:trans-top insource:/\|ko\|[㐀-龥]/')
-#gen = site.search(': "Korean" hastemplate:trans-top insource:/\|ko\|[^|}]*\[\[[㐀-龥]/')
-gen = site.search(': "Korean" hastemplate:trans-top insource:/\|ko\|[^|}]*\[\[[㐀-龥]/')
+#page = pywikibot.Page(site, 'Template:Song box')
+#gen = page.getReferences(page)
+gen = site.search(' "japanese katakana" "japanese nouns" -etymology -"alternative form of" -hastemplate:ja-see -hastemplate:ja-def -"short for" -"clipping of"   -"alternative spelling of" -hastemplate:elements -"japanese proper nouns" ')
 
 replaced = []
 
 def doer(match):
-	d = match.group(0)
-	# remove |sc=
-	d = re.sub(r'\|sc=[A-Za-z]+', r'', d)
-	#
-	d = re.sub(r'-?\[\[([㐀-龥]+)\]\]-?', r'\1', d)
-	# {{t+|ko|단념하다}} ({{t+|ko|斷念|alt=斷念하다|tr=-}})
-	d = re.sub(r'([㐀-龥]+)\|alt=\1하다', r'\1하다', d)
-	# {{t+|ko|적격|alt=적격의}} ({{t+|ko|適格|alt=適格의|tr=-}})
-	d = re.sub(r'([㐀-龥]+)\|alt=\1의', r'\1', d)
-	# remove |tr= for hanja
-	d = re.sub(r'(?<=[㐀-龥])\|tr=[^|}]+', r'', d)
-	d = re.sub(r'(?<=[㐀-龥]하다)\|tr=[^|}]+', r'', d)
-	# {{t+|ko|고대|alt=고대의}} ({{t+|ko|古代}})
-	d = re.sub(r'({{(?:tt?|tt?[+-][a-z]*)\|ko\|)([^|}]+)(?:\|alt=\2의)([^}]*)(}}),?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|([㐀-龥]+)}}[)）]?', r'\1[[\2(\5)]]-의\3\4', d)
-	d = re.sub(r'({{(?:tt?|tt?[+-][a-z]*)\|ko\|)([^|}]+)(?:\|alt=\2인)([^}]*)(}}),?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|([㐀-龥]+)}}[)）]?', r'\1[[\2(\5)]]-인\3\4', d)
-	# ([^|}]+)([^}]*) to capture the first parameter + anything else, to avoid {{t+|ko|^일본해|lit=Sea of Japan(日本海)}}
-	d = re.sub(r'({{(?:tt?|tt?[+-][a-z]*)\|ko\|)([^|}]+)하다([^}]*)(}}),?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|([㐀-龥]+)}}[)）]?', r'\1\2(\5)하다\3\4', d)
-	d = re.sub(r'({{(?:tt?|tt?[+-][a-z]*)\|ko\|)([^|}]+)([^}]*)(}}),?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|([㐀-龥]+)}}[)）]?', r'\1\2(\5)\3\4', d)
-	d = re.sub(r'({{(?:tt?|tt?[+-][a-z]*)\|ko\|)([^|}]+)하다([^}]*)(}}),?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|([㐀-龥]+)하다}}[)）]?', r'\1\2(\5)하다\3\4', d)
-	print('..' + d)
-	replaced.append(d)
-	return d
+	a = ['', match.group(1), match.group(2)]
+	a[2] = re.sub(r'{{date\|([^|}]+)\|([^|}]+)\|([^|}]+)}}', r'\2 \3, \1', a[2], flags = re.I)
+	replaced.append(match.group(2) + '→' + a[2])
+	return ''.join(a)
 
+ffwd = 0
 for page in gen:
+	if ffwd == 0:
+		print(page.title())
+		if page.title()[0] == 'ハ':
+			ffwd = 1
+		else:
+			continue
+
+	if 'Etymology' in page.text:
+		continue
+
 	print(page.title())
 	try:
 		text_old = page.text
 		replaced = []
-		page.text = re.sub(
-			r'{{(?:tt?|tt?[+-][a-z]*)\|ko\|[^}]+}},?\s*[(（]?{{(?:tt?|tt?[+-][a-z]*)\|ko\|[^|}]*[㐀-龥][^}]*}}[)）]?',
-			doer,
-			page.text,
-		)
+		#page.text = re.sub(r'(\|date.+)({{date.+)', doer, page.text, flags = re.I)
 
-		#if re.search(r'(\|ko\|[㐀-龥]|\|ko\|[^}]+alt=)', page.text):
-		#	# oh no!
-		#	print('X ' + re.search(r'.+(ko\|[㐀-龥]|ko\|[^}]+alt=).+', page.text).group(0))
-		if 0:
-			pass
-		elif text_old != page.text:
-			pywikibot.showDiff(text_old, page.text)
+		candidates = re.search(r'\[\[([^\]:]+)\]\]', page.text)
+		if not candidates:
+			continue
+		ety = 'From {{bor|ja|en|' + candidates.group(1) + '}}.'
+		replaced.append(ety)
+
+		print('\thttps://en.wiktionary.org/wiki/' + page.title())
+		print('\thttps://www.weblio.jp/content/' + page.title())
+		print('\thttps://en.wiktionary.org/wiki/' + candidates.group(1))
+
+		temp = page.text.split('===')
+		temp.insert(1, 'Etymology')
+		temp.insert(2, '\n' + ety + '\n\n')
+		page.text = '==='.join(temp)
+
+		if text_old != page.text:
+			summary = 'add Etymology: ' + ', '.join(set(replaced))
+			print('\t' + summary)
+			#pywikibot.showDiff(text_old, page.text)
+			print(page.text)
 			reply = input('[press enter to continue, x enter to cancel]')
 			#reply = ''
 
@@ -59,7 +61,7 @@ for page in gen:
 				pass
 				print('Skipped.')
 			else:
-				page.save('ko: update tl fmt: ' + ', '.join(set(replaced)))
+				page.save(summary)
 				print('Saved.')
 	except Exception as e:
 		print(page.text)
