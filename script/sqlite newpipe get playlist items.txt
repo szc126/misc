@@ -1,0 +1,3 @@
+select streams.url, streams.title
+from streams inner join playlist_stream_join on playlist_stream_join.stream_id=streams.uid
+where playlist_stream_join.playlist_id=9;
