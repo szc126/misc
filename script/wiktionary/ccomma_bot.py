@@ -6,7 +6,7 @@ import re
 site = pywikibot.Site()
 #page = pywikibot.Page(site, 'Template:Song box')
 #gen = page.getReferences(page)
-gen = site.search(' "japanese katakana" "japanese nouns" -etymology -"alternative form of" -hastemplate:ja-see -hastemplate:ja-def -"short for" -"clipping of"   -"alternative spelling of" -hastemplate:elements -"japanese proper nouns" ')
+gen = site.search(' "japanese katakana" "japanese nouns" -etymology -"alternative form of" -hastemplate:ja-see -hastemplate:ja-def -"short for" -"clipping of"   -"alternative spelling of" -hastemplate:elements -"japanese proper nouns" -intitle:/ー/ -insource:/head=\[\[/ -hastemplate:ja-kanjitab ')
 
 replaced = []
 
@@ -20,7 +20,7 @@ ffwd = 0
 for page in gen:
 	if ffwd == 0:
 		print(page.title())
-		if page.title()[0] == 'ハ':
+		if page.title()[0] == 'ア':
 			ffwd = 1
 		else:
 			continue
@@ -36,6 +36,8 @@ for page in gen:
 
 		candidates = re.search(r'\[\[([^\]:]+)\]\]', page.text)
 		if not candidates:
+			candidates = re.search(r'# *([a-z]+)', page.text)
+		if not candidates:
 			continue
 		ety = 'From {{bor|ja|en|' + candidates.group(1) + '}}.'
 		replaced.append(ety)
@@ -45,8 +47,12 @@ for page in gen:
 		print('\thttps://en.wiktionary.org/wiki/' + candidates.group(1))
 
 		temp = page.text.split('===')
-		temp.insert(1, 'Etymology')
-		temp.insert(2, '\n' + ety + '\n\n')
+		if "Alternative forms" in page.text:
+			temp.insert(3, 'Etymology')
+			temp.insert(4, '\n' + ety + '\n\n')
+		else:
+			temp.insert(1, 'Etymology')
+			temp.insert(2, '\n' + ety + '\n\n')
 		page.text = '==='.join(temp)
 
 		if text_old != page.text:

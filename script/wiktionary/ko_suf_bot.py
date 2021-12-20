@@ -12,6 +12,8 @@ ignore = ['consultant']
 
 site = pywikibot.Site()
 gen = site.search('insource:/\]\[\[(' + suffix + '|' + suffix_other + ')(\]\]|\|)/ -incategory:"Middle Korean lemmas"', namespaces = [0])
+# currently; [[x]][[suffix]]
+# TODO: '''foo'''[[suffix]]
 
 def doer_3(match):
 	d = match.group(1) + match.group(2).replace('[[', '[[🧡').replace('|', '|🧡')
