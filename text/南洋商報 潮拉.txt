@@ -220,14 +220,14 @@ sop（中國）由專門名詞
 A	a	亞
 B	b	波
 Bh	bh	無
-C	c	＠
+C	c	权
 D	d	刀
 Dz	dz
 E	e	嗌
 G	g	哥
 Gh	gh	鵝
 I	i	衣
-J	j	＠
+J	j	腰
 K	k	可
 L	l	罗
 M	m	毛
@@ -235,8 +235,8 @@ N	n	二
 Ng	ng	俄
 O	o	奧
 P	p	頗
-Q	q	＠
-S	s	＠
+Q	q	求
+S	s	所
 T	t	退
 U	u	嗚
 W	w
@@ -244,13 +244,13 @@ X	x	好
 Y	y	余
 Z	z	左
 
-2. 專用＠＠＠外來語的字母三個
+2. 專用以吸收外來語的字母三個
 大寫	小寫	讀音	舉例	讀音
 F	f	of	Fascist	法西斯蒂
 R	r	ro	Roma	罗馬
 V	v	vo	Volga	伏爾加
 
-3. ＠＠母音十二個
+3. 複体母音十二個
 ai	哀
 ao	歐
 ia	也
@@ -267,8 +267,8 @@ uai	歪
 4. 鼻化母音十五個
 ã	餡
 ãi	愛
-ão	xão ＠好
-ẽ	＠
+ão	xão 好的母音
+ẽ	楹
 ĩ	圓
 ĩa	影
 ĩao
@@ -279,7 +279,7 @@ uai	歪
 ũa	碗
 ũe	xũe ＠的母音
 ũi	畏
-ũai	sũai ＠的母音
+ũai	sũai 榱的母音
 
 5. 帶鼻音母音十五個
 ang	紅
@@ -296,7 +296,7 @@ uan	湾
 uang	王
 uam	xuam 凢
 un	温
-yng	＠
+yng	隱
 
 6. 促音母音十三個
 aq	惡
@@ -306,7 +306,7 @@ oq	屋
 uq	熨
 iaq	躍
 ioq	育
-uaq	＠
+uaq	獲
 ap	盒
 iap	壓
 ip	邑
