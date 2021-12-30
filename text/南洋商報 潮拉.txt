@@ -220,7 +220,7 @@ sop（中國）由專門名詞
 A	a	亞
 B	b	波
 Bh	bh	無
-C	c	权
+C	c	＊
 D	d	刀
 Dz	dz
 E	e	嗌
@@ -235,7 +235,7 @@ N	n	二
 Ng	ng	俄
 O	o	奧
 P	p	頗
-Q	q	求
+Q	q	＊
 S	s	所
 T	t	退
 U	u	嗚
