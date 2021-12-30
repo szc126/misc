@@ -1,5 +1,5 @@
-「＠」即睇無，待補。
-「＊」即訂正。
+「＊」即睇無，待補。
+「→」即訂正。
 
 ----
 
@@ -12,19 +12,19 @@ C，i，O，ny六個母音；j
 w二個補助母音；q是
 補助子音；其餘十七個
 是子音。
-	＊a，e，i，o，u，y
+	→a，e，i，o，u，y
 
 　　在字母表上，子音
 一律加上母音O字讀出
 來拚音的時候，應該捨
-去母音＠用原音，所註
+去母音＊用原音，所註
 的漢字就是表示加O字
 後，用潮州音讀出來的
 音。中間bZ，和w因無
-這二音＠故缺。復什母
+這二音＊故缺。復什母
 音中的iao和i。局部地
 方記作i。iou。
-	＊複雜
+	→複雜
 
 　　鼻化母音是在音母
 或復什母音前一個字母
@@ -33,7 +33,7 @@ w二個補助母音；q是
 中的h，dZ，l，m，n，ns，sh
 七個不能够和鼻化母音
 拚合。
-	＊b，dz，l，m，n，ng，gh
+	→b，dz，l，m，n，ng，gh
 
 音段的構成
 
@@ -45,19 +45,19 @@ w二個補助母音；q是
 個音毀就是由子音S和
 復什母音ia拚成的；tua
 sn（團）這音段就是由子
-音七和帶＠音母音nans
+音七和帶＊音母音nans
 拚成的一個或幾個音段
 連起來，便成詞兒，
 如Sia和tuans連起來，便
 成Siatuaus（社團）的詞
 兒。
-	＊拼合而成
-	＊這個音段
-	＊tuang
-	＊子音t
-	＊母音uang
-	＊tuang
-	＊siatuang
+	→拼合而成
+	→這個音段
+	→tuang
+	→子音t
+	→母音uang
+	→tuang
+	→siatuang
 
 　　母音無須與子音拚
 合，單獨可以成立音段
@@ -71,7 +71,7 @@ sn（團）這音段就是由子
 詞兒連寫
 
 中國話里頭的詞兒
-，跟別國一樣，＠由一
+，跟別國一樣，＊由一
 個音段組成的，也有由
 好幾個音段組成的，在
 拉丁化的新文字中，凡
@@ -82,34 +82,34 @@ sn（團）這音段就是由子
 一塊。
 
 單音段的詞兒——
-（我）tans（＠）soq（
+（我）tans（＊）soq（
 國）多音段的詞兒——
 dhunsZi（文字）Siqminh
 i（殖民地）aisoqZu,usii
 （帝國主義）。
-	＊uang
-	＊goq
-	＊bhungdzi
-	＊siqmindi
-	＊digoqzu'ngi
+	→uang
+	→goq
+	→bhungdzi
+	→siqmindi
+	→digoqzu'ngi
 
 　　成語要連寫，例如
 Nawucyli（豈有此理）
 hOXebholo（無夏無落）
 等等。
-	＊bhoxebholo
+	→bhoxebholo
 
 　　名詞的語尾要連寫
 ，例如biPZiam（筆尖）
 Zuacui（紙碎）等等。
-	＊biqziam
+	→biqziam
 
 　　表示位置的語尾要
 連寫，例如Cula（厝內）
 emin（下面）Cyusdeus（
 床頂）等等。
-	＊culai
-	＊cyngdeng
+	→culai
+	→cyngdeng
 
 　　名詞所有格，形容
 詞語尾都要和本詞連寫，
@@ -117,34 +117,34 @@ emin（下面）Cyusdeus（
 ai（伊個）aussai（紅個）
 Cusjossaii（英勇個）等
 等。
-	＊wagai
-	＊igai
-	＊anggai
-	＊engjonggai
+	→wagai
+	→igai
+	→anggai
+	→engjonggai
 
 　　有重複意義的成器
 ，中間要用規劃分開，
 例如Ceuseus-CoCo（淸
 淸楚楚）utao-bhobhue（
 有頭無尾）等等。
-	＊cengceng-coco
+	→cengceng-coco
 
 　　否定王疑問的詞兒
 的重複，也要在否定詞
 的前面加規劃開，例如
-s＠m i？（是唔是）XO-a
+s＊m i？（是唔是）XO-a
 mo？（好不好）Oi-abho
 ？（會不會）等等。
-	＊si-m-si
-	＊xo-a-mo
-	＊oi-a-bhoi
+	→si-m-si
+	→xo-a-mo
+	→oi-a-bhoi
 
 　　兩重否定的詞兒要
 連寫，例如bupbuq（不
 得不）bhoisaibhoi（衭
 使袂）等等。
-	＊＠
-	＊袂使袂
+	→＊
+	→袂使袂
 
 　　數詞的寫法，要照
 個，十，百，千，萬，
@@ -156,12 +156,12 @@ SiZap usou（一萬二千
 要用短劃分開，例如
 doi-iqc（第一次）doi-d
 Zsai（第二個）Sa-sisai（
-＠四個）laq-cipbun（六
+＊四個）laq-cipbun（六
 七本）等等。
-	＊zapbhuang nocoi sabe sizap ngou
-	＊doi-dzigai
-	＊sa-sigai（三四個）
-	＊laq-ciqbun
+	→zapbhuang nocoi sabe sizap ngou
+	→doi-dzigai
+	→sa-sigai（三四個）
+	→laq-ciqbun
 
 界音法
 
@@ -179,11 +179,11 @@ jw兩個界音字母來分
 寫usuausjiu（原因）to-ia
 m寫tojam（討厭）Zun-u
 寫Zunwu（船塢）等等。
-	＊peng'ang
-	＊nguang-in
-	＊nguangjin
-	＊zun-u
-	＊zunwu
+	→peng'ang
+	→nguang-in
+	→nguangjin
+	→zun-u
+	→zunwu
 
 其他
 
@@ -196,13 +196,13 @@ sop（中國）由專門名詞
 例如Siusaibogai（新加坡
 ）Doussogaiu（中國個
 ）等等。
-	＊Singiabo
-	＊Donggoq
-	＊Singiabogai
-	＊Donggoqgai
+	→Singiabo
+	→Donggoq
+	→Singiabogai
+	→Donggoqgai
 
 　　詞句開頭的第一個
-字母，也＠大寫。
+字母，也＊大寫。
 
 　　標點，符號的用法
 ，跟白話文一樣。
@@ -213,7 +213,7 @@ sop（中國）由專門名詞
 ----
 
 潮州話新文字方案
-（＠＠＠＠＠＠）
+（＊*＊*＊*）
 
 1. 基本字母二十六個
 大寫	小寫	讀音
@@ -277,7 +277,7 @@ uai	歪
 õi	閒
 õu	xõu 虎的母音
 ũa	碗
-ũe	xũe ＠的母音
+ũe	xũe ＊的母音
 ũi	畏
 ũai	sũai 榱的母音
 
@@ -291,7 +291,7 @@ iang	央
 iam	塩
 iong	榮
 ong	翁
-on	＠声
+on	＊声
 uan	湾
 uang	王
 uam	xuam 凢
@@ -310,5 +310,5 @@ uaq	獲
 ap	盒
 iap	壓
 ip	邑
-op	＠声
+op	＊声
 uap	xuap 法
