@@ -1,30 +1,67 @@
+「→」即訂正。
+
+----
+
 新文字五分鐘讀物
-許地山：Noudae
+許地山：
+
+	NOUDAE
+	奴隸
 
 	Noudae ge gunqzog xae bonq jen-
+	奴隸   嘅 工作    係  幫   人
 dei zou silei-ge. Zijaujen ge gunqzog
+哋  做  私利嘅    自由人   嘅 工作
 xae wae zigeige leijig. Zig xoji gonq
+係  爲  自己嘅  利益    即  可以 講
 xae wae jenley ge fadzin-ge. Soji odei
-inqdonq leijunq degx<mark>e</mark>nge sigan lae
+係  爲  人類   嘅 發展嘅      所以我哋
+inqdonq leijunq degxenge sigan lae
+→degxange
+應當    利用    得閒嘅   時間  嚟
 wencoed senqwudsoenq d.d. bidsey ge
+搵出    生活上       等等 必須   嘅
 zisig tunqmai geinenq, mxou lonqfaezo
+知識  同埋    技能     唔好 浪費咗
 xaae doubog sigjin jemzau d.d. siuxouge
-sen<mark>g</mark>wudsoenq. Gausidi sisoenqga cenq-
+喺   賭博   食煙   飲酒   等等 消耗嘅
+sengwudsoenq. Gausidi sisoenqga cenq-
+→senqwudsoenq
+生活上        舊時啲  思想家    曾
 ginq gonqbei odei teinq: "zisig zau
+經   講畀    我哋 聽      知識  就
 xae nenqlig tunqmai zijau." Odei
+係  能力    同埋    自由    我哋
 ygwo jau zisig, zau xoji jenci degdou
+如果 有  知識   就  可以 因此  得到
 genqga soencugge geinenq. Jauzo gei-
+更加   迅速<!--?-->嘅技能 有咗  技
 nenq inxau jau fadzin zigeige nenqlig.
+能   然後  有  發展   自己嘅  能力
 Jau nenqlig inxau degdou zijau. Ygwo
+有  能力    然後  得到   自由   如果
 odei m'ynji zou indoige noudae, odei
+我哋 唔願意 做  現代嘅  奴隸    我哋
 zau jeddinq iu oisig sigan, gemcin
+就  一定    要 愛惜  時間   金錢
 tunqmai zinqlig, junqlae wencoed godi
+同埋    精力     用嚟    搵出    嗰啲
 deyy gojen tunqmai sewui jaujigge
+對於 個人  同埋    社會  有益嘅
 geinenq. Zoudou noudae ginqdei godi
+技能     做到   奴隸   境地    嗰啲
 jen dou xae mou zixei, sinmou teyfae
+人  都  係  冇  志氣   羨慕   頹廢
 senqwud-ge xolincunq. Odei iu gwazy
+生活嘅     可憐蟲     我哋 要 掛住
 zigei tunqmai keydei jedjoenq sinzi
+自己  同埋    佢哋   一樣     先至
 xou-a. (yn)
+好呀    完
+
+----
+
+	NOU-DAI
 
 	Nou-dai ge gung-zok hai (係) bong jan-
 dei zou si-lei--ge. Zi-jau-jan ge gung-zok
@@ -50,28 +87,3 @@ jan dou hai (係) mou zi-hei, sin-mou teoi-fai
 sang-wut--ge ho-lin-cung. O-dei jiu gwaa-zyu
 zi-gei tung-maai keoi-dei jat-joeng sin-zi
 hou--a. (jyun)
-
-	奴隸嘅工作係幫人
-哋做私利嘅。自由人嘅工作
-係爲自己嘅利益。即可以講
-係爲人類嘅發展嘅。所以我哋
-應當利用得閒嘅時間嚟
-搵出生活上等等必須嘅
-知識同埋技能，唔好浪費咗
-喺賭博食煙飲酒等等消耗嘅
-生活上。舊時啲思想家曾
-經講畀我哋聽：「知識就
-係能力同埋自由。」我哋
-如果有知識，就可以因此得到
-更加迅速<!--??-->嘅技能。有咗技
-能然後有發展自己嘅能力。
-有能力然後得到自由。如果
-我哋唔願意做現代嘅奴隸，我哋
-就一定要愛惜時間，金錢
-同埋精力，用嚟搵出嗰啲
-對於個人同埋社會有益嘅
-技能。做到奴隸境地
-嗰啲人都係冇志氣，羨慕頹廢
-生活嘅可憐蟲。我哋要掛住
-自己同埋佢哋一樣先至
-好呀。（完）
