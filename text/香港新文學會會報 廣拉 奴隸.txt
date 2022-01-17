@@ -25,8 +25,8 @@ http://docs.lib.cuhk.edu.hk/hklit-writers/pdf/journal/84/1991/80326.pdf
 	奴隸
 	Gausi di jen, gwogen boulogge
 	舊時 啲  人   過緊   部落嘅
-sengqud jedcaege seyiu douxae boulog
-生活    一齊嘅   需要  都係   部落
+sengqwud jedcaege seyiu douxae boulog
+生活     一齊嘅   需要  都係   部落
 leytau ge jen zigei laezou-ge, xouci
 裏頭   嘅 人  自己  嚟做嘅     好似
 dalib sojunq ge gunq tunqmai zin, loy
@@ -38,7 +38,7 @@ sojunq-ge cotau tuqmi laepa foqzig
 所用嘅    鋤頭  同埋  犁耙  紡織
 sojunqge lam tunqmai leb, d d, douxae
 所用嘅   籃  同埋    笠<!--?-->等等都係
-gojen zigei zou ge. Xauloi senqwut yd
+gojen zigei zou ge. Xauloi senqwud yd
 個人  自己  做  嘅  後來   生活    越
 fugzab senqwudsoenqge seyiu ydlae
 複雜   生活上嘅       需要  越嚟
