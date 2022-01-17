@@ -21,7 +21,10 @@ echo "(working on $pdf)"
 pdfimages -j -jp2 "$pdf" "$working_dir/pdfimages"
 echo
 
-for file in ${working_dir}/*.jp2; do
+echo "Take this time to review the images. Press enter to continue."
+read
+
+for file in ${working_dir}/*.jpg; do
 	echo "(converting $file to ppm)"
 	convert "$file" "${file}.ppm"
 
@@ -31,9 +34,19 @@ for file in ${working_dir}/*.jp2; do
 	echo
 done
 
-for file in ${working_dir}/*.pbm; do
+for file in ${working_dir}/*.png; do
+	echo "(converting $file to ppm)"
+	convert "$file" "${file}.ppm"
+
+	echo "(converting $file to djvu)"
+	c44 "${file}.ppm" "${file}.djvu"
+
+	echo
+done
+
+for file in ${working_dir}/*.ppm; do
 	magic=$(file "$file")
-	
+
 	echo "(converting $file to djvu)"
 
 	if echo "$magic" | grep "1034 x 204"; then
