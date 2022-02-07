@@ -24,7 +24,7 @@ with open(sys.argv[1], 'r') as file:
 				entries_flat = []
 
 				if 'Likes?' in har_entry.url or 'UserMedia?' in har_entry.url:
-					entries_raw = json.loads(har_entry.response.text)['data']['user']['result']['timeline']['timeline']['instructions'][0]['entries']
+					entries_raw = json.loads(har_entry.response.text)['data']['user']['result']['timeline_v2']['timeline']['instructions'][0]['entries']
 				elif 'TweetDetail?' in har_entry.url:
 					entries_raw = json.loads(har_entry.response.text)['data']['threaded_conversation_with_injections']['instructions'][0]['entries']
 
