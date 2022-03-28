@@ -26,6 +26,12 @@ case $(basename "$folder") in
 	"igakGoi-2")
 		args="+repage -crop 3100x2500+1410+210 +repage -crop 50%x100%" # centered page
 		;;
+	"米国物語")
+		args="+repage -crop 3020x2400+545+200 +repage -crop 50%x100%" # centered page
+		;;
+	"南部朝鮮の方言")
+		args="+repage -crop 4240x3000+220+120 +repage -crop 50%x100%" # centered page
+		;;
 esac
 
 cd "$folder"
