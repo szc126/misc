@@ -5,8 +5,7 @@ from pywikibot.page import Page
 import sys
 
 site = pywikibot.Site()
-cat = pywikibot.Category(site, sys.argv[1])
-gen = site.categorymembers(cat)
+gen = site.search(": " + sys.argv[1])
 
 for page in gen:
 	print(page.title())
