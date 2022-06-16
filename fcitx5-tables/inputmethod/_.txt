@@ -1,0 +1,3 @@
+# https://github.com/fcitx/fcitx5-table-other/blob/master/tables/vi/viqr.conf.in
+# https://github.com/fcitx/fcitx5-table-other/blob/master/tables/other/ipa-x-sampa.conf.in
+# $ libime_tabledict nanrom.txt nanrom.dict

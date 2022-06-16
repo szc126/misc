@@ -1,0 +1,21 @@
+Length=1
+KeyCode=235%6^7&891!04$
+Prompt=
+ConstructPhrase=
+[Data]
+2	́
+3	̀
+5	̂
+%	̌
+6	̆
+^	̃
+7	̄
+&	̿
+8	̍
+9	̋
+
+1	ⁿ
+!	ᴺ
+0	͘
+4	̤
+$	̈

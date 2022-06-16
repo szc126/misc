@@ -1,0 +1,133 @@
+Length=4
+KeyCode=12345678abcdefghijklmnopqrstuvwxyz-
+Prompt=
+ConstructPhrase=
+[Data]
+2	𚿰
+3	𚿱
+4	𚿲
+5	𚿳
+7	𚿵
+8	𚿶
+
+1n	𚿷
+2n	𚿸
+3n	𚿹
+4n	𚿺
+5n	𚿻
+7n	𚿽
+8n	𚿾
+
+a	ア
+i	イ
+u	ウ
+e	エ
+o	オ
+ya	ヤ
+yu	ユ
+yo	ヨ
+wa	ワ
+wi	ヰ
+we	ヱ
+wo	ヲ
+
+pa	パ
+pi	ピ
+pu	プ
+pe	ペ
+po	ポ
+pha	パ̣
+phi	ピ̣
+phu	プ̣
+phe	ペ̣
+pho	ポ̣
+ba	バ
+bi	ビ
+bu	ブ
+be	ベ
+bo	ボ
+ma	マ
+mi	ミ
+mu	ム
+me	メ
+mo	モ
+
+ta	タ
+ti	チ
+tu	ツ
+te	テ
+to	ト
+tha	タ̣
+thi	チ̣
+thu	ツ̣
+the	テ̣
+tho	ト̣
+da	ダ
+di	ヂ
+du	ヅ
+de	デ
+do	ド
+na	ナ
+ni	ニ
+nu	ヌ
+ne	ネ
+no	ノ
+la	ラ
+li	リ
+lu	ル
+le	レ
+lo	ロ
+
+ka	カ
+ki	キ
+ku	ク
+ke	ケ
+ko	コ
+kha	カ̣
+khi	キ̣
+khu	ク̣
+khe	ケ̣
+kho	コ̣
+ga	ガ
+gi	ギ
+gu	グ
+ge	ゲ
+go	ゴ
+ha	ハ
+hi	ヒ
+hu	フ
+he	ヘ
+ho	ホ
+
+tta	タ̅
+tti	チ̅
+ttu	ツ̅
+tte	テ̅
+tto	ト̅
+ttha	タ̣̅
+tthi	チ̣̅
+tthu	ツ̣̅
+tthe	テ̣̅
+ttho	ト̣̅
+sa	サ
+si	シ
+su	ス
+se	セ
+so	ソ
+ssa	サ̅
+ssi	シ̅
+ssu	ス̅
+sse	セ̅
+sso	ソ̅
+za	ザ
+zi	ジ
+zu	ズ
+ze	ゼ
+zo	ゾ
+
+r	ウ̅
+vu	ヴ
+q	ン
+
+ss	̅
+hh	̣
