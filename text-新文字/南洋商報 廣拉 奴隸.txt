@@ -17,7 +17,7 @@ xae wae zigeige leijig. Zig xoji gonq
 xae wae jenley ge fadzin-ge. Soji odei
 係  爲  人類   嘅 發展嘅      所以我哋
 inqdonq leijunq degxenge sigan lae
-→degxange
+	→degxange
 應當    利用    得閒嘅   時間  嚟
 wencoed senqwudsoenq d.d. bidsey ge
 搵出    生活上       等等 必須   嘅
@@ -26,7 +26,7 @@ zisig tunqmai geinenq, mxou lonqfaezo
 xaae doubog sigjin jemzau d.d. siuxouge
 喺   賭博   食煙   飲酒   等等 消耗嘅
 sengwudsoenq. Gausidi sisoenqga cenq-
-→senqwudsoenq
+	→senqwudsoenq
 生活上        舊時啲  思想家    曾
 ginq gonqbei odei teinq: "zisig zau
 經   講畀    我哋 聽      知識  就
@@ -35,7 +35,7 @@ xae nenqlig tunqmai zijau." Odei
 ygwo jau zisig, zau xoji jenci degdou
 如果 有  知識   就  可以 因此  得到
 genqga soencugge geinenq. Jauzo gei-
-更加   迅速<!--?-->嘅技能 有咗  技
+更加   迅速嘅?   技能 有咗  技
 nenq inxau jau fadzin zigeige nenqlig.
 能   然後  有  發展   自己嘅  能力
 Jau nenqlig inxau degdou zijau. Ygwo

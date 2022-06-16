@@ -34,10 +34,10 @@ dalib sojunq ge gunq tunqmai zin, loy
 sojunqge y'au tunqmai monq, ganqzunq
 所用嘅   漁鈎 同埋    網    耕種
 sojunq-ge cotau tuqmi laepa foqzig
-→tunqmai
+	→tunqmai
 所用嘅    鋤頭  同埋  犁耙  紡織
 sojunqge lam tunqmai leb, d d, douxae
-所用嘅   籃  同埋    笠<!--?-->等等都係
+所用嘅   籃  同埋    笠?  等等 都係
 gojen zigei zou ge. Xauloi senqwud yd
 個人  自己  做  嘅  後來   生活    越
 fugzab senqwudsoenqge seyiu ydlae
@@ -49,13 +49,14 @@ joegge boulog ge sengcan gunqgey tunq-
 mai coiliu, manman inbin sinqwae
 埋  材料    漫漫   演變  成爲
 zinzanq ge jeman xengwae. Jenwae
-→zinzenq
+	→zinzenq
 戰爭    嘅 野蠻  行爲     因爲
 jauzo zinzanq, xaae boulog leytau
-→zinzenq
+	→zinzenq
 有咗  戰爭     喺   部落   裏頭
-＊ neyjen tunqmai saelougo
-＊ 女人   同埋    細路哥
+sinqfandi neyjen tunqmai saelougo
+	→zinqfandi?
+剩返啲 女人   同埋    細路哥
 ＊xaae zincoenqsoenq meicenq bei-
 ＊喺   戰場上        未曾    畀
 sadsei-ge, jaudi bei dig jen laizoxey
@@ -71,7 +72,7 @@ xaae sentae leytau ge nenqlig. Zinq-
 fugze zoenq keydei laifanxey zigeige
 服者  將    佢哋   拉返去    自己嘅
 boulog gosy, donq in mnenqgau bagbag
-→donq'in
+	→donq'in
 部落   嗰處  當然    唔能夠   白白
 joeng keydei. Gemzau zoenq godi
 養    佢哋    噉就   將    嗰啲
@@ -99,8 +100,8 @@ iedjoenq, kei xaae jedgo lan leybin jem
 jendei lae gan la. Zyjen iu sad key, key
 人哋   嚟  揀  啦  主人  要 殺  佢   佢
 zau mou fadzi zau degienq. Jenley
-→degjeinq<!--?-->
-就  冇  法子  走  得贏<!--?-->人類
+	→degjeinq?
+就  冇  法子  走  得贏?    人類
 sewui zoi mou xouci noudae tunqmai
 社會  再  冇  好似  奴隸   同埋
 zyjen ge gwanxaegem mpinqdenq tunq-
@@ -121,10 +122,10 @@ menfa beigao gouge gwogga jau xoudo
 文化  比較   高嘅  國家   有  好多
 wan ＊ noudae tunqmai zyjengunqe
 還  ＊ 奴隸   同埋    主人＊＊
-gwanxae-ge. Xouci zibunzyji＊ d＊
-關係嘅      好似  資本主義＊  ＊
-＊ d d dou xoji donqzou
-＊ 等等都  可以 當做
+gwanxae-ge. Xouci zibunzyji＊ daeg-
+關係嘅      好似  資本主義＊  帝國
+wogzyji d d dou xoji donqzou
+主義    等等都  可以 當做
 noudaezaedou ＊xalaege je.
 奴隸制度     ＊＊＊嘅  嘢
 
@@ -134,19 +135,19 @@ daleige, zijiu zyjen jau mouxei xaae
 打理嘅   只要  主人  有  武器   喺
 sau leytau ＊. Noudae mteinqwa,
 手  裏頭   ＊  奴隸   唔聽話
-dae key, mai key, semzi sadzo key, dou
-打佢      賣佢    甚至  殺咗  佢   都
+da key, mai key, semzi sadzo key, dou
+打 佢   賣  佢   甚至  殺咗  佢   都
 msiqj mentae. Danxae xaae daegwog
 唔成  問題    但係   喺   帝國
-zyji ＊ zezy xamin godi noudae,
-主義 ＊ 遮住 下面  嗰啲 奴隸
+zyji zibunzyji zezy xamin godi noudae,
+主義 資本主義  遮住 下面  嗰啲 奴隸
 mouxei zinenq tunqzae jedboufen,
 武器   只能   統制    一部分
 mnenggau yncyn zaefug keydei. Jenwae
-→mnenqgau
+	→mnenqgau
 唔能夠   完全  制服   佢哋    因爲
 g mjoenq deyjy noudae iu joenqsinq
-→gamjoenq
+	→gamjoenq
 噉樣     對於  奴隸   要 養成
 keydeige noudaesinq.
 佢哋嘅   奴隸性
@@ -156,7 +157,7 @@ keydeige noudaesinq.
 zunqjiuge ＊ xae ＊ jetban noudae zyd
 重要嘅    ＊ 係  ＊ 一班   奴隸   絕
 dey fugcunq zyjen ge minqlinq tungmai
-→tunqmai
+	→tunqmai
 對  服從    主人  嘅 命令     同埋
 izi. Zyjen junq zoenqsoeng tunqmai
 意志 主人  用   獎賞       同埋
@@ -171,7 +172,7 @@ wagze xae jaege, doujiu senqcoed ginq-
 joenq ge semcinq xeifun sau jendei ge
 仰    嘅 心情    喜歡   受  人哋   嘅
 zanmei xeifun ziujeonq xog zyjen ge
-→ziujoenq
+	→ziujoenq
 讚美   喜歡   照樣     學  主人  嘅
 onlog tunqmai teyfae ge senqwud,
 安樂  同埋    頹廢   嘅 生活
@@ -184,7 +185,7 @@ keyge jen soenqmin, mou jadtiu solin
 tou xaae key soenq sausoenq wagze xaae
 套  喺   佢  雙手上         或者  喺
 key tiugeinq sy, D＊uxae key iginq bei
-→Douxae
+	→Douxae
 佢  條頸     處  都係    佢  已經  畀
 wen xaae genqga nanjy gaitydzo ge
 混  喺   更加   難於  解脫咗   嘅
