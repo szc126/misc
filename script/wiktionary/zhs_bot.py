@@ -66,7 +66,7 @@ for page_t in gen:
 					user = rev['user']
 
 				if (not page_s.exists()) and (
-					True or user in
+					user in
 					[
 						'Justinrleung',
 						'恨国党非蠢即坏',
