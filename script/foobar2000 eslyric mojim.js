@@ -3,7 +3,7 @@ function get_my_name() {
 }
 
 function get_version() {
-	return "1";
+	return "2";
 }
 
 function get_author() {
@@ -23,7 +23,7 @@ function start_search(info, callback) {
 	var http_client = utils.CreateHttpClient();
 	http_client.addHttpHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
 
-	url = "https://mojim.com/" + encodeURIComponent(title.replace(/[+-]/g, ' ')) + ".html?t3";
+	url = "https://mojim.com/" + encodeURIComponent(title.replace(/[+-]/g, ' ')) + ".html?g3";
 	if (wtf) url = "http://api.allorigins.win/get?url=" + encodeURIComponent(url);
 	log(url);
 	var response = http_client.Request(url);
