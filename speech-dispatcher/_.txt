@@ -1,9 +1,12 @@
 # https://github.com/brailcom/speechd/tree/master/config/modules/llia_phon-generic.conf
 
-# spd-say help is incorrect
-# volume default is 100
+# spd-say help is incorrect(?)
+# volume default seems to be 100
 
 # do not replace PLAY_COMMAND directly with ffplay or firefox won't know when it ends (??)
 # just endlessly shows a speaker icon in the tab and won't read any more text
 
 #notify-send \"l $LANGUAGE r $RATE p $PITCH v $VOLUME\" \"$(cat /tmp/speechd.txt)\"; \
+
+# using notify-send to send failure messages is obviously not useful for blind ppl.
+# cf /usr/share/sounds/speech-dispatcher/
