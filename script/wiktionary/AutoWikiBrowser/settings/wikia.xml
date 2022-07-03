@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoWikiBrowserPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:space="preserve" Version="6.1.0.1">
+  <Project>fandom</Project>
+  <LanguageCode>en</LanguageCode>
+  <CustomProject>utaulyrics</CustomProject>
+  <Protocol>http://</Protocol>
+  <LoginDomain />
+  <List>
+    <ListSource>Template:song box</ListSource>
+    <SelectedProvider>WhatTranscludesPageListProvider</SelectedProvider>
+    <ArticleList />
+  </List>
+  <FindAndReplace>
+    <Enabled>true</Enabled>
+    <IgnoreSomeText>false</IgnoreSomeText>
+    <IgnoreMoreText>false</IgnoreMoreText>
+    <AppendSummary>true</AppendSummary>
+    <Replacements>
+      <Replacement>
+        <Find>{{shared}}=[^|]+ \|</Find>
+        <Replace>{{shared}} |</Replace>
+        <Comment>visualeditor fucking {{shared}}</Comment>
+        <IsRegex>true</IsRegex>
+        <Enabled>false</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>((?:\[\[Category:.+\]\]\n){1,})\n</Find>
+        <Replace>\n</Replace>
+        <Comment />
+        <IsRegex>true</IsRegex>
+        <Enabled>false</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>[ ᠎           ​  ﻿]</Find>
+        <Replace />
+        <Comment>https://www.cs.tut.fi/~jkorpela/chars/spaces.html</Comment>
+        <IsRegex>true</IsRegex>
+        <Enabled>true</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>‎</Find>
+        <Replace />
+        <Comment>left-to-right mark</Comment>
+        <IsRegex>false</IsRegex>
+        <Enabled>true</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>Youtube</Find>
+        <Replace>YouTube</Replace>
+        <Comment />
+        <IsRegex>false</IsRegex>
+        <Enabled>true</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>None</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>!\ Links\ !!\ Title\ !!\ Vocalists\ !!\ Date\ !!\ Notes</Find>
+        <Replace>! {{pwt head}}</Replace>
+        <Comment />
+        <IsRegex>false</IsRegex>
+        <Enabled>true</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+      <Replacement>
+        <Find>bb (\d)</Find>
+        <Replace>bb av$1</Replace>
+        <Comment />
+        <IsRegex>true</IsRegex>
+        <Enabled>true</Enabled>
+        <Minor>false</Minor>
+        <BeforeOrAfter>false</BeforeOrAfter>
+        <RegularExpressionOptions>IgnoreCase</RegularExpressionOptions>
+      </Replacement>
+    </Replacements>
+    <AdvancedReps>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>space out headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(={2,6})\n([=]{2,6})</replace_>
+        <with_>$1\n\n$2</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>rem space after headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(={2,6})\n\n(.)</replace_>
+        <with_>$1\n$2</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>add space before headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(.)\n(={2,6})</replace_>
+        <with_>$1\n\n$2</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>no spaces within header equals</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n(={2,6}) +([^=]+) +(={2,6})</replace_>
+        <with_>\n$1$2$3</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>header caps</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>Links==</replace_>
+        <with_>links==</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>header caps</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>Versions==</replace_>
+        <with_>versions==</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>header caps</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_> Preceding versions==</replace_>
+        <with_> preceding versions==</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>ULW producer external links no space before header</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>&lt;div class="producer-links"&gt;
+
+==External links==</replace_>
+        <with_>&lt;div class="producer-links"&gt;
+==External links==</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>rem redundant br from lyrics</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\|(&lt;br ?\/?&gt;)\n\|&lt;br ?\/?&gt;</replace_>
+        <with_>|$1</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>rem useless br from end of lyrics</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\|-\n\|&lt;br ?\/?&gt;\n\|}</replace_>
+        <with_>|}</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>rem paragraph-ending breaks</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>&lt;br ?\/?&gt;\n\n</replace_>
+        <with_>\n\n</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>use t:shared correctly</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>|}
+{| style="width:100%;"
+|
+| {{shared}}|</replace_>
+        <with_>|-
+|&lt;br /&gt;
+|-
+| {{shared}}|</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>merge lyrics tables</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>|}
+{| style="width:100%"
+|&lt;br&gt;
+|-</replace_>
+        <with_>|-
+|&lt;br /&gt;
+|-</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>false</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>reformat hmiku</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\*([^\n]+)hmiku([^\n ]+) ([^\n]+)\n</replace_>
+        <with_>*$1hmiku$2 初音ミク Wiki]\n</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>reformat nicopedia</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\*([^\n]+)dic.nicovideo.jp([^\n ]+) ([^\n]+)\n</replace_>
+        <with_>*$1dic.nicovideo.jp$2 Nico Nico Pedia]\n</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>remove line-ending spaces</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>([^=])[ 　]+\n</replace_>
+        <with_>$1\n</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>use proper lyrics header</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n\| *'+Japanese.+</replace_>
+        <with_>\n! align=left |''Japanese'' (日本語歌詞)</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>use proper lyrics header</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n\| *'+Romaji.+</replace_>
+        <with_>\n! align=left |''Romaji'' (ローマ字)</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual rating cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:Lyrically (questionable|explicit) songs\]\]</replace_>
+        <with_ />
+        <ifContains_>{{(questionable|explicit)</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>true</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual nnd hall cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:Hall of (Fame|Legend)\]\]</replace_>
+        <with_ />
+        <ifContains_>{{v|nn|</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual yt cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:\d+\w YouTube views\]\]</replace_>
+        <with_ />
+        <ifContains_>{{v|yt|</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual sc cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:\d+\w SoundCloud views\]\]</replace_>
+        <with_ />
+        <ifContains_>{{v|sc|</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual bb cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:\d+\w bilibili views\]\]</replace_>
+        <with_ />
+        <ifContains_>{{v|bb|</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual in game cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:Song featured in Game\]\]</replace_>
+        <with_ />
+        <ifContains_>{{game list</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual v cat (wtf?)</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:Songs with \d+\w \w+ views\]\]</replace_>
+        <with_ />
+        <ifContains_>{{v|</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>true</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>manual no reprint cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n?\[\[Category:Songs with reprint conditions\]\]</replace_>
+        <with_ />
+        <ifContains_>{{noreprint</ifContains_>
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>ULW add lang cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>$</replace_>
+        <with_>\n[[Category:zzzzzzz songs]]</with_>
+        <ifContains_>song box</ifContains_>
+        <ifNotContains_>\[\[Category:([^\s]+ songs\]|Songs written in conlangs|Songs with non-lexical lyrics)\]</ifNotContains_>
+        <regex_>true</regex_>
+        <ifIsRegex_>true</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>ULW add links</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(\[\[Category[\S\s]+)$</replace_>
+        <with_>\n==External links==
+
+===Unofficial===
+{{links
+  |at     = 
+  |nico   = 
+  |vocadb = 
+  |tag    = 
+}}
+
+$1</with_>
+        <ifContains_>song box</ifContains_>
+        <ifNotContains_>{{links</ifNotContains_>
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Children />
+        <Name>ULW add vocalist cat</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>$</replace_>
+        <with_>\n[[Category:UTAU:zzzzzzzzzzz]]</with_>
+        <ifContains_>song box</ifContains_>
+        <ifNotContains_>\[\[Category:UTAU:</ifNotContains_>
+        <regex_>true</regex_>
+        <ifIsRegex_>true</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>IgnoreCase</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+    </AdvancedReps>
+    <SubstTemplates />
+    <IncludeComments>false</IncludeComments>
+    <ExpandRecursively>true</ExpandRecursively>
+    <IgnoreUnformatted>false</IgnoreUnformatted>
+  </FindAndReplace>
+  <Editprefs>
+    <GeneralFixes>false</GeneralFixes>
+    <Tagger>false</Tagger>
+    <Unicodify>false</Unicodify>
+    <Recategorisation>0</Recategorisation>
+    <NewCategory />
+    <NewCategory2 />
+    <ReImage>0</ReImage>
+    <ImageFind />
+    <Replace />
+    <SkipIfNoCatChange>false</SkipIfNoCatChange>
+    <RemoveSortKey>false</RemoveSortKey>
+    <SkipIfNoImgChange>false</SkipIfNoImgChange>
+    <AppendText>false</AppendText>
+    <AppendTextMetaDataSort>false</AppendTextMetaDataSort>
+    <Append>true</Append>
+    <Text />
+    <Newlines>2</Newlines>
+    <AutoDelay>0</AutoDelay>
+    <BotMaxEdits>0</BotMaxEdits>
+    <SupressTag>false</SupressTag>
+    <RegexTypoFix>false</RegexTypoFix>
+  </Editprefs>
+  <General>
+    <AutoSaveEdit>
+      <Enabled>false</Enabled>
+      <SavePeriod>30</SavePeriod>
+      <SaveFile />
+    </AutoSaveEdit>
+    <SelectedSummary>format</SelectedSummary>
+    <Summaries>
+      <string>format</string>
+      <string>update bilibili links</string>
+    </Summaries>
+    <PasteMore>
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+    </PasteMore>
+    <FindText />
+    <FindRegex>false</FindRegex>
+    <FindCaseSensitive>false</FindCaseSensitive>
+    <WordWrap>true</WordWrap>
+    <ToolBarEnabled>false</ToolBarEnabled>
+    <BypassRedirect>true</BypassRedirect>
+    <AutoSaveSettings>false</AutoSaveSettings>
+    <noSectionEditSummary>false</noSectionEditSummary>
+    <restrictDefaultsortAddition>true</restrictDefaultsortAddition>
+    <restrictOrphanTagging>true</restrictOrphanTagging>
+    <noMOSComplianceFixes>false</noMOSComplianceFixes>
+    <syntaxHighlightEditBox>false</syntaxHighlightEditBox>
+    <highlightAllFind>false</highlightAllFind>
+    <PreParseMode>false</PreParseMode>
+    <NoAutoChanges>false</NoAutoChanges>
+    <OnLoadAction>0</OnLoadAction>
+    <DiffInBotMode>true</DiffInBotMode>
+    <Minor>true</Minor>
+    <AddToWatchlist>2</AddToWatchlist>
+    <TimerEnabled>false</TimerEnabled>
+    <SortListAlphabetically>false</SortListAlphabetically>
+    <AddIgnoredToLog>false</AddIgnoredToLog>
+    <EditToolbarEnabled>true</EditToolbarEnabled>
+    <filterNonMainSpace>false</filterNonMainSpace>
+    <AutoFilterDuplicates>false</AutoFilterDuplicates>
+    <FocusAtEndOfEditBox>false</FocusAtEndOfEditBox>
+    <scrollToUnbalancedBrackets>false</scrollToUnbalancedBrackets>
+    <TextBoxSize>9</TextBoxSize>
+    <TextBoxFont>MingLiU</TextBoxFont>
+    <LowThreadPriority>false</LowThreadPriority>
+    <Beep>false</Beep>
+    <Flash>false</Flash>
+    <Minimize>false</Minimize>
+    <LockSummary>false</LockSummary>
+    <SaveArticleList>true</SaveArticleList>
+    <SuppressUsingAWB>false</SuppressUsingAWB>
+    <AddUsingAWBToActionSummaries>false</AddUsingAWBToActionSummaries>
+    <IgnoreNoBots>false</IgnoreNoBots>
+    <ClearPageListOnProjectChange>false</ClearPageListOnProjectChange>
+    <SortInterWikiOrder>true</SortInterWikiOrder>
+    <ReplaceReferenceTags>true</ReplaceReferenceTags>
+    <LoggingEnabled>false</LoggingEnabled>
+    <AlertPreferences>
+      <int>1</int>
+      <int>2</int>
+      <int>3</int>
+      <int>4</int>
+      <int>5</int>
+      <int>6</int>
+      <int>7</int>
+      <int>8</int>
+      <int>9</int>
+      <int>10</int>
+      <int>11</int>
+      <int>12</int>
+      <int>13</int>
+      <int>14</int>
+      <int>15</int>
+      <int>16</int>
+      <int>17</int>
+      <int>18</int>
+      <int>19</int>
+      <int>20</int>
+      <int>21</int>
+      <int>22</int>
+    </AlertPreferences>
+  </General>
+  <SkipOptions>
+    <SkipNonexistent>true</SkipNonexistent>
+    <Skipexistent>false</Skipexistent>
+    <SkipDontCare>false</SkipDontCare>
+    <SkipWhenNoChanges>true</SkipWhenNoChanges>
+    <SkipSpamFilterBlocked>false</SkipSpamFilterBlocked>
+    <SkipInuse>false</SkipInuse>
+    <SkipWhenOnlyWhitespaceChanged>false</SkipWhenOnlyWhitespaceChanged>
+    <SkipOnlyGeneralFixChanges>false</SkipOnlyGeneralFixChanges>
+    <SkipOnlyMinorGeneralFixChanges>false</SkipOnlyMinorGeneralFixChanges>
+    <SkipOnlyCosmetic>false</SkipOnlyCosmetic>
+    <SkipOnlyCasingChanged>false</SkipOnlyCasingChanged>
+    <SkipIfRedirect>false</SkipIfRedirect>
+    <SkipIfNoAlerts>false</SkipIfNoAlerts>
+    <SkipDoes>false</SkipDoes>
+    <SkipDoesText />
+    <SkipDoesRegex>true</SkipDoesRegex>
+    <SkipDoesCaseSensitive>false</SkipDoesCaseSensitive>
+    <SkipDoesAfterProcessing>false</SkipDoesAfterProcessing>
+    <SkipDoesNot>false</SkipDoesNot>
+    <SkipDoesNotText />
+    <SkipDoesNotRegex>true</SkipDoesNotRegex>
+    <SkipDoesNotCaseSensitive>false</SkipDoesNotCaseSensitive>
+    <SkipDoesNotAfterProcessing>false</SkipDoesNotAfterProcessing>
+    <SkipNoFindAndReplace>false</SkipNoFindAndReplace>
+    <SkipMinorFindAndReplace>false</SkipMinorFindAndReplace>
+    <SkipNoRegexTypoFix>false</SkipNoRegexTypoFix>
+    <SkipNoDisambiguation>false</SkipNoDisambiguation>
+    <SkipNoLinksOnPage>false</SkipNoLinksOnPage>
+    <GeneralSkipList />
+  </SkipOptions>
+  <Module>
+    <Enabled>false</Enabled>
+    <Language>C# 3.5</Language>
+    <Code>        public string ProcessArticle(string ArticleText, string ArticleTitle, int wikiNamespace, out string Summary, out bool Skip)
+        {
+            Skip = false;
+            Summary = "test";
+            ArticleText = "test \r\n\r\n" + ArticleText;
+            return ArticleText;
+        }</Code>
+  </Module>
+  <ExternalProgram>
+    <Enabled>false</Enabled>
+    <Skip>false</Skip>
+    <Program />
+    <Parameters />
+    <PassAsFile>true</PassAsFile>
+    <OutputFile />
+  </ExternalProgram>
+  <Disambiguation>
+    <Enabled>false</Enabled>
+    <Link />
+    <Variants />
+    <ContextChars>20</ContextChars>
+  </Disambiguation>
+  <Special>
+    <namespaceValues />
+    <remDupes>true</remDupes>
+    <sortAZ>false</sortAZ>
+    <filterTitlesThatContain>false</filterTitlesThatContain>
+    <filterTitlesThatContainText />
+    <filterTitlesThatDontContain>false</filterTitlesThatDontContain>
+    <filterTitlesThatDontContainText />
+    <areRegex>false</areRegex>
+    <opType>0</opType>
+    <remove />
+  </Special>
+  <Tool>
+    <ListComparerUseCurrentArticleList>0</ListComparerUseCurrentArticleList>
+    <ListSplitterUseCurrentArticleList>0</ListSplitterUseCurrentArticleList>
+    <DatabaseScannerUseCurrentArticleList>0</DatabaseScannerUseCurrentArticleList>
+  </Tool>
+  <Plugin />
+</AutoWikiBrowserPreferences>

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoWikiBrowserPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:space="preserve" Version="6.1.0.1">
+  <Project>wiktionary</Project>
+  <LanguageCode>en</LanguageCode>
+  <CustomProject />
+  <Protocol>http://</Protocol>
+  <LoginDomain />
+  <List>
+    <ListSource />
+    <SelectedProvider>WikiSearchListProvider</SelectedProvider>
+    <ArticleList />
+  </List>
+  <FindAndReplace>
+    <Enabled>true</Enabled>
+    <IgnoreSomeText>false</IgnoreSomeText>
+    <IgnoreMoreText>false</IgnoreMoreText>
+    <AppendSummary>false</AppendSummary>
+    <Replacements />
+    <AdvancedReps>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>Merge consecutive {{zh-cat}}s</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>({{zh-cat\|([^}]+)}})\s+({{zh-cat\|([^}]+)}})</replace_>
+        <with_>{{zh-cat|$2|$4}}</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>10</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>IgnoreCase</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>{{zh-pron}} move |cat= to bottom</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>({{zh-pron[^}]+)(\|cat=[a-z,]+\n?)(\|[^}]+)}}</replace_>
+        <with_>$1$3$2}}</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>Multiline</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>false</enabled_>
+        <Children />
+        <Name>{{zh-pron}} add |cat=</Name>
+        <ruletype_>InsideTemplate</ruletype_>
+        <replace_>({{zh-pron)(((?!cat)[\W\w])*)}}</replace_>
+        <with_>$1$2|cat=\n}}</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>Multiline</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Name>space headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(==+.+==+)\n+</replace_>
+        <with_>$1\n</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>3</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>Multiline</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Name>space headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>\n+(==+.+==+)</replace_>
+        <with_>\n\n$1</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>3</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+      <IRule xsi:type="Rule">
+        <enabled_>true</enabled_>
+        <Name>space headers</Name>
+        <ruletype_>OnWholePage</ruletype_>
+        <replace_>(.+)\n+(==Translingual)</replace_>
+        <with_>$1\n$2</with_>
+        <ifContains_ />
+        <ifNotContains_ />
+        <regex_>true</regex_>
+        <ifIsRegex_>false</ifIsRegex_>
+        <numoftimes_>1</numoftimes_>
+        <ifRegexOptions_>None</ifRegexOptions_>
+        <regexOptions_>None</regexOptions_>
+      </IRule>
+    </AdvancedReps>
+    <SubstTemplates />
+    <IncludeComments>false</IncludeComments>
+    <ExpandRecursively>true</ExpandRecursively>
+    <IgnoreUnformatted>false</IgnoreUnformatted>
+  </FindAndReplace>
+  <Editprefs>
+    <GeneralFixes>false</GeneralFixes>
+    <Tagger>false</Tagger>
+    <Unicodify>false</Unicodify>
+    <Recategorisation>0</Recategorisation>
+    <NewCategory />
+    <NewCategory2 />
+    <ReImage>0</ReImage>
+    <ImageFind />
+    <Replace />
+    <SkipIfNoCatChange>false</SkipIfNoCatChange>
+    <RemoveSortKey>false</RemoveSortKey>
+    <SkipIfNoImgChange>false</SkipIfNoImgChange>
+    <AppendText>false</AppendText>
+    <AppendTextMetaDataSort>false</AppendTextMetaDataSort>
+    <Append>true</Append>
+    <Text />
+    <Newlines>2</Newlines>
+    <AutoDelay>0</AutoDelay>
+    <BotMaxEdits>0</BotMaxEdits>
+    <SupressTag>true</SupressTag>
+    <RegexTypoFix>false</RegexTypoFix>
+  </Editprefs>
+  <General>
+    <AutoSaveEdit>
+      <Enabled>false</Enabled>
+      <SavePeriod>30</SavePeriod>
+      <SaveFile />
+    </AutoSaveEdit>
+    <SelectedSummary />
+    <Summaries>
+      <string>clean up</string>
+      <string>re-categorisation per [[WP:CFD|CFD]]</string>
+      <string>clean up and re-categorisation per [[WP:CFD|CFD]]</string>
+      <string>removing category per [[WP:CFD|CFD]]</string>
+      <string>[[Wikipedia:Template substitution|subst:'ing]]</string>
+      <string>[[Wikipedia:WikiProject Stub sorting|stub sorting]]</string>
+      <string>[[WP:AWB/T|Typo fixing]]</string>
+      <string>bad link repair</string>
+      <string>Fixing [[Wikipedia:Disambiguation pages with links|links to disambiguation pages]]</string>
+      <string>Unicodifying</string>
+      <string>trial: removal of vi sortkeys</string>
+      <string>trial: removal of manual Vietnamese sortkeys</string>
+      <string>removal of manual Vietnamese sortkeys</string>
+      <string>removal of manual Mandarin audio category</string>
+      <string>removal of manual Mandarin "terms by usage" categories</string>
+      <string>removal of redundant {{zh-cat}} from Chinese non-lemma entries</string>
+      <string>fix improper formatting in {{quote-text}}</string>
+      <string>removal of redundant parameters in {{ja-verb-suru}}</string>
+      <string>removal of manual Korean sortkeys (|hidx=)</string>
+      <string>test</string>
+      <string>formatting of Navajo links and usexes</string>
+      <string>Removing parameters from {{ko-syllable-hangul}} and {{ko-symbol-nav}}</string>
+      <string>-</string>
+      <string>Converting instances of HSK categories to use {{zh-cat}}</string>
+      <string>Intermediate Mandarin</string>
+      <string>Elementary Mandarin</string>
+      <string>removing abuse of {{l|en}}</string>
+      <string>removing inappropriate use of {{l|en}}</string>
+      <string>{{place}}</string>
+      <string>{{place|zh}}</string>
+      <string>{{place}} for [[Category:zh:Cities in Japan|zh:Cities in Japan]]</string>
+      <string>{{place}} and {{obor}} for [[Category:zh:Cities in Japan|zh:Cities in Japan]]</string>
+      <string>{{place}} for [[Category:zh:States of the United States|States of the United States]]</string>
+      <string>replacing {{vi-hantu}} with {{vi-noun}}, etc.</string>
+      <string>fix header spelling</string>
+      <string>Han cleanup</string>
+      <string>use Mandarin header for pinyin</string>
+      <string>add {{vi-IPA}}</string>
+      <string>remove Vietnamese DEFAULTSORT</string>
+      <string>replace (infl|der)=(い|i) with |infl=i</string>
+      <string>replace (infl|decl)=(い|i) with infl=i</string>
+      <string>replace decl with infl</string>
+      <string>add/move {{zh-pron}} |cat=</string>
+      <string>add space after {{zh-pron}} |cat=</string>
+      <string>fix newlines</string>
+      <string>format {{tl|zh-forms}} |alt=</string>
+      <string>use {{ja-def}}</string>
+      <string>remove page title from {{ja-kanjitab}}</string>
+      <string>add {{ja-kanjitab}}</string>
+      <string>add ===Definitions===</string>
+    </Summaries>
+    <PasteMore>
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+      <string />
+    </PasteMore>
+    <FindText />
+    <FindRegex>false</FindRegex>
+    <FindCaseSensitive>false</FindCaseSensitive>
+    <WordWrap>true</WordWrap>
+    <ToolBarEnabled>false</ToolBarEnabled>
+    <BypassRedirect>false</BypassRedirect>
+    <AutoSaveSettings>false</AutoSaveSettings>
+    <noSectionEditSummary>true</noSectionEditSummary>
+    <restrictDefaultsortAddition>false</restrictDefaultsortAddition>
+    <restrictOrphanTagging>false</restrictOrphanTagging>
+    <noMOSComplianceFixes>true</noMOSComplianceFixes>
+    <syntaxHighlightEditBox>false</syntaxHighlightEditBox>
+    <highlightAllFind>false</highlightAllFind>
+    <PreParseMode>false</PreParseMode>
+    <NoAutoChanges>false</NoAutoChanges>
+    <OnLoadAction>0</OnLoadAction>
+    <DiffInBotMode>true</DiffInBotMode>
+    <Minor>true</Minor>
+    <AddToWatchlist>2</AddToWatchlist>
+    <TimerEnabled>false</TimerEnabled>
+    <SortListAlphabetically>false</SortListAlphabetically>
+    <AddIgnoredToLog>false</AddIgnoredToLog>
+    <EditToolbarEnabled>false</EditToolbarEnabled>
+    <filterNonMainSpace>false</filterNonMainSpace>
+    <AutoFilterDuplicates>false</AutoFilterDuplicates>
+    <FocusAtEndOfEditBox>false</FocusAtEndOfEditBox>
+    <scrollToUnbalancedBrackets>false</scrollToUnbalancedBrackets>
+    <TextBoxSize>9</TextBoxSize>
+    <TextBoxFont>MingLiU</TextBoxFont>
+    <LowThreadPriority>false</LowThreadPriority>
+    <Beep>false</Beep>
+    <Flash>false</Flash>
+    <Minimize>false</Minimize>
+    <LockSummary>false</LockSummary>
+    <SaveArticleList>true</SaveArticleList>
+    <SuppressUsingAWB>false</SuppressUsingAWB>
+    <AddUsingAWBToActionSummaries>false</AddUsingAWBToActionSummaries>
+    <IgnoreNoBots>false</IgnoreNoBots>
+    <ClearPageListOnProjectChange>false</ClearPageListOnProjectChange>
+    <SortInterWikiOrder>true</SortInterWikiOrder>
+    <ReplaceReferenceTags>true</ReplaceReferenceTags>
+    <LoggingEnabled>true</LoggingEnabled>
+    <AlertPreferences>
+      <int>22</int>
+    </AlertPreferences>
+  </General>
+  <SkipOptions>
+    <SkipNonexistent>true</SkipNonexistent>
+    <Skipexistent>false</Skipexistent>
+    <SkipDontCare>false</SkipDontCare>
+    <SkipWhenNoChanges>false</SkipWhenNoChanges>
+    <SkipSpamFilterBlocked>false</SkipSpamFilterBlocked>
+    <SkipInuse>false</SkipInuse>
+    <SkipWhenOnlyWhitespaceChanged>false</SkipWhenOnlyWhitespaceChanged>
+    <SkipOnlyGeneralFixChanges>true</SkipOnlyGeneralFixChanges>
+    <SkipOnlyMinorGeneralFixChanges>false</SkipOnlyMinorGeneralFixChanges>
+    <SkipOnlyCosmetic>false</SkipOnlyCosmetic>
+    <SkipOnlyCasingChanged>false</SkipOnlyCasingChanged>
+    <SkipIfRedirect>false</SkipIfRedirect>
+    <SkipIfNoAlerts>false</SkipIfNoAlerts>
+    <SkipDoes>true</SkipDoes>
+    <SkipDoesText>Pronunciation \d</SkipDoesText>
+    <SkipDoesRegex>true</SkipDoesRegex>
+    <SkipDoesCaseSensitive>false</SkipDoesCaseSensitive>
+    <SkipDoesAfterProcessing>false</SkipDoesAfterProcessing>
+    <SkipDoesNot>false</SkipDoesNot>
+    <SkipDoesNotText />
+    <SkipDoesNotRegex>true</SkipDoesNotRegex>
+    <SkipDoesNotCaseSensitive>false</SkipDoesNotCaseSensitive>
+    <SkipDoesNotAfterProcessing>false</SkipDoesNotAfterProcessing>
+    <SkipNoFindAndReplace>false</SkipNoFindAndReplace>
+    <SkipMinorFindAndReplace>false</SkipMinorFindAndReplace>
+    <SkipNoRegexTypoFix>false</SkipNoRegexTypoFix>
+    <SkipNoDisambiguation>false</SkipNoDisambiguation>
+    <SkipNoLinksOnPage>false</SkipNoLinksOnPage>
+    <GeneralSkipList />
+  </SkipOptions>
+  <Module>
+    <Enabled>false</Enabled>
+    <Language>C# 3.5</Language>
+    <Code>        public string ProcessArticle(string ArticleText, string ArticleTitle, int wikiNamespace, out string Summary, out bool Skip)
+        {
+            Skip = false;
+            Summary = "test";
+            ArticleText = "test \r\n\r\n" + ArticleText;
+            return ArticleText;
+        }</Code>
+  </Module>
+  <ExternalProgram>
+    <Enabled>false</Enabled>
+    <Skip>false</Skip>
+    <Program>F:\DOCS\awb cjk tasks 1.py</Program>
+    <Parameters>%%file%%</Parameters>
+    <PassAsFile>true</PassAsFile>
+    <OutputFile>r:\temp.txt</OutputFile>
+  </ExternalProgram>
+  <Disambiguation>
+    <Enabled>false</Enabled>
+    <Link />
+    <Variants />
+    <ContextChars>20</ContextChars>
+  </Disambiguation>
+  <Special>
+    <namespaceValues />
+    <remDupes>true</remDupes>
+    <sortAZ>true</sortAZ>
+    <filterTitlesThatContain>false</filterTitlesThatContain>
+    <filterTitlesThatContainText />
+    <filterTitlesThatDontContain>false</filterTitlesThatDontContain>
+    <filterTitlesThatDontContainText />
+    <areRegex>false</areRegex>
+    <opType>-1</opType>
+    <remove />
+  </Special>
+  <Tool>
+    <ListComparerUseCurrentArticleList>0</ListComparerUseCurrentArticleList>
+    <ListSplitterUseCurrentArticleList>0</ListSplitterUseCurrentArticleList>
+    <DatabaseScannerUseCurrentArticleList>0</DatabaseScannerUseCurrentArticleList>
+  </Tool>
+  <Plugin />
+</AutoWikiBrowserPreferences>
