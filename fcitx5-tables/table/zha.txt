@@ -1,0 +1,30 @@
+Length=2
+KeyCode=WZJXQ^wzjxq6%&(*)57980
+Prompt=
+ConstructPhrase=
+[Data]
+W	Ɯ
+Z	Ƨ
+J	З
+X	Ч
+Q	Ƽ
+^	Ƅ
+
+w	ɯ
+z	ƨ
+j	з
+x	ч
+q	ƽ
+6	ƅ
+
+%	Ƃ
+&	Ƌ
+(	Ŋ
+*	Ɵ
+)	Ə
+
+5	ƃ
+7	ƌ
+9	ŋ
+8	ɵ
+0	ə
