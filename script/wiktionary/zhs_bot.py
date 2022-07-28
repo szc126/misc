@@ -22,7 +22,11 @@ def change_to_variant(text):
 	return text
 
 for page_t in gen:
+	if 'rfv' in page_t.text or 'rfd' in page_t.text:
+		continue
+
 	print(page_t.title())
+
 	try:
 		s_found = []
 
