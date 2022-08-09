@@ -12,7 +12,7 @@ site = pywikibot.Site()
 cat = pywikibot.Category(site, 'Chinese terms with uncreated forms')
 gen = site.categorymembers(cat)
 
-zs = '濕溼裡裏群羣床牀衛衞污汚為爲偽僞炮砲秘祕麵麪喧諠嘩譁鄰隣線綫眾衆'
+zs = '濕溼裡裏群羣床牀衛衞污汙為爲偽僞炮砲秘祕麵麪喧諠嘩譁鄰隣線綫眾衆'
 zss = '臺輓遊閒'
 
 def change_to_variant(text):
@@ -22,7 +22,7 @@ def change_to_variant(text):
 	return text
 
 for page_t in gen:
-	if 'rfv' in page_t.text or 'rfd' in page_t.text:
+	if '{{rfv|' in page_t.text or '{{rfd|' in page_t.text:
 		continue
 
 	print(page_t.title())
