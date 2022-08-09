@@ -69,18 +69,7 @@ for page_t in gen:
 				for rev in page_t.revisions(content = False):
 					user = rev['user']
 
-				if (not page_s.exists()) and (
-					user in
-					[
-						'Justinrleung',
-						'恨国党非蠢即坏',
-						'Mar vin kaiser',
-						'Michael Ly',
-						'RcAlex36',
-						'Suzukaze-c',
-						'Tooironic',
-					] + sys.argv[1:]
-				):
+				if (not page_s.exists()) and (user in sys.argv[1:]):
 					page_s.text += '==Chinese==\n{{zh-see|' + page_t.title() + '}}'
 					page_s.save('{{zh-see|' + page_t.title() + '}}')
 					#input('[press enter to continue]')
