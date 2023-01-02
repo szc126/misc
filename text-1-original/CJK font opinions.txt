@@ -10,3 +10,6 @@ noto/source han cn: soulless-uncanny
 noto/source han tw: soulless-unpleasant
 klee: soulless
 pixelmplus10: wtf
+simhei: clumsy-uncanny
+wenquanyi: clumsy-trying
+丸明朝体: clumsy https://fontworks.co.jp/column/430/
