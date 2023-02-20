@@ -1,0 +1,17 @@
+$if(
+	$and(
+		$or(
+			$strstr(%genre%,'V,'),
+			$strstr(%genre%,'Vアレンジ,'),
+		),
+		$not($or(
+			$strstr(%composer%,'カバー'),
+			$strstr(%composer%,'てみた'),
+			$strcmp(%artist%,%composer%),
+		))
+	),
+	[%composer% feat. ]
+)
+%artist%
+
+SWEET JEGUS WHY IS FOOBAR TITLE FORMATTING SYNTAX SO FIDDLY.
