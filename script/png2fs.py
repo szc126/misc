@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# convert png to fontstruct
+# paste script output into clipboard
+
 from PIL import Image
 import sys
 import json

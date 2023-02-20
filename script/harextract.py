@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# extract files from a har archive
+# exported from the firefox network tab
+
 import sys
 import json
 import base64

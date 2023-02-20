@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-# firefox > network > export to har
-# with a filter, only the results are exported
+# extract twitter tweets from a har archive
+# exported from the firefox network tab
+# use a filter in the network tab, only the results are exported
 
 # > a.py *.har
 
