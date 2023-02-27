@@ -1,6 +1,7 @@
 // 記得把繁簡轉換關掉喎
-// Remember to turn off Trad. to Simp. conversion
-// Tools > ESLyric > 歌詞選項 > 高級搜索設置
+// remember to turn off Trad. Ch. to Simp. Ch. conversion
+// Tools > ESLyric > 高級搜索設置
+// Tools > ESLyric > Search Settings
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
@@ -35,6 +36,7 @@ export function getLyrics(meta, man) {
 		}
 		let url = SERVERS[i_server] + '/api/songs?query=' + encodeURIComponent(meta.title);
 		url += '&songTypes=Original,Mashup&maxResults=3&preferAccurateMatches=true&nameMatchMode=Exact&fields=Lyrics';
+		url += '&advancedFilters[0][description]=Lyrics%3A+Any+language&advancedFilters[0][filterType]=Lyrics&advancedFilters[0][negate]=false&advancedFilters[0][param]=*';
 		if (wtf) url = 'http://api.allorigins.win/get?url=' + encodeURIComponent(url);
 		//console.log(url);
 
