@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
-	cfg.version = '2023.03.01';
+	cfg.version = '2023.03.02';
 	cfg.author = 'transgender queen boudica';
 	cfg.useRawMeta = false;
 }
@@ -35,7 +35,7 @@ export function getLyrics(meta, man) {
 		return;
 	}
 
-	for (var i_server = 0; i_server < SERVERS.length; i_server++) {
+	for (let i_server = 0; i_server < SERVERS.length; i_server++) {
 		let headers = {
 			'Accept': 'application/json',
 			'User-Agent': 'VocaDB for ESLyric for foobar2000',
@@ -54,11 +54,11 @@ export function getLyrics(meta, man) {
 			}
 
 			body = JSON.parse(body);
-			for (var i_item = 0; i_item < body['items'].length; i_item++) {
-				var item = body['items'][i_item];
+			for (let i_item = 0; i_item < body['items'].length; i_item++) {
+				let item = body['items'][i_item];
 				//console.log(SERVERS[i_server] + '/S/' + item['id']);
 				//console.log(item['artistString'] + '／' + item['name']);
-				for (var i_lyric = 0; i_lyric < item['lyrics'].length; i_lyric++) {
+				for (let i_lyric = 0; i_lyric < item['lyrics'].length; i_lyric++) {
 					let lyricMeta = man.createLyric();
 					lyricMeta.title = item['name'];
 					lyricMeta.artist = item['artistString'];

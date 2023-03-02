@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'atwiki (ボカロ系)';
-	cfg.version = '2023.03.01';
+	cfg.version = '2023.03.02';
 	cfg.author = 'transgender judith beheading holofernes';
 	cfg.useRawMeta = false;
 }
@@ -35,7 +35,7 @@ export function getLyrics(meta, man) {
 		return;
 	}
 
-	for (var i_server = 0; i_server < SERVERS.length; i_server++) {
+	for (let i_server = 0; i_server < SERVERS.length; i_server++) {
 		let headers = {
 			// 下手だけど一旦慎重に
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0',
@@ -56,7 +56,7 @@ export function getLyrics(meta, man) {
 			if (body.indexOf('曖昧さ回避のためのページ') > 1) {
 				console.log(SERVERS[i_server] + '｜曖昧さ回避／Disambiguation');
 				let song_urls = body.match(/(?<=<li>.+の曲.+<a href=")[^"]+(?=" [^<>]+>.+<.a>)/g);
-				for (var i_song_url = 0; i_song_url < song_urls.length; i_song_url++) {
+				for (let i_song_url = 0; i_song_url < song_urls.length; i_song_url++) {
 					request({
 						url: 'https:' + song_urls[i_song_url],
 						headers: headers,
@@ -87,7 +87,7 @@ export function getLyrics(meta, man) {
 					}
 
 					let song_ids = body.match(/(?<=pageid=)\d+/g) || [];
-					for (var i_song_id = 0; i_song_id < song_ids.length; i_song_id++) {
+					for (let i_song_id = 0; i_song_id < song_ids.length; i_song_id++) {
 						request({
 							url: SERVERS[i_server] + 'pages/' + song_ids[i_song_id] + '.html',
 							headers: headers,
