@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'atwiki (ボカロ系)';
-	cfg.version = '2023.03.02';
+	cfg.version = '2023.03.06';
 	cfg.author = 'transgender judith beheading holofernes';
 	cfg.useRawMeta = false;
 }
@@ -53,24 +53,7 @@ export function getLyrics(meta, man) {
 				return;
 			}
 
-			if (body.indexOf('曖昧さ回避のためのページ') > 1) {
-				console.log(SERVERS[i_server] + '｜曖昧さ回避／Disambiguation');
-				let song_urls = body.match(/(?<=<li>.+の曲.+<a href=")[^"]+(?=" [^<>]+>.+<.a>)/g);
-				for (let i_song_url = 0; i_song_url < song_urls.length; i_song_url++) {
-					request({
-						url: 'https:' + song_urls[i_song_url],
-						headers: headers,
-					}, (err, res, body) => {
-						if (err || res.statusCode != 200) {
-							return;
-						}
-
-						readPage(body);
-					});
-				}
-
-				return;
-			} else if (res.statusCode == 404) {
+			if (res.statusCode == 404) {
 				console.log(SERVERS[i_server] + '｜Wiki內搜索中／No such page. Searching');
 				url = SERVERS[i_server] + 'search?keyword=' + encodeURIComponent(
 					// 「曲紹介」というキーワードを利用してアルバムなどを排除
@@ -96,26 +79,48 @@ export function getLyrics(meta, man) {
 								return;
 							}
 
-							readPage(body);
+							readPage(i_server, body);
 						});
 					}
 				});
 
 				return;
+			} else if (body.indexOf('曖昧さ回避のためのページ') > 1) {
+				console.log(SERVERS[i_server] + '｜曖昧さ回避／Disambiguation');
+				let song_urls = body.match(/(?<=<li>.+の曲.+<a href=")[^"]+(?=" [^<>]+>.+<.a>)/g);
+				for (let i_song_url = 0; i_song_url < song_urls.length; i_song_url++) {
+					request({
+						url: 'https:' + song_urls[i_song_url],
+						headers: headers,
+					}, (err, res, body) => {
+						if (err || res.statusCode != 200) {
+							return;
+						}
+
+						readPage(i_server, body);
+					});
+				}
+
+				return;
+			} else if (body.indexOf('曲紹介') == -1) {
+				console.log(SERVERS[i_server] + '｜不是歌曲項目／Not a song page');
+				// あったら曖昧さ回避になるため検索しても出てこないはず
+
+				return;
 			}
 
-			readPage(body);
+			readPage(i_server, body);
 		});
 	}
 
-	function readPage(body) {
+	function readPage(i_server, body) {
 		// in terms of memory usage, this is probably stupid
 		let title = body;
 		let composer = body;
 		let vocalist = body;
 		let lyric = body;
 
-		title = title.match(/(?<=曲名：『).+(?=』)/g) || title.match(/(?<=<h2>).+(?=<.h2>)/g);
+		title = title.match(/(?<=曲名[：:]『).+(?=』)/g) || title.match(/(?<=<h2>).+(?=<.h2>)/g);
 		title = title && title[0]
 			.replace(/<u>(.+)<.u>/g, '$1')
 			.replace(/ &gt; <a .+/g, '') // 曖昧さ回避の場合 hmiku
@@ -123,11 +128,11 @@ export function getLyrics(meta, man) {
 			.replace(/<a [^<>]+>(.+?)<.a>/g, '$1')
 			.replace(/<span [^<>]+>(.+?)<.span>/g, '$1') // utauuta class="pagename"
 		;
-		composer = composer.match(/(?<=\n作曲：).+/g);
+		composer = composer.match(/(?<=\n作曲[：:]).+/g);
 		composer = composer && composer[0]
 			.replace(/<a [^<>]+>(.+?)<.a>/g, '$1')
 		;
-		vocalist = vocalist.match(/(?<=\n唄：|\n唄（.+）：).+/g);
+		vocalist = vocalist.match(/(?<=\n唄[：:]|\n唄（.+?）[：:]).+/g);
 		vocalist = vocalist && vocalist[0]
 			.replace(/<a [^<>]+>(.+?)<.a>/g, '$1')
 		;
@@ -158,6 +163,12 @@ notes
 	- 曲名：『乙女解剖』(おとめかいぼう)
 - https://w.atwiki.jp/hmiku/?page=ぽっぴっぽー
 	- TODO: ver.
+- https://w.atwiki.jp/hmiku/?page=モザイクロール
+	- TODO: ver.
+- https://w.atwiki.jp/hmiku/?page=月西江
+	- TODO: translation etc.
+- https://w.atwiki.jp/hmiku/?page=ECHO%2FCRUSHER-P
+	- TODO: translation etc.
 - https://w.atwiki.jp/hmiku/?page=Do+You+%26+So+You
 	- TODO: unescape HTML entities
 */

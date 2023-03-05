@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
-	cfg.version = '2023.03.02';
+	cfg.version = '2023.03.06';
 	cfg.author = 'transgender queen boudica';
 	cfg.useRawMeta = false;
 }
@@ -22,7 +22,7 @@ let SERVERS_NAMES = [
 ];
 
 export function getLyrics(meta, man) {
-	// 相關文件夾外則取消搜索
+	// 若是相關文件夾外則取消搜索
 	// skip songs that aren't in my vocal synth folder
 	// 特定フォルダー外のものを無視
 	//
@@ -40,9 +40,17 @@ export function getLyrics(meta, man) {
 			'Accept': 'application/json',
 			'User-Agent': 'VocaDB for ESLyric for foobar2000',
 		};
+		// https://vocadb.net/api
 		let url = SERVERS[i_server] + '/api/songs?query=' + encodeURIComponent(meta.title);
-		url += '&maxResults=5&preferAccurateMatches=true&nameMatchMode=Exact&fields=Lyrics';
-		url += '&advancedFilters[0][description]=Lyrics%3A+Any+language&advancedFilters[0][filterType]=Lyrics&advancedFilters[0][negate]=false&advancedFilters[0][param]=*';
+		// https://github.com/VocaDB/vocadb/blob/main/VocaDbWeb/Controllers/Api/SongApiController.cs
+		// nameMatchMode
+		// https://github.com/VocaDB/vocadb/blob/main/VocaDbModel/Service/NameMatchMode.cs
+		url += '&maxResults=5&preferAccurateMatches=true&nameMatchMode=Auto&fields=Lyrics';
+		// some magic string from
+		// the "Advanced filters" drop down at
+		// https://vocadb.net/Search?filter=&searchType=Song
+		// for songs that have lyrics registered
+		url += '&advancedFilters[0][filterType]=Lyrics&advancedFilters[0][negate]=false&advancedFilters[0][param]=*';
 		//console.log(url);
 
 		request({
@@ -64,11 +72,23 @@ export function getLyrics(meta, man) {
 					lyricMeta.artist = item['artistString'];
 					// XXX: new ESLyric cannot write source?
 					lyricMeta.source = SERVERS_NAMES[i_server];
-					lyricMeta.source += ': ' + item['lyrics'][i_lyric]['translationType']
+					lyricMeta.source += ': ' + item['lyrics'][i_lyric]['translationType'];
 					if (item['lyrics'][i_lyric]['cultureCode'] != '') lyricMeta.source += ': ' + item['lyrics'][i_lyric]['cultureCode'];
 					// XXX
 					lyricMeta.album = '(' + lyricMeta.source + ')';
+					lyricMeta.location = SERVERS[i_server] + '/S/' + item['id'];
 					lyricMeta.lyricText = item['lyrics'][i_lyric]['value'];
+					if (item['lyrics'][i_lyric]['translationType'] == 'Translation') {
+						let tlSo = item['lyrics'][i_lyric]['source'];
+						let tlUrl = item['lyrics'][i_lyric]['url'];
+						// or should translation attribution be written as [by:hogehoge <https://example.com/>]?
+						if (tlSo || tlUrl) {
+							let tlAttr = 'Translation:\n';
+							tlAttr += tlSo && tlSo + '\n' || '';
+							tlAttr += tlUrl && tlUrl + '\n' || '';
+							lyricMeta.lyricText = tlAttr + '───\n' + lyricMeta.lyricText;
+						}
+					}
 					man.addLyric(lyricMeta);
 				}
 			}
