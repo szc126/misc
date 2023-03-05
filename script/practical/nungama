@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# https://superuser.com/questions/374637
+
+xset dpms force off

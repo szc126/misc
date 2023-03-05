@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+urls=""
+for file in "$@"
+do
+	# grep ".+" won't work for some reason. only "\S+"
+	url=$(grep -P --only-matching "(?<=URL=)\S+" "$file")
+	urls+=" $url"
+done
+
+x-www-browser $urls &

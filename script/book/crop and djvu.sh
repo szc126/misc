@@ -9,21 +9,21 @@ if [ -z "$folder" ]; then
 fi
 
 case $(basename "$folder") in
-	"nihongoAccentJiten")
+	"日本語アクセント辞典")
 		args="-rotate 0.7 -crop 2360x2230+910+250 +repage -crop 50%x100%"
 		;;
-	"kainangoSyoho")
+	"海南語初歩")
 #		args="-rotate 1.0 -crop 2800x2400+710+140 +repage -crop 50%x100%"
 		args="-rotate 1.0 +repage -crop 2800x2400+710+140 +repage -crop 50%x100%"
 		;;
-	"nissenNitijoKaiwa")
+	"日鮮日常会話")
 		args="-rotate 0 +repage -crop 4890x3430+370+160 +repage -crop 50%x100%"
 		;;
-	"igakGoi")
+	"医学語彙")
 		args="+repage -crop 3100x2500+634+210 +repage -crop 50%x100%"
 #		args="+repage -crop 3100x2500+1410+210 +repage -crop 50%x100%" # centered page
 		;;
-	"igakGoi-2")
+	"医学語彙-2")
 		args="+repage -crop 3100x2500+1410+210 +repage -crop 50%x100%" # centered page
 		;;
 	"米国物語")

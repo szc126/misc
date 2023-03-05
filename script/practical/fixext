@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# $ _ext.sh "*"
+# # with the quotations around the asterisk relegating expansion to find
+
+if [ -z "$1" ]; then
+	echo "On which files?"
+	exit 1
+fi
+
+IFS=$'\n'
+#paths="$(find . -name "$1" -type f)"
+paths="$(find . -wholename "$1" -type f)"
+
+for path in $paths; do
+	echo "$path"
+	new_ext=$(file --brief --extension "$path" | cut -d"/" -f1 -)
+	if [ "$new_ext" == "jpeg" ]; then
+		new_ext="jpg"
+	fi
+	if [ "$new_ext" == "???" ]; then
+		echo "unknown file type; skipping..."
+	else
+		new_path=$(echo "$path" | sed -E 's/\.[a-z]+$//').$new_ext
+		mv --no-clobber --verbose "$path" "$new_path"
+	fi
+	echo
+done

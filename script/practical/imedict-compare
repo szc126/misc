@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+imedict_a="$1"
+imedict_b="$2"
+shift
+
+if [ "$*" == "n" ]
+then
+	diff --side-by-side --color <(LANG=ja_JP.utf8 sort $imedict_a -k 2 -u|grep .|uconv -x fullwidth-halfwidth|sed 's/¥/\\/g') <(LANG=ja_JP.utf8 sort $imedict_b -k 2 -u|grep .|uconv -x fullwidth-halfwidth|sed 's/\t$//g') --suppress-common-lines
+else
+	diff --side-by-side --color <(LANG=ja_JP.utf8 sort $imedict_a -k 2 -u|grep .) <(LANG=ja_JP.utf8 sort $imedict_b -k 2 -u|grep .) --suppress-common-lines
+fi

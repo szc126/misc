@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# https://askubuntu.com/questions/19320/how-to-enable-or-disable-services
+# https://askubuntu.com/questions/795226/how-to-list-all-enabled-services-from-systemctl
+
+action="$1"
+
+echo "(httpd)"
+sudo systemctl "$action" httpd
+echo "(mariadb)"
+sudo systemctl "$action" mariadb

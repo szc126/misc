@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+action="$1"
+name="$2"
+mountpoint="/media/$name"
+
+if [ -z "$action" ]; then
+	echo "Do what?"
+	exit 1
+fi
+
+if [ -z "$name" ]; then
+	echo "Mount which?"
+	exit 1
+fi
+
+if [ "$action" == "m" ]; then
+	if rclone mount --daemon "$name:" "$mountpoint"; then
+		echo "Mounted $mountpoint."
+		exit 0
+	else
+		echo "FAILED to mount $mountpoint."
+		exit 1
+	fi
+elif [ "$action" == "u" ]; then
+	if umount "$mountpoint"; then
+		echo "Unmounted $mountpoint."
+		exit 0
+	else
+		echo "FAILED to unmount $mountpoint. ($?)"
+		exit 1
+	fi
+fi

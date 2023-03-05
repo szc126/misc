@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+old_br=$(cat /sys/class/backlight/intel_backlight/brightness)
+new_br="$1"
+min_br="1"
+max_br=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+
+if [ -n "$new_br" ]; then
+	if  [ "$new_br" == "up" ]; then
+		new_br=$((old_br + 2000))
+	fi
+
+	if  [ "$new_br" == "down" ]; then
+		new_br=$((old_br - 2000))
+	fi
+
+	if  [ "$new_br" == "min" ]; then
+		new_br="$min_br"
+	fi
+
+	if  [ "$new_br" == "max" ]; then
+		new_br="$max_br"
+	fi
+
+	if [ "$new_br" -eq "$old_br" ]; then
+		echo "the brightness is already $old_br"
+		exit
+	fi
+
+	if [ "$new_br" -lt "$min_br" ]; then
+		echo "$old_br"
+		echo "$new_br is too dark"
+		exit
+	fi
+
+	if [ "$new_br" -gt "$max_br" ]; then
+		echo "$old_br"
+		echo "$max_br is the maximum"
+		exit
+	fi
+	echo "$old_br to $new_br"
+	echo "$new_br" | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+else
+	echo "$old_br"
+fi

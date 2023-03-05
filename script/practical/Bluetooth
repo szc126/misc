@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo systemctl start bluetooth; sleep 3; blueman-applet & blueman-manager; sudo systemctl stop bluetooth
