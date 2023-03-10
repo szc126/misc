@@ -82,7 +82,7 @@ def do_zh_forms(page_t):
 					'char': s,
 				})
 				page_s.text += '\n\n----\n\n==Chinese==\n{{zh-see|' + page_t.title() + '}}'
-				page_s.save('+mul +zh {{zh-see|' + page_t.title() + '}}')
+				page_s.save('+mul +zh {{zh-see|[[' + page_t.title() + ']]}}')
 				#input('[press enter to continue]')
 		# 詞
 		elif len(s) == len(page_t.title()):
