@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+case "$*" in
+"ko-latn")
+	cat | iconv -t iso-8859-1 | iconv -f cp949
+	;;
+"ja")
+	cat | iconv -t sjis
+	;;
+
+"to ko-latn")
+	cat | iconv -t cp949 | iconv -f iso-8859-1
+	;;
+"to ja")
+	cat | iconv -f sjis -c
+	;;
+esac

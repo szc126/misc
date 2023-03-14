@@ -15,6 +15,12 @@ if [ -z "$name" ]; then
 fi
 
 if [ "$action" == "m" ]; then
+	if [ ! -d "$mountpoint" ]; then
+		#mountpoint=$(mktemp -d -p "/run/user/1000/" "$name.XXXX")
+		mountpoint="/run/user/1000/rclone-$name"
+		mkdir -p "$mountpoint"
+	fi
+
 	if rclone mount --daemon "$name:" "$mountpoint"; then
 		echo "Mounted $mountpoint."
 		exit 0
@@ -23,7 +29,12 @@ if [ "$action" == "m" ]; then
 		exit 1
 	fi
 elif [ "$action" == "u" ]; then
-	if umount "$mountpoint"; then
+	if [ ! -d "$mountpoint" ]; then
+		#mountpoint="/run/user/1000/$name."*
+		mountpoint="/run/user/1000/rclone-$name"
+	fi
+
+	if umount $mountpoint; then
 		echo "Unmounted $mountpoint."
 		exit 0
 	else

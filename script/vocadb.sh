@@ -4,6 +4,9 @@ set -e
 # !! only tested on arch linux !!
 # see https://github.com/VocaDB/vocadb/wiki/VocaDB-development-environment-(Linux)
 
+# make yourself admin
+# /opt/mssql-tools/bin/sqlcmd -C -S localhost -U SA -P "MikuMiku.39" -Q "use VocaloidSite; select Id, Name, UserGroup from Users; update Users set UserGroup = 'Admin' where Id = 1; select Id, Name, UserGroup from Users"
+
 DIR_WORKING="${1:?Provide a working directory.}"
 shift
 #echo "Provide the SQL password:"
@@ -18,7 +21,7 @@ pre() {
 
 check_requirements() {
 	requirements="git dotnet node npm /opt/mssql/bin/mssql-conf /opt/mssql-tools/bin/sqlcmd"
-	#pac="git dotnet-runtime nodejs npm AUR/mssql-server AUR/mssql-tools dotnet-sdk aspnet-runtime AUR/aspnet-runtime-5.0-bin"
+	#pac="git dotnet-runtime nodejs npm AUR/mssql-server AUR/mssql-tools dotnet-sdk aspnet-runtime"
 	#foobar=(
 	#https://archive.archlinux.org/packages/l/libldap/libldap-2.4.59-2-x86_64.pkg.tar.zst
 	#https://archive.archlinux.org/packages/l/libldap/libldap-2.4.59-2-x86_64.pkg.tar.zst.sig
@@ -92,6 +95,7 @@ write_default_config() {
 		sed --in-place -E '/Trusted_Connection/ s/True/False/g' "$DIR_WORKING/git/vocadb/VocaDbWeb/connections.config"
 		# TODO: add user id and password
 		#sed --in-place -E '' "$DIR_WORKING/git/vocadb/VocaDbWeb/connections.config"
+		# TODO: recaptcha key https://stackoverflow.com/a/41746466
 	fi
 }
 
@@ -101,7 +105,7 @@ npm_compile_assets() {
 	then
 		cd "$DIR_WORKING/git/vocadb/VocaDbWeb"
 		npm install
-		npm run dev
+		#npm run dev
 		npm run production
 		#npm run watch &
 	fi

@@ -3,6 +3,7 @@
 imedict_a="$1"
 imedict_b="$2"
 shift
+shift
 
 if [ "$*" == "n" ]
 then
