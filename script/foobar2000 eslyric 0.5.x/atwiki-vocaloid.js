@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'atwiki (ボカロ系)';
-	cfg.version = '2023.03.06';
+	cfg.version = '2023.03.22';
 	cfg.author = 'transgender judith beheading holofernes';
 	cfg.useRawMeta = false;
 }
@@ -35,11 +35,11 @@ export function getLyrics(meta, man) {
 		return;
 	}
 
+	let headers = {
+		// 下手だけど一旦慎重に
+		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0',
+	};
 	for (let i_server = 0; i_server < SERVERS.length; i_server++) {
-		let headers = {
-			// 下手だけど一旦慎重に
-			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0',
-		};
 		let url = SERVERS[i_server] + '?page=' + encodeURIComponent(meta.title);
 		//console.log(url);
 
@@ -161,6 +161,8 @@ notes
 - https://w.atwiki.jp/hmiku/?page=乙女解剖
 	- 唄（原曲）：初音ミク
 	- 曲名：『乙女解剖』(おとめかいぼう)
+- https://w.atwiki.jp/hmiku/?page=パンダヒーロー
+	- DIVA：GUMI
 - https://w.atwiki.jp/hmiku/?page=ぽっぴっぽー
 	- TODO: ver.
 - https://w.atwiki.jp/hmiku/?page=モザイクロール

@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
-	cfg.version = '2023.03.06';
+	cfg.version = '2023.03.22';
 	cfg.author = 'transgender queen boudica';
 	cfg.useRawMeta = false;
 }
@@ -35,11 +35,11 @@ export function getLyrics(meta, man) {
 		return;
 	}
 
+	let headers = {
+		'Accept': 'application/json',
+		'User-Agent': 'VocaDB for ESLyric for foobar2000',
+	};
 	for (let i_server = 0; i_server < SERVERS.length; i_server++) {
-		let headers = {
-			'Accept': 'application/json',
-			'User-Agent': 'VocaDB for ESLyric for foobar2000',
-		};
 		// https://vocadb.net/api
 		let url = SERVERS[i_server] + '/api/songs?query=' + encodeURIComponent(meta.title);
 		// https://github.com/VocaDB/vocadb/blob/main/VocaDbWeb/Controllers/Api/SongApiController.cs
@@ -66,10 +66,10 @@ export function getLyrics(meta, man) {
 				let item = body['items'][i_item];
 				//console.log(SERVERS[i_server] + '/S/' + item['id']);
 				//console.log(item['artistString'] + '／' + item['name']);
+				let lyricMeta = man.createLyric();
+				lyricMeta.title = item['name'];
+				lyricMeta.artist = item['artistString'];
 				for (let i_lyric = 0; i_lyric < item['lyrics'].length; i_lyric++) {
-					let lyricMeta = man.createLyric();
-					lyricMeta.title = item['name'];
-					lyricMeta.artist = item['artistString'];
 					// XXX: new ESLyric cannot write source?
 					lyricMeta.source = SERVERS_NAMES[i_server];
 					lyricMeta.source += ': ' + item['lyrics'][i_lyric]['translationType'];
