@@ -81,7 +81,7 @@ def do_zh_forms(page_t):
 				page_s.text = unihan.newhzmul({
 					'char': s,
 				})
-				page_s.text += '\n\n----\n\n==Chinese==\n{{zh-see|' + page_t.title() + '}}'
+				page_s.text += '\n\n==Chinese==\n{{zh-see|' + page_t.title() + '}}'
 				page_s.save('+mul +zh {{zh-see|[[' + page_t.title() + ']]}}')
 				#input('[press enter to continue]')
 		# 詞
@@ -125,13 +125,13 @@ def do_zh_see(page_v):
 				page_t.text = unihan.newhzmul({
 					'char': t[0],
 				})
-				page_t.text += '\n\n----\n\n' + '{{subst:#invoke:User:Suzukaze-c/02|newhz'
+				page_t.text += '\n\n' + '{{subst:#invoke:User:Suzukaze-c/02|newhz'
 				page_t.text += '|' + t[1] + '=' + page_v.title()
 				page_t.text += '}}'
 				page_t.save('+mul +zh ' + '|' + t[1] + '=[[' + page_v.title() + ']]')
 				#input('[press enter to continue]')
 			elif page_t.exists() and not 'Chinese' in page_t.text:
-				page_t.text += '\n\n----\n\n' + '{{subst:#invoke:User:Suzukaze-c/02|newhz'
+				page_t.text += '\n\n' + '{{subst:#invoke:User:Suzukaze-c/02|newhz'
 				page_t.text += '|' + t[1] + '=' + page_v.title()
 				page_t.text += '}}'
 				page_t.save('+zh ' + '|' + t[1] + '=[[' + page_v.title() + ']]')

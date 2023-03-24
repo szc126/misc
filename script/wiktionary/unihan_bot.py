@@ -42,8 +42,6 @@ for page in gen:
 
 		if pywikibot.textlib.does_text_contain_section(page.text, 'Translingual'):
 			text_new[1] = text_mul[1]
-			if len(text_new) > 2 and not '----' in text_new[1]:
-				text_new.insert(2, '\n\n----\n\n')
 			text_new = [str(element) for element in text_new]
 
 			if not '{{character' in text_new[0]:
