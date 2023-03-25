@@ -1,0 +1,8 @@
+has >1 artist
+	.[].meta | select(.ARTIST | length > 1)
+and has album
+	.[].meta | select(.ARTIST | length > 1) | select(.ALBUM)
+and not has album artist
+	.[].meta | select(.ARTIST | length > 1) | select(.ALBUM) | select(has("ALBUM ARTIST") == false)
+get its album
+	.[].meta | select(.ARTIST | length > 1) | select(.ALBUM) | select(has("ALBUM ARTIST") == false).ALBUM[0]

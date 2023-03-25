@@ -173,4 +173,6 @@ notes
 	- TODO: translation etc.
 - https://w.atwiki.jp/hmiku/?page=Do+You+%26+So+You
 	- TODO: unescape HTML entities
+- https://w.atwiki.jp/hmiku/?page=ごめんね%20ごめんね
+	- TODO: #region
 */
