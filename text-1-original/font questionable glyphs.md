@@ -5,6 +5,7 @@
 * 昻 should be 卭, not 卬 (ie 昂)
 * 揷 should be 𦥛, not 臿 (ie 插)
 * 捨 should not have 舌
+* 兎
 
 * ᅢ should be /aj/, not /ja/
 
