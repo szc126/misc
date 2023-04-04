@@ -5,7 +5,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = '歌詞正字';
-	cfg.version = '2023.03.22';
+	cfg.version = '2023.04.04';
 	cfg.author = 'transgender koxinga';
 	cfg.useRawMeta = false;
 }
@@ -56,6 +56,11 @@ export function getLyrics(meta, man) {
 				let lyrics_tshl = [];
 				for (let i_lyrics_line_raw = 0; i_lyrics_line_raw < lyrics_lines_raw.length; i_lyrics_line_raw++) {
 					let ps = lyrics_lines_raw[i_lyrics_line_raw].match(/(?<=<p class=".+">)[^<>]+(?=\s*<.p>)/g);
+					if (!ps) {
+						// https://kuasu.tgb.org.tw/song/73/
+						// `<li><a href="http://twblg.dict.edu.tw/` [...]
+						break;
+					}
 					lyrics_gb.push(ps[0].replace(/^[｜│]/, ''));
 					lyrics_tshh.push(ps[1].replace(/^[.-]$/, ''));
 					lyrics_tshl.push(ps[2].replace(/^[.-]$/, ''));
