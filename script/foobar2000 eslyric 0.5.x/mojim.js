@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = '魔鏡';
-	cfg.version = '2023.04.04';
+	cfg.version = '2023.04.05';
 	cfg.author = 'transgender amen break';
 	cfg.useRawMeta = false;
 }
@@ -62,7 +62,7 @@ export function getLyrics(meta, man) {
 				;
 				lyric = lyric.split(/\n-{8,}\n/g);
 
-				for (let i_lyric = 1; i_lyric < lyric.length; i_lyric++) {
+				for (let i_lyric = 0; i_lyric < lyric.length; i_lyric++) {
 					lyricMeta.lyricText = lyric[i_lyric].trim();
 					man.addLyric(lyricMeta);
 				}
