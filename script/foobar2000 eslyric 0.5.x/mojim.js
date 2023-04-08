@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = '魔鏡';
-	cfg.version = '2023.04.05';
+	cfg.version = '2023.04.08';
 	cfg.author = 'transgender amen break';
 	cfg.useRawMeta = false;
 }
@@ -48,8 +48,7 @@ export function getLyrics(meta, man) {
 				let lyric = body.match(/<dl id=.fsZx1. [\S\s]+?<.dl>/)[0];
 				lyric = lyric
 					.replace(/&#([0-9]+)/g, function(_, dec) {
-						// XXX: u+ffff以上會變成亂碼
-						return String.fromCharCode(dec);
+						return String.fromCodePoint(dec);
 					})
 					.replace(/<br.*?>/g, '\n')
 					.replace(/.+Mojim.+\n/g, '')
@@ -58,7 +57,10 @@ export function getLyrics(meta, man) {
 				;
 
 				lyric = lyric
-					.replace(/\n\n(?=\[.{8}])/g, '\n\n--------\n\n')
+					// 將[by:user]和[00:00.00]黐埋一齊
+					.replace(/(\[[a-z]+:.*?\])\n+(\[[0-9:.]{8}\])/g, '$1\n$2')
+					// 以[]分割
+					.replace(/\n\n(?=\[.*?\])/g, '\n\n--------\n\n')
 				;
 				lyric = lyric.split(/\n-{8,}\n/g);
 
