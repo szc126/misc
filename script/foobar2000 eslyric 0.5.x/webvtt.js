@@ -27,8 +27,10 @@ export function parseLyric(context) {
 	context.lyricText = context.lyricText
 		// 截斷ms、移除style
 		.replace(/^([0-9:.]+)[0-9] --> ([0-9:.]+)[0-9](?: [^\n]+)?/gm, '$1 --> $2')
-		// XXX: 暫時不理60分鐘後了
-		.replace(/(\d\d):(\d\d)(:\d\d\.\d\d)/gm, function(_, H, M, S) { return M + S; })
+		// 處理時間戳
+		.replace(/(00):(\d\d):(\d\d\.\d\d)/gm, function(_, H, M, S) { return M + ':' + S; })
+		// XXX: 不知道該咋處理60分鐘後
+		.replace(/(\d\d):(\d\d):(\d\d\.\d\d)/gm, function(_, H, M, S) { return String(parseInt(M) + 60 * parseInt(H)).padStart(2, '0') + ':' + S; })
 		// 移除style
 		.replace(/<.+?>/g, '')
 	;

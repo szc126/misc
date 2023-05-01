@@ -6,3 +6,9 @@ and not has album artist
 	.[].meta | select(.ARTIST | length > 1) | select(.ALBUM) | select(has("ALBUM ARTIST") == false)
 get its album
 	.[].meta | select(.ARTIST | length > 1) | select(.ALBUM) | select(has("ALBUM ARTIST") == false).ALBUM[0]
+
+----
+
+album with multiple dates
+authored by ChatGPT
+	[.[] | { album: .meta.ALBUM[0], date: .meta.DATE[0] } ] | group_by(.album) | map(select(length > 1)) | map({ album: .[0].album, inconsistent_dates: map(.date) | unique | select(length > 1)})

@@ -19,7 +19,7 @@ export function getLyrics(meta, man) {
 			return;
 		}
 
-		let items = body.match(/<dd [\S\s]+?<.dd>/g);
+		let items = body.match(/<dd [\S\s]+?<.dd>/g) || [];
 		for (let i_item = 1; i_item < items.length; i_item++) {
 			let lrc_meta_raw = items[i_item].match(/.+mxsh_ss.+/g);
 			let lyricMeta = man.createLyric();

@@ -19,7 +19,7 @@ do
 			then
 				echo $text
 				echo $url
-				echo '[InternetShortcut]\nURL='$url > $file
+				echo '[InternetShortcut]\nURL='$url'\nDESC='$text > $file
 				mv "$file" "${text} ${file%.txt}.URL" -v
 			fi
 		fi

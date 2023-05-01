@@ -38,6 +38,7 @@ export function getLyrics(meta, man) {
 				body = body.replace(/\u200b/g, '');
 
 				let lyric = body.match(/(?<=<p>).+(?=<..p>)/);
+				if (!lyric) return; // if <p> is not present, then lyrics are not in Genius
 				/*
 				lyric = lyric && lyric[0].replace(/\\+/g, function(escs) {return escs.substring(0, escs.length - 1)});
 				lyric = JSON.parse('"' + lyric + '"');
