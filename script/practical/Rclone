@@ -21,7 +21,7 @@ if [ "$action" == "m" ]; then
 		mkdir -p "$mountpoint"
 	fi
 
-	if rclone mount --daemon "$name:" "$mountpoint" --drive-export-formats "txt"; then
+	if rclone mount --daemon "$name:" "$mountpoint" --drive-export-formats "txt" -vv; then
 		echo "Mounted $mountpoint."
 		exit 0
 	else

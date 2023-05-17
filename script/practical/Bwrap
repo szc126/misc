@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#--tmpfs /tmp \
+
+bwrap \
+--ro-bind /usr /usr \
+--ro-bind /usr/bin /bin \
+--ro-bind /usr/lib /lib \
+--ro-bind /usr/lib /lib64 \
+--tmpfs $HOME \
+--ro-bind $HOME/.Xauthority $HOME/.Xauthority \
+--ro-bind /tmp /tmp \
+--ro-bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
+--ro-bind /media/m /media/m \
+"$@"
