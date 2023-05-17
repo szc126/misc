@@ -163,6 +163,13 @@ notes
 	- 曲名：『乙女解剖』(おとめかいぼう)
 - https://w.atwiki.jp/hmiku/?page=パンダヒーロー
 	- DIVA：GUMI
+- https://w.atwiki.jp/hmiku/?page=DYE2
+	- 元の歌詞
+- https://w.atwiki.jp/hmiku/?page=般若心経ポップ
+	- 歌詞（というより般若心経の代表的なテキスト）
+
+----
+
 - https://w.atwiki.jp/hmiku/?page=ぽっぴっぽー
 	- TODO: ver.
 - https://w.atwiki.jp/hmiku/?page=モザイクロール
