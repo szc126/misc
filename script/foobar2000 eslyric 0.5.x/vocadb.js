@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
-	cfg.version = '2023.03.22';
+	cfg.version = '2023.05.30';
 	cfg.author = 'transgender queen boudica';
 	cfg.useRawMeta = false;
 }
@@ -39,13 +39,15 @@ export function getLyrics(meta, man) {
 		'Accept': 'application/json',
 		'User-Agent': 'VocaDB for ESLyric for foobar2000',
 	};
+	const N_LYRICS_MAX = 5;
+
 	for (let i_server = 0; i_server < SERVERS.length; i_server++) {
 		// https://vocadb.net/api
 		let url = SERVERS[i_server] + '/api/songs?query=' + encodeURIComponent(meta.title);
 		// https://github.com/VocaDB/vocadb/blob/main/VocaDbWeb/Controllers/Api/SongApiController.cs
 		// nameMatchMode
 		// https://github.com/VocaDB/vocadb/blob/main/VocaDbModel/Service/NameMatchMode.cs
-		url += '&maxResults=5&preferAccurateMatches=true&nameMatchMode=Auto&fields=Lyrics';
+		url += '&maxResults=' + N_LYRICS_MAX + '&preferAccurateMatches=true&nameMatchMode=Auto&fields=Lyrics';
 		// some magic string from
 		// the "Advanced filters" drop down at
 		// https://vocadb.net/Search?filter=&searchType=Song

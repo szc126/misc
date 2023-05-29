@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = 'Genius';
-	cfg.version = '2023.04.04';
+	cfg.version = '2023.05.30';
 	cfg.author = 'transgender walmart';
 	cfg.useRawMeta = false;
 }
@@ -9,7 +9,8 @@ export function getLyrics(meta, man) {
 	let headers = {
 		'User-Agent': 'Genius for ESLyric for foobar2000',
 	};
-	let url = 'https://genius.com/api/search?per_page=2&q=' + encodeURIComponent(meta.title + ' ' + meta.artist);
+	const N_LYRICS_MAX = 2;
+	let url = 'https://genius.com/api/search?per_page=' + N_LYRICS_MAX + '&q=' + encodeURIComponent(meta.title + ' ' + meta.artist);
 
 	request({
 		url: url,
