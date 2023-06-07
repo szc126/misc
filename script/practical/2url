@@ -3,7 +3,7 @@
 for file in $@
 do
 	text=$(cat $file)
-	if (( $(echo $text | wc -l) == 1 )) && [[ $text == "http"* ]] && [[ $text != *"#"* ]] && [[ $text != *" "* ]]
+	if (( $(echo $text | wc -l) == 1 )) && [[ $text == "http"* ]] && [[ $text != *" "* ]]
 	then
 		echo $text
 		echo '[InternetShortcut]\nURL='$text > $file
