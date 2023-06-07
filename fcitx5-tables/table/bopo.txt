@@ -1,0 +1,83 @@
+Length=4
+KeyCode=abcdefghijklmnopqrstuvwxyz
+Prompt=
+ConstructPhrase=
+[Data]
+b	ㄅ
+p	ㄆ
+m	ㄇ
+f	ㄈ
+d	ㄉ
+t	ㄊ
+n	ㄋ
+l	ㄌ
+g	ㄍ
+k	ㄎ
+h	ㄏ
+j	ㄐ
+q	ㄑ
+x	ㄒ
+zh	ㄓ
+ch	ㄔ
+sh	ㄕ
+r	ㄖ
+z	ㄗ
+c	ㄘ
+s	ㄙ
+
+a	ㄚ
+o	ㄛ
+e	ㄜ
+eh	ㄝ
+ai	ㄞ
+ei	ㄟ
+ao	ㄠ
+ou	ㄡ
+an	ㄢ
+en	ㄣ
+ang	ㄤ
+eng	ㄥ
+er	ㄦ
+i	ㄧ
+u	ㄨ
+v	ㄩ
+
+v	ㄪ
+ng	ㄫ
+gn	ㄬ
+ii	ㄭ
+ez	ㄮ
+nn	ㄯ
+
+nb	ㆠ
+nz	ㆡ
+nj	ㆢ
+nq	ㆣ
+ee	ㆤ
+ne	ㆥ
+oo	ㆦ
+no	ㆧ
+ir	ㆨ
+na	ㆩ
+ni	ㆪ
+nu	ㆫ
+im	ㆬ
+ngg	ㆭ
+nai	ㆮ
+nao	ㆯ
+am	ㆰ
+om	ㆱ
+ong	ㆲ
+niz	ㆳ
+lb	ㆴ
+ld	ㆵ
+lk	ㆶ
+lh	ㆷ
+gh	ㆸ
+lh	ㆹ
+zy	ㆺ
+lg	ㆻ
+gw	ㆼ
+kw	ㆽ
+oe	ㆾ
+ah	ㆿ
