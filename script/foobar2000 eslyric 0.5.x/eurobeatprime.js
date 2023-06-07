@@ -35,18 +35,19 @@ export function getLyrics(meta, man) {
 				return;
 			}
 
+			songs_list = body;
 			man.setSvcData('eurobeat-prime ' + artist_initial, body);
 		});
 	}
 
-	const song_search_regex = new RegExp('([^<>]+) - <a (.+)>(' + meta.title.replace(/'/g, '&#039;') + ')<.a>', 'gi');
+	const song_search_regex = new RegExp('([^<>\n]+) - <a (.+)>(' + meta.title.replace(/'/g, '&#039;') + ')<.a>', 'gi');
 	let items = songs_list.matchAll(song_search_regex) || [];
 
 	for (const item of items) {
 		let lyricMeta = man.createLyric();
 
 		lyricMeta.artist = item[1];
-		lyricMeta.title = item[3];
+		lyricMeta.title = meta.title;
 
 		let id_song = item[2].match(/\?lyrics=\d+/g);
 		request({
