@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = '魔鏡';
-	cfg.version = '2023.05.30';
+	cfg.version = '2023.06.10';
 	cfg.author = 'transgender amen break';
 	cfg.useRawMeta = false;
 }
@@ -63,7 +63,7 @@ export function getLyrics(meta, man) {
 
 			lyricMeta.artist = lrc_meta_raw[1].match(/<a .+>(.+)<.a>/)[1];
 			lyricMeta.album = lrc_meta_raw[2].match(/<a .+>(.+)<.a>/)[1];
-			lyricMeta.title = lrc_meta_raw[3].replace(/<font [^<>]+>|<.font>/g, '').match(/<a .+>(.+)<.a>/)[1].replace(/^[0-9]+\./, '');
+			lyricMeta.title = lrc_meta_raw[3].replace(/<font [^<>]+>|<.font>|<span [^<>]+>|<.span>/g, '').match(/<a .+>(.+)<.a>/)[1].replace(/^ ?[0-9]+\./, '');
 
 			// discard artist mismatch
 			if (!artist_match) {
