@@ -22,7 +22,6 @@ export function getLyrics(meta, man) {
 	let headers = {
 		'User-Agent': 'Eurobeat-Prime for ESLyric for foobar2000',
 	};
-	const N_LYRICS_MAX = 5;
 	const artist_initial = meta.artist[0].toLowerCase();
 
 	let songs_list = man.getSvcData('eurobeat-prime ' + artist_initial);

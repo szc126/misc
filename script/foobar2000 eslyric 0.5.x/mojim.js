@@ -99,7 +99,7 @@ export function getLyrics(meta, man) {
 					.replace(/<br.*?>/g, '\n')
 					.replace(/.+Mojim.+\n/g, '')
 					.replace(/^[\S\s]+<.dt>\n+[^\n]+\n+/, '') // /[^\n]+\n+/ is song title + \n\n
-					.replace(/\n+<ol>[\S\s]+/, '')
+					.replace(/\n*<ol>[\S\s]+/, '')
 				;
 
 				lyric = lyric
