@@ -10,7 +10,7 @@ import sys
 
 site = pywikibot.Site()
 
-zs = '濕溼裡裏群羣床牀衛衞污汙為爲偽僞炮砲秘祕麵麪喧諠嘩譁鄰隣線綫眾衆'
+zs = '濕溼裡裏群羣床牀衛衞污汙為爲偽僞炮砲秘祕麵麪喧諠鄰隣線綫眾衆雞鷄真眞'
 zss = '臺輓遊閒'
 
 def change_to_variant(text):
