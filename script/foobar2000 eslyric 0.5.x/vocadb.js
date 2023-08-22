@@ -6,7 +6,7 @@
 
 export function getConfig(cfg) {
 	cfg.name = 'VocaDB';
-	cfg.version = '2023.05.30';
+	cfg.version = '2023.08.23';
 	cfg.author = 'transgender queen boudica';
 	cfg.useRawMeta = false;
 }
@@ -30,7 +30,7 @@ export function getLyrics(meta, man) {
 	// ☞ modify as needed
 	// ☞ 自身の状況に応じて修正をしましょう
 	//
-	if (meta.path.indexOf('ボカロUTAU') == -1) {
+	if (meta.path.indexOf('-v\\') == -1) {
 		console.log('範圍外，已跳過／Skipped: Out of scope');
 		return;
 	}
@@ -75,7 +75,7 @@ export function getLyrics(meta, man) {
 					// XXX: new ESLyric cannot write source?
 					lyricMeta.source = SERVERS_NAMES[i_server];
 					lyricMeta.source += ': ' + item['lyrics'][i_lyric]['translationType'];
-					if (item['lyrics'][i_lyric]['cultureCode'] != '') lyricMeta.source += ': ' + item['lyrics'][i_lyric]['cultureCode'];
+					if (item['lyrics'][i_lyric]['cultureCodes'][0] != '') lyricMeta.source += ': ' + item['lyrics'][i_lyric]['cultureCodes'].join(', ');
 					// XXX
 					lyricMeta.album = '(' + lyricMeta.source + ')';
 					lyricMeta.location = SERVERS[i_server] + '/S/' + item['id'];
