@@ -1,7 +1,15 @@
 #!/usr/bin/env python
-import numpy as np
+
+# https://stackoverflow.com/questions/3438756/some-built-in-to-pad-a-list-in-python
+# https://stackoverflow.com/questions/8421337/rotating-a-two-dimensional-array-in-python
+
 import sys
 text = sys.stdin.read()
-for chunk in reversed(text.split('\n\n')):
-	print()
-	print('\n'.join([''.join(row) for row in np.rot90([list(row) for row in chunk.strip().split('\n')])]))
+text = text.strip().split('\n')
+text_lens = [len(line) for line in text]
+text_lens_max = max(text_lens)
+text = [list(line) + [''] * (text_lens_max - len(line)) for line in text]
+
+print(
+'\n'.join(reversed([''.join(row) for row in zip(*text[::1])]))
+)

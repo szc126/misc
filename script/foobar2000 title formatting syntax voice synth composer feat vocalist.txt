@@ -1,17 +1,56 @@
 $if(
 	$and(
+		%composer%,
 		$or(
-			$strstr(%genre%,'V,'),
-			$strstr(%genre%,'Vアレンジ,'),
+			$strstr(', '%genre%,', V,'),
+			$strstr(', '%genre%,', Vアレンジ,')
 		),
-		$not($or(
-			$strstr(%composer%,'カバー'),
-			$strstr(%composer%,'てみた'),
-			$strcmp(%artist%,%composer%),
-		))
+		$not(
+			$strcmp(%artist%,%composer%)
+		)
 	),
-	[%composer% feat. ]
+	$puts(
+		COMPOSER,
+		$replace(%composer%,'原P:','原:')
+	)
+	$puts(
+		COMPOSER,
+		$cut(
+			$get(COMPOSER),
+			$sub(
+				$strstr(
+					$get(COMPOSER),
+					', 原:'
+				),
+				1
+			)
+		)
+	)
+	$puts(
+		COMPOSER,
+		$cut(
+			$get(COMPOSER),
+			$sub(
+				$strstr(
+					$get(COMPOSER),
+					'原:'
+				),
+				1
+			)
+		)
+	)
 )
-%artist%
+$ifgreater(
+	$len($get(COMPOSER)),
+	0,
+	$get(COMPOSER)' feat. ',
+)%artist%
 
-SWEET JEGUS WHY IS FOOBAR TITLE FORMATTING SYNTAX SO FIDDLY.
+----
+
+Sweet jegus why is fb2k "title formatting syntax" so awful.
+
+- Display > DUI
+- Display > DUI > Playlist View
+- Tools > Last.fm Scrobbling
+- Tools > UPnP > Server > Content
