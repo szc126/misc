@@ -1,5 +1,5 @@
-Length=1
-KeyCode=235%6^7&891!04$
+Length=2
+KeyCode=235%6^7&891!04$'[=]"{+}\\
 Prompt=
 ConstructPhrase=
 [Data]
@@ -19,3 +19,14 @@ ConstructPhrase=
 0	͘
 4	̤
 $	̈
+
+'	꜀
+[	꜂
+=	꜄
+]	꜆
+"	꜁
+{	꜃
++	꜅
+}	꜇
+
+\	'
