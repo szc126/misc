@@ -29,6 +29,7 @@ def main():
 		do_zh_forms(page_t)
 		do_zh_see(page_t)
 
+	"""
 	cat = pywikibot.Category(site, 'Chinese redlinks/zh-see')
 	gen = site.categorymembers(cat)
 
@@ -36,6 +37,7 @@ def main():
 		print()
 		print('https://en.wiktionary.org/wiki/' + page_v.title())
 		do_zh_forms(page_v)
+	"""
 
 def do_zh_forms(page_t):
 	print('[zh-forms]')
