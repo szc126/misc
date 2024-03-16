@@ -13,7 +13,7 @@ do
 		text_split=$(echo $text | sed -E 's/\s+http/\nhttp/g')
 		if (( $(echo $text_split | wc -l) == 2 ))
 		then
-			text=$(echo $text_split | sed '1q;d' | sed 's/|/｜/g; s/:/：/g')
+			text=$(echo $text_split | sed '1q;d' | sed 's/[|]/｜/g; s/[:]/：/g; s/[?]/？/g')
 			url=$(echo $text_split | sed '2q;d')
 			if [[ $url != *" "* ]]
 			then
