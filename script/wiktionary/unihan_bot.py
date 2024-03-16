@@ -11,7 +11,7 @@ import mwparserfromhell
 
 site = pywikibot.Site()
 #gen = pywikibot.User(site, sys.argv[1]).contributions(namespaces = pywikibot.site.Namespace(0))
-gen = site.search(' -insource:/Han char/ "CJK Unified Ideographs" ')
+gen = site.search(' -hastemplate:"Han char" hastemplate:"Han ref" ')
 
 done = set()
 
@@ -41,7 +41,7 @@ for page in gen:
 		text_mul = text_mul.get_sections(include_lead=True,levels=[2])
 
 		if pywikibot.textlib.does_text_contain_section(page.text, 'Translingual'):
-			text_new[1] = text_mul[1]
+			text_new[1] = str(text_mul[1]) + '\n\n'
 			text_new = [str(element) for element in text_new]
 
 			if not '{{character' in text_new[0]:
