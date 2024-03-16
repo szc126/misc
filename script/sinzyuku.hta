@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>nisi-sinzyuku</title>
+	<hta:application
+		applicationname="shinjuku" singleinstance="yes" showintaskbar="no"
+		maximizebutton="no" contextmenu="no"
+		innerborder="no" scroll="no"
+		border="thin"
+	/>
+</head>
+
+<script language="javascript">
+var width = [];
+var height = [];
+
+width[9] = 326;
+height[9] = 323;
+
+width[10] = 336;
+height[10] = 337;
+
+window.resizeTo(width[10], height[10]);
+</script>
+
+<script language="VBScript">
+	Function detOSVer
+		'modified from an hta procured elsewhere, button.hta?
+		Set objWMIService = GetObject("winmgmts:\\" & strComputer &  "\root\cimv2")
+		Set colOperatingSystems = objWMIService.ExecQuery("Select * from Win32_OperatingSystem")
+		Set osVer = "."
+
+		For Each objOperatingSystem in colOperatingSystems
+			Set osver = objOperatingSystem.Caption
+		Next
+
+		' return osver
+		detOSVer = osver
+	End Function
+</script>
+
+<style type="text/css">
+body { margin:0; }
+iframe { height:100%; width:100%; }
+</style>
+
+<body>
+	<iframe src="http://182.171.234.126/ImageViewer?Direction=&Resolution=320x240&Quality=Clarity&Size=STD&PresetOperation=Move&Data=0&Frame2=PanTilt&Type=&Language=1&RPeriod=1&Sound=Enable&Mode=JPEG&SendMethod=1&View=Normal"></iframe>
+</body>
+</html>
