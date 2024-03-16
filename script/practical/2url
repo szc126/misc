@@ -7,7 +7,7 @@ do
 	then
 		echo $text
 		echo '[InternetShortcut]\nURL='$text > $file
-		mv "$file" "${file%.txt}.URL"
+		mv "$file" "${file%.txt}.URL" --no-clobber
 	elif (( $(echo $text | wc -l) == 1 )) && [[ $text == *"http"* ]]
 	then
 		text_split=$(echo $text | sed -E 's/\s+http/\nhttp/g')
@@ -20,7 +20,7 @@ do
 				echo $text
 				echo $url
 				echo '[InternetShortcut]\nURL='$url'\nDESC='$text > $file
-				mv "$file" "${text} ${file%.txt}.URL" -v
+				mv "$file" "${file%.txt} ${text}.URL" -v --no-clobber
 			fi
 		fi
 	else
