@@ -1,5 +1,5 @@
 Length=2
-KeyCode=BPMFVDTNLZCSZhChShRhXGKNgHR"JWYAIaEIeAiOIoUIuIbpmfvdtnlzcszhchshrhxgknghr'jwyaiaeieaioiouiui
+KeyCode=BPMFVDTNLZCSZhChShRhXGKNgHR"JWYAIaEIeAiOIoUIuIbpmfvdtnlzcszhchshrhxgknghr'jwyaiaeieaioiouiui|\
 Prompt=
 ConstructPhrase=
 [Data]
@@ -75,3 +75,5 @@ io	ё
 u	у
 iu	ю
 i	и
+|	Ь
+\	ь
