@@ -5,8 +5,8 @@
 function myFunction() {
 	updateSheetsWithSpecificFolders_mod([
 			// Replace these with your folder IDs
-			'1Q63GtS-mywDu1kyYTCHbRZIahfvesRXF',
-			'125FP3Vpjmc39aFeAwkexi6aI-t-v4t1h',
+			'<folder ID>',
+			'<another folder ID>',
 		]);
 }
 
