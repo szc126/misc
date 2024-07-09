@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mecab -Ochasen | cut -f 3 | tr '\n' ' ' | sed 's/\nEOS /\n/g'

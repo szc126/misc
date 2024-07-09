@@ -5,7 +5,8 @@ from pywikibot.page import Page
 import sys
 
 site = pywikibot.Site()
-gen = site.search(": " + sys.argv[1])
+#gen = site.search(": " + sys.argv[1])
+gen = site.categorymembers(pywikibot.Category(site, 'Pages using duplicate arguments in template calls'))
 
 for page in gen:
 	print(page.title())

@@ -21,7 +21,7 @@ pre() {
 
 check_requirements() {
 	requirements="git dotnet node npm /opt/mssql/bin/mssql-conf /opt/mssql-tools/bin/sqlcmd"
-	#pac="git dotnet-runtime nodejs npm AUR/mssql-server AUR/mssql-tools dotnet-sdk aspnet-runtime"
+	#pac="git dotnet-runtime nodejs npm AUR/mssql-server AUR/mssql-tools dotnet-sdk-7.0 aspnet-runtime-7.0"
 	#foobar=(
 	#https://archive.archlinux.org/packages/l/libldap/libldap-2.4.59-2-x86_64.pkg.tar.zst
 	#https://archive.archlinux.org/packages/l/libldap/libldap-2.4.59-2-x86_64.pkg.tar.zst.sig
@@ -128,7 +128,7 @@ main() {
 	pre
 	check_requirements
 
-	prepare_git
+	#prepare_git
 	#prepare_dotnet
 	#prepare_node
 	#prepare_npm
