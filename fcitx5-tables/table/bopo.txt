@@ -1,5 +1,5 @@
 Length=4
-KeyCode=abcdefghijklmnopqrstuvwxyz
+KeyCode=abcdefghijklmnopqrstuvwxyz234
 Prompt=
 ConstructPhrase=
 [Data]
@@ -81,3 +81,7 @@ gw	ㆼ
 kw	ㆽ
 oe	ㆾ
 ah	ㆿ
+
+2	ˊ
+3	ˇ
+4	ˋ
