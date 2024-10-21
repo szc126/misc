@@ -1,0 +1,108 @@
+Length=2
+KeyCode=abwgdejziyklmnoprstufx42'\]30vc;hyey'yuyvyay3``o`t`c`g`q`z`s`\qABWGDEJZIYKLMNOPRSTUFX$@"|}#)VC:HYEY"YUYVYAY3~~O~T~C~G~Q~Z~S~|Q
+Prompt=
+ConstructPhrase=
+[Data]
+a	а
+b	б
+w	в
+g	г
+d	д
+e	е
+j	ж
+z	з
+i	и
+y	й
+k	к
+l	л
+m	м
+n	н
+o	о
+p	п
+r	р
+s	с
+t	т
+u	у
+f	ф
+x	х
+4	ч
+2	ш
+'	ы
+\	ь
+]	э
+3	ә
+0	ө
+v	ү
+c	җ
+;	ң
+h	һ
+
+ye	е
+y'	е
+yu	ю
+yv	ю
+ya	я
+y3	я
+
+`	`
+`o	ё
+`t	ц
+`c	щ
+`g	ғ
+`q	ҡ
+`z	ҙ
+`s	ҫ
+`\	ъ
+q	к
+
+A	А
+B	Б
+W	В
+G	Г
+D	Д
+E	Е
+J	Ж
+Z	З
+I	И
+Y	Й
+K	К
+L	Л
+M	М
+N	Н
+O	О
+P	П
+R	Р
+S	С
+T	Т
+U	У
+F	Ф
+X	Х
+$	Ч
+@	Ш
+"	Ы
+|	Ь
+}	Э
+#	Ә
+)	Ө
+V	Ү
+C	Җ
+:	Ң
+H	Һ
+
+YE	Е
+Y"	Е
+YU	Ю
+YV	Ю
+YA	Я
+Y3	Я
+
+~	~
+~O	Ё
+~T	Ц
+~C	Щ
+~G	Ғ
+~Q	Ҡ
+~Z	Ҙ
+~S	Ҫ
+~|	Ъ
+Q	К
