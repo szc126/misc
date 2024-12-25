@@ -131,3 +131,9 @@ q	ン
 
 ss	̅
 hh	̣
+
+ra	ラ
+ri	リ
+ru	ル
+re	レ
+ro	ロ
