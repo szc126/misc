@@ -1,0 +1,54 @@
+Length=1
+KeyCode=a3bptc4xdrzjs29fqkg;lmno0uvVh'eiywSXZSZTZG\|?,_<>
+Prompt=
+ConstructPhrase=
+[Data]
+a	ا
+3	ە
+b	ب
+p	پ
+t	ت
+c	ج
+4	چ
+x	ح
+d	د
+r	ر
+z	ز
+j	ژ
+s	س
+2	ش
+9	ع
+f	ف
+q	ق
+k	ک
+g	گ
+;	ڭ
+l	ل
+m	م
+n	ن
+o	ۇ
+0	ۇ
+u	و
+v	و
+V	ۋ
+h	ه
+'	ىُ
+e	ىُ
+i	ی
+y	ی
+w	و
+S	ث
+X	خ
+Z	ذ
+S	ص
+Z	ض
+T	ط
+Z	ظ
+G	غ
+\	ئ
+|	ࢭ
+?	؟
+,	،
+_	ـ
+<	«
+>	»

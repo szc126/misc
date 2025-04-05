@@ -1,0 +1,34 @@
+Length=1
+KeyCode=bw9jiy42'30vc;BW(JIY$@"#)VC:
+Prompt=
+ConstructPhrase=
+[Data]
+b	b
+w	w
+9	ğ
+j	j
+i	i
+y	y
+4	ç
+2	ş
+'	ı
+3	ä
+0	ö
+v	ü
+c	c
+;	ñ
+
+B	B
+W	W
+(	Ğ
+J	J
+I	İ
+Y	Y
+$	Ç
+@	Ş
+"	I
+#	Ä
+)	Ö
+V	Ü
+C	C
+:	Ñ

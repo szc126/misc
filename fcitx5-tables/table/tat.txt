@@ -1,5 +1,5 @@
 Length=2
-KeyCode=abwgdejziyklmnoprstufx42'\]30vc;hyey'yuyvyay3``o`t`c`g`q`z`s`\qABWGDEJZIYKLMNOPRSTUFX$@"|}#)VC:HYEY"YUYVYAY#~~O~T~C~G~Q~Z~S~|Q<>YeY'YuYvYaY3
+KeyCode=abwgdejziyklmnoprstufx42'\]30vc;hyey'yuyvyay3``o`t`c`9`q`z`s`\9qABWGDEJZIYKLMNOPRSTUFX$@"|}#)VC:HYEY"YUYVYAY#~~O~T~C~(~Q~Z~S~|(Q<>YeY'YuYvYaY3
 Prompt=
 ConstructPhrase=
 [Data]
@@ -45,15 +45,16 @@ ya	я
 y3	я
 
 `	`
-`o	ё
+`e	ё
 `t	ц
-`c	щ
-`g	ғ
+`2	щ
+`9	ғ
 `q	ҡ
 `z	ҙ
 `s	ҫ
 `\	ъ
-q	к
+9	гъ
+q	къ
 
 A	А
 B	Б
@@ -97,15 +98,16 @@ YA	Я
 Y#	Я
 
 ~	~
-~O	Ё
+~E	Ё
 ~T	Ц
-~C	Щ
-~G	Ғ
+~@	Щ
+~(	Ғ
 ~Q	Ҡ
 ~Z	Ҙ
 ~S	Ҫ
 ~|	Ъ
-Q	К
+(	ГЪ
+Q	КЪ
 
 <	«
 >	»
