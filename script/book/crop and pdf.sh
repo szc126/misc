@@ -12,6 +12,18 @@ case $(basename "$folder") in
 	"")
 		args=""
 		;;
+	"lunjy syanji cover")
+		args="-rotate 270 -extent 4000x -crop 1525x2150+0+400"
+		;;
+	"lunjy syanji 1")
+		args="-rotate 270 -extent 4000x -crop 3050x2150+520+0 +repage -crop 50%x100%"
+		;;
+	"lunjy syanji 2")
+		args="-rotate 270 -extent 4000x -crop 3050x2150+20+0 +repage -crop 50%x100%" # damn scanner software autocrop
+		;;
+	"lunjy syanji 3")
+		args="-rotate 270 -extent 4000x -crop 3050x2150+520+310 +repage -crop 50%x100%"
+		;;
 esac
 
 cd "$folder"
@@ -32,7 +44,7 @@ done
 for file in crop/*-0.jpg; do
 	echo "renaming $file"
 
-	mv "$file" "$(echo "$file" | sed "s/-0/-b/")"
+	mv "$file" "$(echo "$file" | sed "s/-0/-a/")"
 
 	echo
 done
@@ -41,7 +53,7 @@ done
 for file in crop/*-1.jpg; do
 	echo "renaming $file"
 
-	mv "$file" "$(echo "$file" | sed "s/-1/-a/")"
+	mv "$file" "$(echo "$file" | sed "s/-1/-b/")"
 
 	echo
 done

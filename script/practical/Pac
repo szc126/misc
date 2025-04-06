@@ -15,7 +15,7 @@ case "$*" in
 	LC_ALL=C pacman -Qei | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 	;;
 "del cache")
-	sudo pacman -Sc
+	sudo pacman -Scc
 	paccache --cachedir "$(dirname "$(aur repo -d custom --path)")" -vvv --remove --keep 1
 	paccache --cachedir "$(dirname "$(aur repo -d custom-gdfuse --path)")" -vvv --remove --keep 1
 	;;

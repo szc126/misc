@@ -131,43 +131,46 @@ write_default_config() {
 }
 
 npm_compile_assets() {
-	# XXX: IDK how npm works
 	if [ ! -d "$DIR_WORKING/git/vocadb/VocaDbWeb/node_modules" ]
 	then
 		cd "$DIR_WORKING/git/vocadb/VocaDbWeb"
 		npm install
 		#npm run dev
 		npm run production
-		#npm run watch &
 	fi
+	#npm run watch &
+}
+
+start_front() {
+	# start frontend
+	# `https://localhost:5173/`
+	# you can change `target` in `VocaDbWeb/vite.config.ts` to `https://beta.vocadb.net`
+	npm run dev
 }
 
 start_server() {
+	# start both backend and frontend
+	# `http://localhost:5000/`
+	# `https://localhost:50001/`
 	dotnet run --project "$DIR_WORKING/git/vocadb/VocaDbWeb"
-}
-
-stop_server() {
-	# there has to be a better way
-	killall dotnet
-
-	# probably not a good idea, like when restarting
-	# stop the service yourself
-	#sudo systemctl stop mssql-server
 }
 
 main() {
 	pre
 	check_requirements
 
-	#prepare_git
+	prepare_git
 	prepare_sqlservr
 	prepare_dotnet-fm
 
 	write_default_config
 	npm_compile_assets
 
+	#start_front
 	start_server
-	#stop_server
+
+	# as it says in the logs:
+	# Ctrl-C to kill server
 }
 
 main
