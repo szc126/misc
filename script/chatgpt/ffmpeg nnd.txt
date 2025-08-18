@@ -1,0 +1,5 @@
+# https://qa.nicovideo.jp/faq/show/5685?site_domain=default
+ffmpeg -loop 1 -i *.png -i *.wav \
+-c:v libx264 -profile:v high -pix_fmt yuv420p \
+-c:a aac -b:a 192k -ac 2 -ar 48000 -shortest \
+-shortest -movflags +faststart output.mp4

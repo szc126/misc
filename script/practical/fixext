@@ -19,7 +19,13 @@ for path in $paths; do
 		new_ext="jpg"
 	fi
 	if [ "$new_ext" == "???" ]; then
-		echo "unknown file type; skipping..."
+		new_ext_full=$(file --brief "$path")
+		if [[ "$new_ext_full" == "FLAC"* ]]; then new_ext="flac"; fi
+		if [[ "$new_ext_full" == *"MPEG ADTS"* ]]; then new_ext="mp3"; fi
+		echo "this might be $new_ext?"
+	fi
+	if [ "$new_ext" == "???" ]; then
+		echo "unknown!!"
 	else
 		new_path=$(echo "$path" | sed -E 's/\.[a-z]+$//').$new_ext
 		mv --no-clobber --verbose "$path" "$new_path"
