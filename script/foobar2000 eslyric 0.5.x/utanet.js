@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = '歌ネット';
-	cfg.version = '2024.09.28';
+	cfg.version = '2025.10.02';
 	cfg.author = 'bratya karamazovy autumn';
 	cfg.useRawMeta = false;
 }
@@ -44,7 +44,6 @@ export function getLyrics(meta, man) {
 					.replace(/<br \/>/g, '\n')
 				;
 
-				console.log(lyric);
 				lyricMeta.lyricText = lyric;
 				man.addLyric(lyricMeta);
 			});

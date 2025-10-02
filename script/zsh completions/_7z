@@ -1,0 +1,29 @@
+#compdef 7z
+
+# https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+# https://github.com/HeLiBloks/zsh-completion-Collectable-Completions/blob/master/_7z
+# ./site-functions/_pacman
+# ./site-functions/_systemctl
+
+# all i wanted was the lack of a space after `-o`
+# and i have obtained this. 善哉
+
+local -a _commands=(
+	'a:Add files to archive'
+	'b:Benchmark'
+	'd:Delete files from archive'
+	'e:Extract files from archive (without using directory names)'
+	'h:Calculate hash values for files'
+	'i:Show information about supported formats'
+	'l:List contents of archive'
+	'rn:Rename files in archive'
+	't:Test integrity of archive'
+	'u:Update files to archive'
+	'x:eXtract files with full paths'
+)
+
+local -a _switches=(
+	'-o+[set Output directory]:cool output directory:_files -/'
+)
+
+_arguments '1:cool verb:(($_commands))' '2:cool archive files:_files' $_switches
