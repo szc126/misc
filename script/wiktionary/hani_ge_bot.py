@@ -21,6 +21,13 @@ gen = site.search('hastemplate:zh-see "glyph origin" "the simplified form" insou
 done = set()
 
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print('https://en.wiktionary.org/wiki/' + page.title())
+
 	z = page.title()
 	save_summary = ''
 
@@ -82,9 +89,3 @@ for page in gen:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

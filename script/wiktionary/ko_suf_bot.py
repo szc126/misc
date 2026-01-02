@@ -28,7 +28,14 @@ def doer_2(match):
 	return d
 
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
 	print(page.title())
+	print(page.full_url())
+
 	if page.title() in ignore:
 		continue
 
@@ -97,9 +104,3 @@ for page in gen:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

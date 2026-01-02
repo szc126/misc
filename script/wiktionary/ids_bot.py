@@ -15,7 +15,13 @@ with open(sys.argv[1], 'r') as f:
 		idss[line[0]] = line[1].strip()
 
 for page in gen:
-	print(page.title())
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print('https://en.wiktionary.org/wiki/' + page.title())
+
 	if not page.title() in idss:
 		continue
 

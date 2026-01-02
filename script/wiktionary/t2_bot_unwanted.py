@@ -30,14 +30,13 @@ def doer2(match):
 
 bool_skip = True
 for page in gen:
-	"""
-	if bool_skip:
-		print(page.title())
-		if page.title()[0] == 'ス': # start from this point in the list instead of from the top
-			bool_skip = False
-		else:
-			continue
-	"""
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print(page.title())
+	print(page.full_url())
 
 	if '|t2=' in page.text:
 		continue
@@ -63,17 +62,7 @@ for page in gen:
 			elif reply == 'x':
 				lang_code = 'next'
 				print('Skipped.')
-			else:
-				lang_code = reply
-				page.text = text_old
-				print('Trying again.')
 	except Exception as e:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

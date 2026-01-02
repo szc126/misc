@@ -18,6 +18,14 @@ def doer(match):
 
 bool_skip = True
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print(page.title())
+	print(page.full_url())
+
 	"""
 	if bool_skip:
 		print(page.title())
@@ -30,7 +38,6 @@ for page in gen:
 	if 'Etymology' in page.text:
 		continue
 
-	print(page.title())
 	try:
 		text_old = page.text
 		lang_code = ''
@@ -85,9 +92,3 @@ for page in gen:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

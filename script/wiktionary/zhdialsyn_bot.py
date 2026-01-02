@@ -13,6 +13,14 @@ ignore_list = [
 counter = 0
 counter_limit = 5
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print(page.title())
+	print(page.full_url())
+
 	if page.title() in ignore_list:
 		continue
 
@@ -28,9 +36,3 @@ for page in gen:
 	if counter >= counter_limit:
 		input('[go review]')
 		counter = 0
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

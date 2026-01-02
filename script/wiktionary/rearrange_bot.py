@@ -7,6 +7,14 @@ site = pywikibot.Site()
 gen = site.search('korean insource:/Usage notes.*\{\{(?:ko-paraintensive[ _]form[ _]of|ko-intensive[ _]form[ _]of|ko-yin[ _]form[ _]of|ko-yang[ _]form[ _]of)/')
 
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print(page.title())
+	print(page.full_url())
+
 	try:
 		text_old = page.text
 
@@ -66,9 +74,3 @@ for page in gen:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

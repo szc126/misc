@@ -7,6 +7,13 @@ site = pywikibot.Site()
 gen = site.search(' insource:/=Etymology=.+=Chinese=/ -intitle:/[A-Za-z0-9]/ -"foreign scripts" insource:"japanese han simp" hastemplate:"Han simp" ')
 
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print('https://en.wiktionary.org/wiki/' + page.title())
+
 	try:
 		text_old = page.text
 
@@ -50,9 +57,3 @@ for page in gen:
 		print(page.text)
 		print(e)
 		input('[something went wrong. press enter to continue]')
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

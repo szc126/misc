@@ -50,7 +50,13 @@ for page, revid, timestamp, summary in gen:
 
 # work on pages
 for page in pages:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
 	print(page.title())
+	print(page.full_url())
 
 	usexes = set()
 	usexes_done = set()
@@ -127,9 +133,3 @@ for page in pages:
 		print('[could not add attribution]')
 		print(usexes - usexes_done)
 		input()
-
-	print()
-	print()
-	print('＠＠＠＠')
-	print()
-	print()

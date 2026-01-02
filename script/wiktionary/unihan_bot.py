@@ -16,6 +16,13 @@ gen = site.search(' -hastemplate:"Han char" hastemplate:"Han ref" ')
 done = set()
 
 for page in gen:
+	print()
+	print()
+	print('＠＠＠＠＠')
+	print()
+	print()
+	print('https://en.wiktionary.org/wiki/' + page.title())
+
 	z = page.title()
 	save_summary = ''
 
@@ -23,8 +30,6 @@ for page in gen:
 		continue
 	if len(z) != 1:
 		continue
-
-	print('https://en.wiktionary.org/wiki/' + z)
 
 	try:
 		text_old = page.text
