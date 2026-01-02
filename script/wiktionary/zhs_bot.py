@@ -44,7 +44,7 @@ def do_zh_forms(page_t):
 	if not '{{zh-forms' in page_t.text:
 		print('[skipped: no zh-forms]')
 		return
-	if '{{rfv|' in page_t.text or '{{rfd|' in page_t.text:
+	if '{{rfv|' in page_t.text or '{{rfd|' in page_t.text or '{{derogatory|' in page_t.text:
 		print('[skipped: RFV or RFD]')
 		return
 
