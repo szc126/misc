@@ -28,7 +28,7 @@ export function parseLyric(context) {
 
 	context.lyricText = context.lyricText
 		// 處理時間戳
-		.replace(/(00):(\d\d):(\d\d\.\d\d)\d/gm, function(_, H, M, S) { return M + ':' + S; })
+		.replace(/(00:)?(\d\d):(\d\d\.\d\d)\d/gm, function(_, H, M, S) { return M + ':' + S; })
 		// XXX: 不知道該咋處理60分鐘後
 		.replace(/(\d\d):(\d\d):(\d\d\.\d\d)\d/gm, function(_, H, M, S) { return String(parseInt(M) + 60 * parseInt(H)).padStart(2, '0') + ':' + S; })
 		// 處理逐字時間戳
