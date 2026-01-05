@@ -1,5 +1,5 @@
 Length=1
-KeyCode=a3bptc4xdrzjs29fqkg;lmno0uvVh'eiywSXZSZTZG\|?,_<>
+KeyCode=a3bptc4xdrzjs29fqkg;lmno0uvWh'eiywSXZSZTZ(AIH]\?,_<>
 Prompt=
 ConstructPhrase=
 [Data]
@@ -30,7 +30,7 @@ o	ۇ
 0	ۇ
 u	و
 v	و
-V	ۋ
+W	ۋ
 h	ه
 '	ىُ
 e	ىُ
@@ -44,9 +44,12 @@ S	ص
 Z	ض
 T	ط
 Z	ظ
-G	غ
-\	ئ
-|	ࢭ
+(	غ
+A	آ
+I	أ
+H	ة
+]	ئ
+\	ࢭ
 ?	؟
 ,	،
 _	ـ
