@@ -39,6 +39,8 @@ if [ -n "$new_br" ]; then
 		exit
 	fi
 	echo "$old_br to $new_br"
+	# https://dunst-project.org/documentation/guides/
+	notify-send "$old_br to $new_br" -h string:x-canonical-private-synchronous:back
 	echo "$new_br" | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 else
 	echo "$old_br"

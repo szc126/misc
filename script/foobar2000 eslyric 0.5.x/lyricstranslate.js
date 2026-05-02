@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = 'LyricsTranslate.com';
-	cfg.version = '2025.10.02';
+	cfg.version = '2026.04.20';
 	cfg.author = 'ik kom van de straat';
 	cfg.useRawMeta = false;
 }
@@ -23,7 +23,7 @@ export function getLyrics(meta, man) {
 			return;
 		}
 
-		let items = body.match(/(?<=")\/en\/.+-lyrics.html(?=")/g) || [];
+		let items = body.match(/(?<=a href=")\/en\/.+?-lyrics.html(?=")/g) || [];
 		for (let i_item = 0; i_item < Math.min(items.length, N_LYRICS_MAX); i_item++) {
 			let lyricMeta = man.createLyric();
 
