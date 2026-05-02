@@ -1,5 +1,5 @@
 Length=1
-KeyCode=a3bptc4xdrzjs29fqkg;lmno0uvWh'eiywSXZSZTZ(AIH]\?,_<>
+KeyCode=]a3bptc4xdrzjs29fqkg;lmno0uvWh'eiyw]\SXZSZTZ(#AIIHHK}?,_<>|
 Prompt=
 ConstructPhrase=
 [Data]
@@ -20,7 +20,7 @@ s	س
 9	ع
 f	ف
 q	ق
-k	ک
+k	ك
 g	گ
 ;	ڭ
 l	ل
@@ -31,12 +31,16 @@ o	ۇ
 u	و
 v	و
 W	ۋ
-h	ه
+h	ھ
 '	ىُ
 e	ىُ
 i	ی
 y	ی
 w	و
+
+]	ئ
+\	ࢭ
+
 S	ث
 X	خ
 Z	ذ
@@ -45,13 +49,19 @@ Z	ض
 T	ط
 Z	ظ
 (	غ
+
+#	ە&zwnj;
 A	آ
+I	ي
 I	أ
+H	ه
 H	ة
-]	ئ
-\	ࢭ
+K	ک
+}	ء
+
 ?	؟
 ,	،
 _	ـ
 <	«
 >	»
+|	&zwnj;
