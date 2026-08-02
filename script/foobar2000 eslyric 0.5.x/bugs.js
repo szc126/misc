@@ -1,8 +1,12 @@
 export function getConfig(cfg) {
 	cfg.name = '벅스 Bugs!';
-	cfg.version = '2023.06.28';
-	cfg.author = 'cisgender(derogatory) exclamation mark';
+	cfg.version = '2023.06.12';
+	cfg.author = 'rabbits in drag';
+
 	cfg.useRawMeta = false;
+
+	cfg.parsePlainText = true;
+	cfg.fileType = 'bugs';
 }
 
 export function getLyrics(meta, man) {
@@ -19,27 +23,58 @@ export function getLyrics(meta, man) {
 			return;
 		}
 
-		let urls = body.match(/(?<=href=")[^"]+\/track\/[^"]+(?=")/g) || [];
-		for (let i_url = 0; i_url < Math.min(urls.length, N_LYRICS_MAX); i_url++) {
+		let ids = body.match(/(?<=listen\(').+(?='\))/g) || [];
+		let titles = body.match(/(?<=^title.+>).+(?=<.a>)/gm) || [];
+		let artists = body.match(/(?<=artist'.;\r\n">).+(?=<.a>)/g) || [];
+		let albums = body.match(/(?<=album'.;\r\n">).+(?=<.a>)/g) || [];
+
+		for (let i_id = 0; i_id < Math.min(ids.length, N_LYRICS_MAX); i_id++) {
+			// https://github.com/limerainne/mp3tag-ws-bugs/blob/master/Bugs%232.%20곡%20ID%20-%20동기가사.src
 			request({
-				url: urls[i_url],
+				url: 'https://music.bugs.co.kr/player/lyrics/T/' + ids[i_id],
 				headers: headers,
 			}, (err, res, body) => {
 				if (err || res.statusCode != 200) {
 					return;
 				}
 
-				if (body.indexOf('<xmp>') < 0) {
-					return;
+				let lyricMeta = man.createLyric();
+				lyricMeta.title = titles[i_id];
+				lyricMeta.artist = artists[i_id];
+				lyricMeta.album = albums[i_id];
+
+				body = JSON.parse(body);
+				if (body['lyrics'] == '') {
+					request({
+						url: 'https://music.bugs.co.kr/player/lyrics/N/' + ids[i_id],
+						headers: headers,
+					}, (err, res, body) => {
+						if (err || res.statusCode != 200) {
+							return;
+						}
+
+						body = JSON.parse(body);
+						if (body['lyrics'] == '') {
+							return;
+						}
+						lyricMeta.lyricText = body['lyrics'];
+					});
+				} else {
+					lyricMeta.fileType = 'bugs';
+					lyricMeta.lyricText = body['lyrics'];
 				}
 
-				let lyricMeta = man.createLyric();
-				lyricMeta.title = body.match(/property="sc:track_title" content="(.+)"/)[1];
-				lyricMeta.artist = body.match(/property="sc:artist_nm" content="(.+)"/)[1];
-				lyricMeta.album = body.match(/property="sc:album_title" content="(.+)"/)[1];
-				lyricMeta.lyricText = body.match(/<xmp>([\S\s]+?)<.xmp>/)[1];
 				man.addLyric(lyricMeta);
 			});
 		}
 	});
+}
+
+export function parseLyric(context) {
+	let hold = context.lyricText.split(/[|＃]/g);
+	let lines = '';
+	for (let i = 0; i < hold.length; i += 2) {
+		lines += '[00:' + hold[i] + ']' + hold[i+1] + '\n';
+	}
+	context.lyricText = lines;
 }
