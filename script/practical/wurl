@@ -8,4 +8,4 @@ do
 	urls+=" $url"
 done
 
-x-www-browser $urls &
+xdg-open $urls &
