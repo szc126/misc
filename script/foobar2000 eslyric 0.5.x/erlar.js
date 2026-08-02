@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = 'erlar.ru (Татар җырлары)';
-	cfg.version = '2025.11.25';
+	cfg.version = '2026.07.09';
 	cfg.author = '極度良好（です）';
 	cfg.useRawMeta = false;
 }
@@ -38,8 +38,6 @@ export function getLyrics(meta, man) {
 
 		let items = body.match(/(?<=")https:\/\/erlar\.ru\/node\/\d+(?=")/g) || [];
 		for (let i_item = 0; i_item < Math.min(items.length, N_LYRICS_MAX); i_item++) {
-			let lyricMeta = man.createLyric();
-
 			request({
 				url: items[i_item],
 				headers: headers,
@@ -48,20 +46,37 @@ export function getLyrics(meta, man) {
 					return;
 				}
 
-				lyricMeta.title = body.match(/<title>([^|]+) \| /)[1];
+				const lyricMeta = man.createLyric();
 
-				let paren = lyricMeta.title.match(/ \(.+ вариант\)/);
-				lyricMeta.artist = paren ? paren[0].slice(1) : '';
-				lyricMeta.title = lyricMeta.title.slice(0, -1 * (lyricMeta.artist.length));
+				lyricMeta.title = body.match(/<title>([^|]+) \| /)[1];
+				const paren = lyricMeta.title.match(/^(.+) (\(.+ вариант\))$/);
+				if (paren) {
+					lyricMeta.title = paren[1];
+					lyricMeta.album = paren[2];
+				}
 
 				let lyric = body.match(/(?<=<p class="line_[a-z]+">)(.+?)(?=<\/p>)/gs);
 				lyric = lyric.join('\n\n');
 				lyric = lyric
 					.replace(/<br \/>/g, '')
 				;
-
 				lyricMeta.lyricText = lyric;
-				man.addLyric(lyricMeta);
+
+				// use ESLyric artist matching
+				const artists = body.match(/(?<=<div id="artist">).+(?=<.div>)/);
+				if (artists) {
+					for (const match of artists[0].matchAll(/"">(.+?)<.a/g)) {
+						const lyricMetaNew = man.createLyric();
+						lyricMetaNew.title = lyricMeta.title;
+						lyricMetaNew.album = lyricMeta.album;
+						lyricMetaNew.artist = match[1];
+						// circumvent deduplication
+						lyricMetaNew.lyricText = '[ar:' + lyricMetaNew.artist + ']\n\n' + lyricMeta.lyricText;
+						man.addLyric(lyricMetaNew);
+					}
+				} else {
+					man.addLyric(lyricMeta);
+				}
 			});
 		}
 	});
