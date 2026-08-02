@@ -10,6 +10,7 @@ wua="Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.20.25 (KHTM
 
 wget \
 -e robots=off \
---waitretry 5 --timeout 60 --tries 5 --wait 1 --random-wait \
+--timeout 60 --tries 10 --wait 10s --random-wait --waitretry 30 \
 --warc-header "operator: Archive Team" --warc-cdx --warc-file="${wo?}" \
+--retry-on-http-error 502 \
 -U "${wua?}" -i "${wi?}" -P "/tmp/warc/${wo?}" "$@"
