@@ -1,5 +1,5 @@
-Length=1
-KeyCode=]a3bptc4xdrzjs29fqkg;lmno0uvWh'eiyw]\SXZSZTZ(#AIIHHK}?,_<>|
+Length=2
+KeyCode=]a3bptc4xdrzjs29fqkg;lmno0uvWh'eiyw]\SXZSZTZ(#AIIHHK}?,_<>|`
 Prompt=
 ConstructPhrase=
 [Data]
@@ -50,7 +50,7 @@ T	ط
 Z	ظ
 (	غ
 
-#	ە&zwnj;
+#	ه&zwnj;
 A	آ
 I	ي
 I	أ
@@ -65,3 +65,13 @@ _	ـ
 <	«
 >	»
 |	&zwnj;
+
+`a	َ
+`i	ِ
+`u	ُ
+`a	ً
+`i	ٍ
+`u	ٌ
+`e	ْ
+`w	ّ
+`a	ٰ
