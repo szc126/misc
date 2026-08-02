@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = 'bilibili 彈幕';
-	cfg.version = '2023.07.08';
+	cfg.version = '2026.06.12';
 	cfg.author = 'live laugh love';
 	cfg.parsePlainText = true;
 	cfg.fileType = 'xml';
@@ -19,15 +19,7 @@ export function parseLyric(context) {
 		let time_s = p.split(',')[0];
 		let text = node.getText();
 
-		const rawSeconds = parseFloat(time_s);
-		/* 以下 Bing AI */
-		const minutes = Math.floor(rawSeconds / 60);
-		const seconds = (rawSeconds % 60).toFixed(3);
-		const [intSeconds, ms] = seconds.split('.');
-		const formattedTime = `${minutes.toString().padStart(2, '0')}.${intSeconds.padStart(2, '0')}.${ms.padEnd(3, '0')}`;
-		/* 以上 Bing AI */
-
-		lines += '\n[' + formattedTime + '\]' + text;
+		lines += '\n[00:' + time_s + '\]' + text;
 	}
 	context.lyricText = lines;
 }
