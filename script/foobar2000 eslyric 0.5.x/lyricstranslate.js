@@ -1,6 +1,6 @@
 export function getConfig(cfg) {
 	cfg.name = 'LyricsTranslate.com';
-	cfg.version = '2026.04.20';
+	cfg.version = '2026.06.12';
 	cfg.author = 'ik kom van de straat';
 	cfg.useRawMeta = false;
 }
@@ -38,9 +38,9 @@ export function getLyrics(meta, man) {
 				lyricMeta.artist = body.match(/artist: "(.+)"/)[1];
 				lyricMeta.title = body.match(/song: "(.+)"/)[1];
 
-				if (body.indexOf('video-with-subtitles') > 1) {
-					let nid = body.match(/nid="(.+?)"/)[1];
-					let youtube = body.match(/youtube="(.+?)"/)[1];
+				if (body.indexOf('subtitles-display') > 1) {
+					let nid = body.match(/nid='(.+?)'/)[1];
+					let youtube = body.match(/youtube='(.+?)'/)[1];
 
 					request({
 						url: 'https://lyricstranslate.com/en/callback/subtitles/' + nid + '/' + youtube,
